@@ -57,7 +57,9 @@ public class videos {
     public void setId_comp(int id_comp) {
         this.id_comp = id_comp;
     }
-
+public videos(){
+    
+}
     public videos(int id_vid, String nom_vid, String path_vid, String desc_vid, int id_comp) {
         this.id_vid = id_vid;
         this.nom_vid = nom_vid;

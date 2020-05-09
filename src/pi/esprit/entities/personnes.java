@@ -6,8 +6,8 @@
 package pi.esprit.entities;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+
+
 import java.util.Objects;
 
 /**
@@ -18,13 +18,13 @@ public class personnes {
     private int id_user ;
      private String nom;
     private String prenom;
-   private Date date_de_nes;
-    private String adress;
+  
     private String profil;
     private String photo;
     private String login;
     private String pwd;
-   Map <personnes, videos> vs ;
+      private String adress;
+  
 
     public int getId_user() {
         return id_user;
@@ -38,9 +38,7 @@ public class personnes {
         return prenom;
     }
 
-    public Date getDate_de_nes() {
-        return date_de_nes;
-    }
+   
 
     public String getAdress() {
         return adress;
@@ -74,9 +72,7 @@ public class personnes {
         this.prenom = prenom;
     }
 
-    public void setDate_de_nes(Date date_de_nes) {
-        this.date_de_nes = date_de_nes;
-    }
+   
 
     public void setAdress(String adress) {
         this.adress = adress;
@@ -98,21 +94,22 @@ public class personnes {
         this.pwd = pwd;
     }
 
-    public personnes(int id_user, String nom, String prenom, Date date_de_nes, String adress, String profil, String photo, String login, String pwd) {
+    public personnes(int id_user, String nom, String prenom,  String adress, String profil, String photo, String login, String pwd) {
         this.id_user = id_user;
         this.nom = nom;
         this.prenom = prenom;
-        this.date_de_nes = date_de_nes;
+       
         this.adress = adress;
         this.profil = profil;
         this.photo = photo;
         this.login = login;
         this.pwd = pwd;
-       Map<personnes, videos> vs=new HashMap<personnes,videos>();
+     
     }
-   public personnes (){
-       Map<personnes, videos> vs=new HashMap<personnes,videos>();
-   }
+    public personnes(){
+        
+    }
+   
 
     @Override
     public int hashCode() {
@@ -120,7 +117,6 @@ public class personnes {
         hash = 37 * hash + this.id_user;
         hash = 37 * hash + Objects.hashCode(this.nom);
         hash = 37 * hash + Objects.hashCode(this.prenom);
-        hash = 37 * hash + Objects.hashCode(this.date_de_nes);
         hash = 37 * hash + Objects.hashCode(this.adress);
         hash = 37 * hash + Objects.hashCode(this.profil);
         hash = 37 * hash + Objects.hashCode(this.photo);
@@ -164,16 +160,19 @@ public class personnes {
         if (!Objects.equals(this.pwd, other.pwd)) {
             return false;
         }
-        if (!Objects.equals(this.date_de_nes, other.date_de_nes)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "personnes{" + "id_user=" + id_user + ", nom=" + nom + ", prenom=" + prenom + ", date_de_nes=" + date_de_nes + ", adress=" + adress + ", profil=" + profil + ", photo=" + photo + ", login=" + login + ", pwd=" + pwd + ", vs=" + vs + '}';
+        return "personnes{" + "id_user=" + id_user + ", nom=" + nom + ", prenom=" + prenom + ", profil=" + profil + ", photo=" + photo + ", login=" + login + ", pwd=" + pwd + ", adress=" + adress + '}';
     }
+
+   
+   
+
+   
+    
 
   
 

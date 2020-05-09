@@ -13,16 +13,19 @@ import java.util.Objects;
  */
 public class commentaires {
     private int id_comm;
-    private String desc;
+    private String descr;
     private int id_vid;
     private int id_user;
+
+    public commentaires() {
+    }
 
     public int getId_comm() {
         return id_comm;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescr() {
+        return descr;
     }
 
     public int getId_vid() {
@@ -37,8 +40,8 @@ public class commentaires {
         this.id_comm = id_comm;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescr(String descr) {
+        this.descr = descr;
     }
 
     public void setId_vid(int id_vid) {
@@ -49,20 +52,21 @@ public class commentaires {
         this.id_user = id_user;
     }
 
-    public commentaires(int id_comm, String desc, int id_vid, int id_user) {
+    public commentaires(int id_comm, String descr, int id_vid, int id_user) {
         this.id_comm = id_comm;
-        this.desc = desc;
+        this.descr = descr;
         this.id_vid = id_vid;
         this.id_user = id_user;
     }
+    
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.id_comm;
-        hash = 67 * hash + Objects.hashCode(this.desc);
-        hash = 67 * hash + this.id_vid;
-        hash = 67 * hash + this.id_user;
+        int hash = 5;
+        hash = 97 * hash + this.id_comm;
+        hash = 97 * hash + Objects.hashCode(this.descr);
+        hash = 97 * hash + this.id_vid;
+        hash = 97 * hash + this.id_user;
         return hash;
     }
 
@@ -87,7 +91,7 @@ public class commentaires {
         if (this.id_user != other.id_user) {
             return false;
         }
-        if (!Objects.equals(this.desc, other.desc)) {
+        if (!Objects.equals(this.descr, other.descr)) {
             return false;
         }
         return true;
@@ -95,8 +99,9 @@ public class commentaires {
 
     @Override
     public String toString() {
-        return "commentaires{" + "id_comm=" + id_comm + ", desc=" + desc + ", id_vid=" + id_vid + ", id_user=" + id_user + '}';
+        return "commentaires{" + "id_comm=" + id_comm + ", descr=" + descr + ", id_vid=" + id_vid + ", id_user=" + id_user + '}';
     }
+
     
     
 }

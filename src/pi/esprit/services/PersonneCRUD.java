@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pi.esprit.services;
 
 import java.sql.Connection;
@@ -29,34 +25,36 @@ public class PersonneCRUD {
 
     public void ajouterPersonne() {
         try {
-            String requete = "INSERT INTO personnes(id_user,nom,prenom,date_de_nes,adress,profil,photo,login,pwd,vs)"
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+            String requete1 = "INSERT INTO personnes(nom,prenom,profil,photo,login,pwd,adress)"
+                    + "VALUES (?,?,?,?,?,?,?)";
             Statement st = cnx.createStatement();
-            st.executeUpdate(requete);
+            st.executeUpdate(requete1);
             System.out.println("Personne ajoutée!");
         } catch (SQLException ex) {
-            System.err.println("Erreur d'insertion");
+          
             System.out.println(ex.getMessage());
         }
     }
 
     public void ajouterPersonne2(personnes p) {
         try {
-           String requete2 = "INSERT INTO personnes(id_user,nom,prenom,date_de_nes,adress,profil,photo,login,pwd,vs)"
-                    + "VALUES (?,?,?,?,?,?,?,?,?)";  
+           String requete2 = "INSERT INTO personnes(nom,prenom,profil,photo,login,pwd,adress)"
+                    + "VALUES (?,?,?,?,?,?,?)";  
             PreparedStatement pst = cnx.prepareStatement(requete2);
-            pst.setInt(1, p.getId_user());
-            pst.setString(2, p.getNom());
-            pst.setString(3, p.getPrenom());
-            pst.setDate(4, (Date) p.getDate_de_nes());
+          
+            pst.setString(1, p.getNom());
+            pst.setString(2, p.getPrenom());
+           
             
-            pst.setString(5, p.getAdress());
-            pst.setString(6, p.getProfil());
+            pst.setString(3, p.getProfil());
+        
             
-            pst.setString(7, p.getPhoto());
-            pst.setString(8, p.getLogin());
+            pst.setString(4, p.getPhoto());
+            pst.setString(5, p.getLogin());
             
-            pst.setString(9, p.getPwd());
+            pst.setString(6, p.getPwd());   
+            pst.setString(7, p.getAdress());
+            
            
             
             
@@ -69,7 +67,7 @@ public class PersonneCRUD {
 
     public void supprimerPersonne(int id_user) {
         try {
-            String requete = "DELETE FROM personnes WHERE id=?";
+            String requete = "DELETE FROM personnes WHERE id_user=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1, id_user);
             pst.executeUpdate();
@@ -81,11 +79,11 @@ public class PersonneCRUD {
 
     public void updatePersonne(personnes p, int id_user) {
         try {
-            String requete = "UPDATE personnes SET nom,prenom=? "
+            String requete = "UPDATE personnes SET nom=?,prenom=? "
                     + "WHERE id_user=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
            
-            pst.setInt(1, p.getId_user());
+          pst.setInt(1, p.getId_user());
             pst.setString(2, p.getNom());
             
             pst.setString(3, p.getPrenom());
@@ -104,17 +102,13 @@ public class PersonneCRUD {
             ResultSet rs = st.executeQuery(requete);
             while(rs.next()){
              personnes p=new personnes();
-                p.setId_user(rs.getInt(1));
                 p.setNom(rs.getString("nom"));
                 p.setPrenom(rs.getString("prenom"));
-                p.setDate_de_nes(rs.getDate("date_de_ness"));
-                
-              
-                p.setAdress(rs.getString("adresse"));
                 p.setProfil(rs.getString("profil"));
                 p.setPhoto(rs.getString("photo"));
                 p.setLogin(rs.getString("login"));
-                p.setPwd(rs.getString("password"));
+                p.setPwd(rs.getString("pwd"));
+                 p.setAdress(rs.getString("adress"));
                
                 
                

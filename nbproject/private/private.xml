@@ -3,16 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bureau/Documents/NetBeansProjects/mawhebty/src/pi/esprit/entities/commentaires.java</file>
-            <file>file:/C:/Users/bureau/Documents/NetBeansProjects/mawhebty/src/pi/esprit/entities/participants.java</file>
-            <file>file:/C:/Users/bureau/Documents/NetBeansProjects/mawhebty/src/pi/esprit/services/PersonneCRUD.java</file>
-            <file>file:/C:/Users/bureau/Documents/NetBeansProjects/mawhebty/src/mawhebty/Mawhebty.java</file>
-            <file>file:/C:/Users/bureau/Documents/NetBeansProjects/mawhebty/src/pi/esprit/entities/reacts.java</file>
-            <file>file:/C:/Users/bureau/Documents/NetBeansProjects/mawhebty/src/pi/esprit/entities/categoris.java</file>
-            <file>file:/C:/Users/bureau/Documents/NetBeansProjects/mawhebty/src/pi/esprit/utils/MyConnection.java</file>
-            <file>file:/C:/Users/bureau/Documents/NetBeansProjects/mawhebty/src/pi/esprit/entities/videos.java</file>
-            <file>file:/C:/Users/bureau/Documents/NetBeansProjects/mawhebty/src/pi/esprit/entities/competitions.java</file>
-            <file>file:/C:/Users/bureau/Documents/NetBeansProjects/mawhebty/src/pi/esprit/entities/personnes.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/video.css</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/homepage.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/PersonneCRUD.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/interfacevideo.fxml</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/interfacevideo.css</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/Gestioncompte.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/mawhebty/Mawhebty.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/GestioncompteController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/personnes_infos.fxml</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/utils/MyConnection.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/InterfacevideoController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/CreateaccountController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/Personnes_infosController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/gestioncompte.fxml</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/HomepageController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/Gestionvideo.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/Interfacevideo.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/personnes.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/participants.java</file>
         </group>
     </open-files>
 </project-private>

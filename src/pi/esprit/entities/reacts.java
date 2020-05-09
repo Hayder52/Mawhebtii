@@ -13,22 +13,25 @@ import java.util.Objects;
  */
 public class reacts {
     private int id_react;
-    private String type_react;
+    private int type_react;
     private int id_vid;
     private int id_user;
 
-    public reacts(int id_react, String type_react, int id_vid, int id_user) {
+    public reacts(int id_react, int type_react, int id_vid, int id_user) {
         this.id_react = id_react;
         this.type_react = type_react;
         this.id_vid = id_vid;
         this.id_user = id_user;
+    }
+    public reacts(){
+        
     }
 
     public int getId_react() {
         return id_react;
     }
 
-    public String getType_react() {
+    public int getType_react() {
         return type_react;
     }
 
@@ -44,7 +47,7 @@ public class reacts {
         this.id_react = id_react;
     }
 
-    public void setType_react(String type_react) {
+    public void setType_react(int type_react) {
         this.type_react = type_react;
     }
 
