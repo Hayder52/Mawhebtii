@@ -8,8 +8,7 @@ and open the template in the editor.
     Author     : bureau
 */
 .login-bg{
-    -fx-background-color:linear-gradient(to top,#c31399,#9116fd);
-}
+    -fx-background-image:url(font.jpg);
 .btn-login{
     -fx-background-color:#9013fb;
     -fx-text-fill:#FFF;
