@@ -39,6 +39,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
+import static jdk.nashorn.internal.runtime.Debug.id;
 import pi.esprit.utils.MyConnection;
 
 /**
@@ -76,6 +77,8 @@ public class HomepageController implements Initializable {
     private StackPane rootpane;
     @FXML
     private AnchorPane anchropane;
+    @FXML
+    private Button txtconfirmation;
 
     /**
      * Initializes the controller class.
@@ -125,7 +128,7 @@ public class HomepageController implements Initializable {
 ResultSet rs=null;
 PreparedStatement pst=null;
     @FXML
-    private void login(ActionEvent event) throws IOException  {
+    private boolean login(ActionEvent event) throws IOException, SQLException  {
         try {
             Connection cnx;
             cnx = MyConnection.getInstance().getCnx();
@@ -134,22 +137,31 @@ PreparedStatement pst=null;
             
             String sql="select * from personnes where nom=? and pwd=?";
             pst=cnx.prepareStatement(sql);
-            pst.setString(1,tftext.getText());
-            pst.setString(2,tfpassword.getText());
             rs=pst.executeQuery();
-            if(rs.next()){
+            int count=0;
+            while(rs.next()){
+                count++;
+                pst.setString(1,tftext.getText());
+                pst.setString(2,tfpassword.getText());
                 JOptionPane.showMessageDialog(null,"Useername and password are correct");
-                Gestioncompte gs=new Gestioncompte();
+                System.out.println(count);
                 
-            }else{
-                JOptionPane.showMessageDialog(null,"you don't have account ! let's create it"); 
+                if(count==0){
+                    return false;
+                }else{
+                    System.out.println("Username and password are incorrect");
+                }
+                
             }
+                
+            
        
     FXMLLoader loader=new FXMLLoader(getClass().getResource("gestioncompte.fxml"));
     Parent root=loader.load();
     GestioncompteController dpc=loader.getController();
             } catch (SQLException ex) {
             System.out.println(ex.getMessage());        }
+        return false;
              } 
     
     }

@@ -93,6 +93,9 @@ public class personnes {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
+    public personnes() {
+        
+    }
 
     public personnes(int id_user, String nom, String prenom,  String adress, String profil, String photo, String login, String pwd) {
         this.id_user = id_user;
@@ -106,9 +109,7 @@ public class personnes {
         this.pwd = pwd;
      
     }
-    public personnes(){
-        
-    }
+   
    
 
     @Override

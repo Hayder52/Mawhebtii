@@ -5,6 +5,7 @@
  */
 package pi.esprit.gui;
 
+import edu.connections.entities.personnes;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,18 @@ import javafx.stage.Stage;
  * @author bureau
  */
 public class homepage extends Application {
-    
+     private Stage stage;
+    private personnes loggedUser;
+
+    private static homepage instance;
+
+    public homepage() {
+        instance = this;
+    }
+
+    public static homepage getInstance() {
+        return instance;
+    }
     @Override
     public void start(Stage primaryStage) {
         try {
