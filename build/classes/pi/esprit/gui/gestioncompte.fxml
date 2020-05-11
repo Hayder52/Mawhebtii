@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<AnchorPane id="AnchorPane" fx:id="login" prefHeight="538.0" prefWidth="763.0" stylesheets="@video.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.gui.GestioncompteController">
+        <stylesheets>
+        <URL value="@fxml1.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="tableview" layoutY="109.0" prefHeight="300.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="user id" />
+          <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="nom" />
+            <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="prenom" />
+            <TableColumn fx:id="adressColumn" prefWidth="75.0" text="adresse" />
+            <TableColumn fx:id="profilColumn" prefWidth="75.0" text="profile" />
+            <TableColumn fx:id="photoColumn" prefWidth="75.0" text="photo" />
+            <TableColumn fx:id="loginClolumn" prefWidth="75.0" text="login" />
+            <TableColumn fx:id="pwdColumn" prefWidth="75.0" text="pwd" />
+        </columns>
+      </TableView>
+      <Button fx:id="addUserBtn" layoutX="385.0" layoutY="466.0" mnemonicParsing="false" onAction="#addUser" text="add user" />
+      <Button fx:id="deleteUserBtn" layoutX="517.0" layoutY="466.0" mnemonicParsing="false" onAction="#deleteUser" text="delete user" />
+      <Button fx:id="editUserBtn" layoutX="612.0" layoutY="466.0" mnemonicParsing="false" onAction="#editUser" text="save changes" />
+      <TextField fx:id="searchTf" layoutX="443.0" layoutY="23.0" promptText="checher des utilisateur" />
+      <Label fx:id="filterSearchLb" layoutX="49.0" layoutY="18.0" text="filtre de recherche" />
+      <Button fx:id="searchBtn" layoutX="625.0" layoutY="23.0" mnemonicParsing="false" onAction="#userSearch" text="search" />
+      <RadioButton fx:id="idRB" layoutX="38.0" layoutY="59.0" mnemonicParsing="false" text="id">
+         <toggleGroup>
+            <ToggleGroup fx:id="filterRadioButtons" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="nomRB" layoutX="90.0" layoutY="59.0" mnemonicParsing="false" text="nom" toggleGroup="$filterRadioButtons" />
+      <RadioButton fx:id="prenomRB" layoutX="159.0" layoutY="59.0" mnemonicParsing="false" text="prenom" toggleGroup="$filterRadioButtons" />
+   </children>
+</AnchorPane>
