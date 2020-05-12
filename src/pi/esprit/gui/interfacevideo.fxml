@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.gui.InterfacevideoController">
+    <stylesheets>
+        <URL value="@interfacevideo.css" />
+    </stylesheets>
+   <children>
+      <MediaView fx:id="mediaview" fitHeight="300.0" fitWidth="500.0" layoutX="50.0" layoutY="62.0" />
+      <Button fx:id="btnplay" layoutX="99.0" layoutY="393.0" mnemonicParsing="false" onAction="#play" text="play" />
+      <Button fx:id="btnpause" layoutX="179.0" layoutY="393.0" mnemonicParsing="false" onAction="#pause" text="pause" />
+      <Button fx:id="btnstop" layoutX="256.0" layoutY="393.0" mnemonicParsing="false" onAction="#stop" text="stop" />
+      <Slider fx:id="volume" layoutX="368.0" layoutY="399.0" />
+      <MenuBar layoutX="23.0" layoutY="-2.0" prefHeight="34.0" prefWidth="600.0" style="-fx-background-color: #01DFD7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="open" mnemonicParsing="false" onAction="#openfile" text="open" />
+                  <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exitfile" text="exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
