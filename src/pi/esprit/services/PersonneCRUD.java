@@ -25,8 +25,8 @@ public class PersonneCRUD {
 
     public void ajouterPersonne() {
         try {
-            String requete1 = "INSERT INTO personnes(nom,prenom,profil,photo,login,pwd,adress)"
-                    + "VALUES (?,?,?,?,?,?,?)";
+            String requete1 = "INSERT INTO personnes(nom,prenom,profil,photo,login,pwd,adress,email)"
+                    + "VALUES (?,?,?,?,?,?,?,?)";
             Statement st = cnx.createStatement();
             st.executeUpdate(requete1);
             System.out.println("Personne ajoutée!");
@@ -38,8 +38,8 @@ public class PersonneCRUD {
 
     public void ajouterPersonne2(personnes p) {
         try {
-           String requete2 = "INSERT INTO personnes(nom,prenom,profil,photo,login,pwd,adress)"
-                    + "VALUES (?,?,?,?,?,?,?)";  
+           String requete2 = "INSERT INTO personnes(nom,prenom,profil,photo,login,pwd,adress,email)"
+                    + "VALUES (?,?,?,?,?,?,?,?)";  
             PreparedStatement pst = cnx.prepareStatement(requete2);
           
             pst.setString(1, p.getNom());
@@ -54,6 +54,7 @@ public class PersonneCRUD {
             
             pst.setString(6, p.getPwd());   
             pst.setString(7, p.getAdress());
+            pst.setString(8, p.getEmail());
             
            
             
@@ -109,6 +110,7 @@ public class PersonneCRUD {
                 p.setLogin(rs.getString("login"));
                 p.setPwd(rs.getString("pwd"));
                  p.setAdress(rs.getString("adress"));
+                 p.setAdress(rs.getString("email"));
                
                 
                

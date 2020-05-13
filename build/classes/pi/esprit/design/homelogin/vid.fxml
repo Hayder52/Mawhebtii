@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="697.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.VidController">
+   <children>
+      <MediaView fx:id="mediaView" fitHeight="250.0" fitWidth="520.0" layoutX="163.0" layoutY="50.0" />
+      <Button fx:id="btn_play" layoutX="198.0" layoutY="313.0" mnemonicParsing="false" onAction="#playvideo" text="play" />
+      <Button fx:id="btn_pause" layoutX="254.0" layoutY="313.0" mnemonicParsing="false" onAction="#pausevideo" text="pause" />
+      <Button fx:id="btn_stop" layoutX="314.0" layoutY="313.0" mnemonicParsing="false" onAction="#stopvideo" text="stop" />
+      <Slider fx:id="volume" layoutX="543.0" layoutY="319.0" />
+      <Label layoutX="490.0" layoutY="317.0" text="volume" textFill="#e4dede" />
+      <Button fx:id="btn_dislike" layoutX="423.0" layoutY="313.0" mnemonicParsing="false" onAction="#dislike" text="dislike" />
+      <Button fx:id="btn_like" layoutX="374.0" layoutY="313.0" mnemonicParsing="false" onAction="#like" text="like" />
+      <Button fx:id="btn_delete" layoutX="262.0" layoutY="477.0" mnemonicParsing="false" onAction="#delete" text="delete your comment" />
+      <Button fx:id="btn_comment" layoutX="284.0" layoutY="432.0" mnemonicParsing="false" onAction="#comment" text="add a comment" />
+      <TextField fx:id="txt_desc" layoutX="435.0" layoutY="432.0" promptText="decription" />
+      <TextField fx:id="txt_user" layoutX="435.0" layoutY="477.0" promptText="id vid" />
+      <TextField fx:id="txt_vid" layoutX="435.0" layoutY="521.0" promptText="id user" />
+      <MenuBar layoutX="526.0" layoutY="2.0" prefHeight="25.0" prefWidth="170.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="open">
+            <items>
+              <MenuItem fx:id="btn_open" mnemonicParsing="false" onAction="#open" text="upload video" />
+            </items>
+          </Menu>
+          <Menu fx:id="btn_help" mnemonicParsing="false" onAction="#help" text="close">
+            <items>
+              <MenuItem fx:id="btn_close" mnemonicParsing="false" onAction="#close" text="exit" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <VBox layoutX="-9.0" prefHeight="584.0" prefWidth="140.0" style="-fx-background-color: #0D1824;">
+         <children>
+            <Button fx:id="btn_back" mnemonicParsing="false" onAction="#back" prefHeight="42.0" prefWidth="140.0" style="-fx-border-color: white; -fx-background-color: transparent; -fx-border-width: 0 0 2px 0;" text="Back" textFill="#dad3d3" />
+            <Button fx:id="btn_back1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#back" prefHeight="42.0" prefWidth="140.0" style="-fx-border-color: white; -fx-background-color: transparent; -fx-border-width: 0 0 2px 0;" text="Video list" textFill="#dad3d3" />
+            <Button fx:id="btn_catet" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#categoriepage" prefHeight="42.0" prefWidth="140.0" style="-fx-border-color: white; -fx-background-color: transparent; -fx-border-width: 0 0 2px 0;" text="Categories" textFill="#dad3d3" />
+            <Button fx:id="btn_best" layoutX="10.0" layoutY="178.0" mnemonicParsing="false" onAction="#bestof" prefHeight="42.0" prefWidth="140.0" style="-fx-border-color: white; -fx-background-color: transparent; -fx-border-width: 0 0 2px 0;" text="Best Of" textFill="#dad3d3" />
+            <Button fx:id="btn_compe" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onAction="#competitionpage" prefHeight="42.0" prefWidth="140.0" style="-fx-border-color: white; -fx-background-color: transparent; -fx-border-width: 0 0 2px 0;" text="Join Competition" textFill="#dad3d3" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

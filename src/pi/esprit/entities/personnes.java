@@ -18,6 +18,8 @@ public class personnes {
     private int id_user ;
      private String nom;
     private String prenom;
+    private String email;
+    
   
     private String profil;
     private String photo;
@@ -56,6 +58,10 @@ public class personnes {
         return login;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public String getPwd() {
         return pwd;
     }
@@ -70,6 +76,10 @@ public class personnes {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
    
@@ -97,31 +107,30 @@ public class personnes {
         
     }
 
-    public personnes(int id_user, String nom, String prenom,  String adress, String profil, String photo, String login, String pwd) {
+    public personnes(int id_user, String nom, String prenom, String email, String profil, String photo, String login, String pwd, String adress) {
         this.id_user = id_user;
         this.nom = nom;
         this.prenom = prenom;
-       
-        this.adress = adress;
+        this.email = email;
         this.profil = profil;
         this.photo = photo;
         this.login = login;
         this.pwd = pwd;
-     
+        this.adress = adress;
     }
-   
-   
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + this.id_user;
-        hash = 37 * hash + Objects.hashCode(this.nom);
-        hash = 37 * hash + Objects.hashCode(this.prenom);
-        hash = 37 * hash + Objects.hashCode(this.adress);
-        hash = 37 * hash + Objects.hashCode(this.profil);
-        hash = 37 * hash + Objects.hashCode(this.photo);
-        hash = 37 * hash + Objects.hashCode(this.pwd);
+        int hash = 7;
+        hash = 97 * hash + this.id_user;
+        hash = 97 * hash + Objects.hashCode(this.nom);
+        hash = 97 * hash + Objects.hashCode(this.prenom);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 97 * hash + Objects.hashCode(this.profil);
+        hash = 97 * hash + Objects.hashCode(this.photo);
+        hash = 97 * hash + Objects.hashCode(this.login);
+        hash = 97 * hash + Objects.hashCode(this.pwd);
+        hash = 97 * hash + Objects.hashCode(this.adress);
         return hash;
     }
 
@@ -146,7 +155,7 @@ public class personnes {
         if (!Objects.equals(this.prenom, other.prenom)) {
             return false;
         }
-        if (!Objects.equals(this.adress, other.adress)) {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         if (!Objects.equals(this.profil, other.profil)) {
@@ -161,14 +170,24 @@ public class personnes {
         if (!Objects.equals(this.pwd, other.pwd)) {
             return false;
         }
+        if (!Objects.equals(this.adress, other.adress)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "personnes{" + "id_user=" + id_user + ", nom=" + nom + ", prenom=" + prenom + ", profil=" + profil + ", photo=" + photo + ", login=" + login + ", pwd=" + pwd + ", adress=" + adress + '}';
+        return "personnes{" + "id_user=" + id_user + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", profil=" + profil + ", photo=" + photo + ", login=" + login + ", pwd=" + pwd + ", adress=" + adress + '}';
     }
 
+   
+   
+   
+
+    
+
+   
    
    
 

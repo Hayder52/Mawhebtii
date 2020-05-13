@@ -29,16 +29,17 @@ public class Reactservices {
         reacts r=new reacts();
          try {
              int like = 0;
-             String requete1="Select type_react From reacts where id_video=?";
+             String requete1="Select like From reacts where id_video=?";
              PreparedStatement pst1 = cnx.prepareStatement(requete1);
-             pst1.setInt(2,r.getType_react());
+             pst1.setInt(1,r.getLike());
              ResultSet results = pst1.executeQuery();
              while(results.next())
                  like =results.getInt("likes");
              like++;
-             String requete2="Update reacts SET type_react=? ";
+             String requete2="Update reacts SET like=? where id_user=? ";
              PreparedStatement pst2 = cnx.prepareStatement(requete2);
-             pst2.setInt(1,r.getId_react());
+             pst2.setInt(1,r.getId_user());
+             pst2.setInt(2,r.getLike());
              int rowsupdated = pst2.executeUpdate();
              if(rowsupdated>0)                
                  System.out.println("row updated");
@@ -50,16 +51,17 @@ public class Reactservices {
         reacts r=new reacts();
          try {
              int dislike = 0;
-             String requete1="Select type_react From reacts where id_video=?";
+             String requete1="Select type_react From reacts WHERE id_video=?";
              PreparedStatement pst1 = cnx.prepareStatement(requete1);
-             pst1.setInt(2,r.getType_react());
+             pst1.setInt(2,r.getDislike());
              ResultSet results = pst1.executeQuery();
              while(results.next())
                  dislike =results.getInt("dislikes");
              dislike++;
-             String requete2="Update reacts SET type_react=? ";
+             String requete2="Update reacts SET dislike=? WHERE id_user=?  ";
              PreparedStatement pst2 = cnx.prepareStatement(requete2);
-             pst2.setInt(1,r.getId_react());
+             pst2.setInt(1,r.getId_user());
+             pst2.setInt(2,r.getDislike());
              int rowsupdated = pst2.executeUpdate();
              if(rowsupdated>0)                
                  System.out.println("row updated");

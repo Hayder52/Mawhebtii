@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pi.esprit.design.homelogin.AboutController">
+   <children>
+      <Label layoutX="241.0" layoutY="38.0" text="How to Find a Talent ?">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="118.0" prefHeight="17.0" prefWidth="509.0" />
+      <Label layoutX="4.0" layoutY="125.0" prefHeight="17.0" prefWidth="711.0" text="It's time to rethink talent. Talents may be artistic or technical, mental or physical, personal or social." textFill="#513838">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="1.0" layoutY="167.0" prefHeight="17.0" prefWidth="702.0" text="You can be a talented introvert or a talented extrovert. Your talents need not be profitable, useful, or" textFill="#513838">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="1.0" layoutY="207.0" prefHeight="17.0" prefWidth="702.0" text="conventional, but they will always be your own, a part of what makes you into you. Learning to look for" textFill="#513838">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="4.0" layoutY="254.0" prefHeight="20.0" prefWidth="711.0" text="your talents in the right places and building those talents into skills and abilities might take some work, but going " textFill="#513838">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="318.0" prefHeight="17.0" prefWidth="702.0" text="       about it creatively will let you explore your  natural abilities and find your innate talents." textFill="#513838">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="89.0" fitWidth="201.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

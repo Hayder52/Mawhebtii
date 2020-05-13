@@ -5,8 +5,10 @@
  */
 package pi.esprit.utils;
 
+import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -39,4 +41,8 @@ public class MyConnection {
             instance = new MyConnection();
         return instance;
     }
+    
+   
+    
+    
 }

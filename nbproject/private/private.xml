@@ -3,28 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/video.css</file>
             <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/CommentairesService.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/homepage.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/vid.java</file>
             <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/PersonneCRUD.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/interfacevideo.fxml</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/MenuadminController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/interfacevideo.css</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/NewsController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/AboutController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/login.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/register.fxml</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/about.fxml</file>
             <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/commentaires.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/menuadmin.fxml</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/Gestioncompte.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/VidController.java</file>
             <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/mawhebty/Mawhebty.java</file>
             <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/videos.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/GestioncompteController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/MenuController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/vid.fxml</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/reacts.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/menu.fxml</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/Reactservices.java</file>
             <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/utils/MyConnection.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/InterfacevideoController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/CreateaccountController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/gestioncompte.fxml</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/login.css</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/menuadmin.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/HomepageController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/Gestionvideo.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/gui/Interfacevideo.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/RegisterController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/news.fxml</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/login.fxml</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/LoginController.java</file>
             <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/personnes.java</file>
             <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/participants.java</file>
         </group>
