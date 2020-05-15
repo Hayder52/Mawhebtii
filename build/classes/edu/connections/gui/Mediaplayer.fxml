@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.media.MediaView?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@mediaplayer.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connections.gui.MediaplayerController">
+   <center>
+      <MediaView fx:id="mv" fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="66.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="openfilebt" mnemonicParsing="false" onAction="#Openfile" text="Openfile" />
+            <Button fx:id="playbt" mnemonicParsing="false" onAction="#play" prefHeight="20.0" prefWidth="30.0" text="play">
+               <padding>
+                  <Insets right="10.0" />
+               </padding></Button>
+            <Button fx:id="pausebt" mnemonicParsing="false" onAction="#pause" text="pause" />
+            <Button fx:id="stopbt" mnemonicParsing="false" onAction="#stop" text="stop" />
+            <Button fx:id="slowerbt" mnemonicParsing="false" onAction="#slower" text="&lt;&lt;&lt;" />
+            <Button fx:id="slowbt" mnemonicParsing="false" onAction="#slow" text="&lt;&lt;" />
+            <Button fx:id="fastbt" mnemonicParsing="false" onAction="#fast" text="&gt;&gt;" />
+            <Button fx:id="fasterbt" mnemonicParsing="false" onAction="#faster" text="&gt;&gt;&gt;" />
+            <Button fx:id="exitbt" mnemonicParsing="false" onAction="#exit" text="Exit" />
+            <Button mnemonicParsing="false" onAction="#uploaddFile" text="UploadFile" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
