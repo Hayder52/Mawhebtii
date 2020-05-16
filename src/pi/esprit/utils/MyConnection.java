@@ -7,6 +7,7 @@ package pi.esprit.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -14,7 +15,7 @@ import java.sql.SQLException;
  * @author bureau
  */
 public class MyConnection {
-     public String url="jdbc:mysql://localhost:3306/mawhoub";
+     public String url="jdbc:mysql://localhost:3306/esprit";
     public String login="root";
     public String pwd="";
     Connection cnx;
@@ -39,4 +40,8 @@ public class MyConnection {
             instance = new MyConnection();
         return instance;
     }
+    
+   
+    
+    
 }

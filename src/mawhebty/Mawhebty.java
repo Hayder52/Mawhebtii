@@ -28,19 +28,19 @@ public class Mawhebty {
        // System.out.println(mc.hashCode()+ " -- "+mc2.hashCode());
         PersonneCRUD pc = new PersonneCRUD();
        pc.ajouterPersonne();
-       personnes p = new personnes(55,"sarraj","hamza","manouba","amateur","hamza.png","hamouz","azerty");
+       personnes p = new personnes(55,"sarraj","hamza","manouba","amateur","hamza.png","hamouz","azerty","hamzasarraj@gmail.com");
        pc.ajouterPersonne2(p);
        pc.supprimerPersonne(2);
-       personnes p1 = new personnes(45,"ayechi","Anis","manouba","amateur","hamza.png","ham","ghare");
+       personnes p1 = new personnes(45,"ayechi","Anis","manouba","amateur","hamza.png","ham","ghare","hamzasarraj@gmail.com");
        pc.ajouterPersonne2(p1);
-        System.out.println(pc.selectUsers());
-        pc.updatePersonne(p1);
+        System.out.println(pc.displayAll());
+        pc.updatePersonne(p1, 1);
         CommentairesService cs=new CommentairesService();
     
-        commentaires b =new commentaires (8,"hamza",1,5);
+        commentaires b =new commentaires (9,"hamza",2,59);
        cs.ajouterCommentaire(b);
       
-   
+        
       
        
     }
