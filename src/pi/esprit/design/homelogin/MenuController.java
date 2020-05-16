@@ -39,6 +39,8 @@ public class MenuController implements Initializable {
     private Button btn_nrws;
     @FXML
     private Button btn_abbout;
+    @FXML
+    private Button btn_stat;
 
     /**
      * Initializes the controller class.
@@ -107,6 +109,21 @@ public class MenuController implements Initializable {
             Parent root=null;
         try {
             root = FXMLLoader.load(getClass().getResource("about.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());       
+        }
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene); 
+            mainstage.show();
+    }
+
+    @FXML
+    private void pagestat(ActionEvent event) {
+         btn_stat.getScene().getWindow().hide();
+            Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("stat.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }

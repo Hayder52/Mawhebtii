@@ -14,7 +14,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
@@ -26,7 +28,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -42,6 +46,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import pi.esprit.entities.InputValidation;
+import pi.esprit.entities.loggedmembre;
+import pi.esprit.entities.personnes;
 import pi.esprit.entities.reacts;
 import pi.esprit.utils.MyConnection;
 
@@ -65,20 +72,11 @@ public class VidController implements Initializable {
    private Media media;
    private FileChooser filechooser;
    private ExtensionFilter filter;
-    @FXML
     private Button btn_dislike;
-    @FXML
-    private Button btn_like;
     Connection cnx;
     ResultSet rs=null;
     PreparedStatement pst;
-    @FXML
     private TextField txt_desc;
-    @FXML
-    private Button btn_delete;
-    @FXML
-    private Button btn_comment;
-    @FXML
     private TextField txt_user;
     @FXML
     private TextField txt_vid;
@@ -96,6 +94,12 @@ public class VidController implements Initializable {
     private Button btn_best;
     @FXML
     private Button btn_compe;
+    @FXML
+    private Button btn_uplo;
+    String video;
+    Image image;
+    @FXML
+    private Button btn_list;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -108,7 +112,8 @@ public class VidController implements Initializable {
      volume.valueProperty().addListener((Observable observable) -> {
          mediaplayer.setVolume(volume.getValue()/100);
          });
-    }    
+    }   
+    personnes pp=loggedmembre.getP();
 
     @FXML
     private void playvideo(ActionEvent event) {
@@ -128,7 +133,6 @@ public class VidController implements Initializable {
              mediaplayer.stop();
     }
 
-    @FXML
     private void dislike(ActionEvent event) {
         btn_dislike.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -138,18 +142,21 @@ public class VidController implements Initializable {
         });
     }
  
-    @FXML
     private void like(ActionEvent event) {
-        int like=0;
-       
-     btn_like.setOnAction((ActionEvent event1) -> {
+        try {
         
-          JOptionPane.showMessageDialog(null,"like added !!!");
-          
-          System.out.println("Number of like:"+like);
-     });
+            reacts r=new reacts();
+            String requete2="Update reacts SET like=? where id_user=? and id_vid=? ";
+            PreparedStatement pst2 = cnx.prepareStatement(requete2);
+             pst2.setInt(1,r.getLike());
+            pst2.setInt(2,pp.getId_user());
+            pst2.setInt(3, r.getId_vid());
+             int rowsupdated = pst2.executeUpdate();
+             if(rowsupdated>0)                
+                 System.out.println("row updated");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());        }
             }
-    @FXML
     private void comment(ActionEvent event) {
         
         cnx = MyConnection.getInstance().getCnx();
@@ -167,7 +174,6 @@ public class VidController implements Initializable {
         }
     } 
 
-    @FXML
     private void delete(ActionEvent event) {
         String requete="DELETE FROM commentaires WHERE id_comm=? ";     
         Statement st;
@@ -256,9 +262,55 @@ public class VidController implements Initializable {
             mainstage.show();
     }
 
+    @FXML
+    public void uploa(ActionEvent event) throws MalformedURLException, IOException {
+         FileChooser fileChooser = new FileChooser();
+        final Stage stage = new Stage();
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            video = UUID.randomUUID().toString().replaceAll("-", "") + ".mp4";
+            image = new Image(file.getAbsoluteFile().toURI().toString(), mediaView.getFitWidth(), mediaView.getFitHeight(), true, true);
+
+            txt_vid.setText(video);
+            InputValidation u = new InputValidation();
+            String video1;
+            video1 = "C:\\wamp\\www\\mawhebti\\videos\\" + video;
+            System.out.println(video);
+            
+             mediaplayer.stop();
+            media=new Media(file.toURI().toURL().toExternalForm());
+            mediaplayer=new MediaPlayer(media);
+            mediaView.setMediaPlayer(mediaplayer);
+            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Saving video");
+        alert1.setHeaderText("Information");
+        alert1.setContentText("do you want save this video?");
+        Optional<ButtonType> action = alert1.showAndWait();
+        if (action.get() == ButtonType.OK) {
+            u.CopyImage(video1, file.toPath().toString());
+    }
+    }
+
 
    
-    
-    
-}
+    }
 
+    @FXML
+    private void list(ActionEvent event) {
+        
+         btn_list.getScene().getWindow().hide();
+            Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("videolist.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());       
+        }
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene); 
+            mainstage.show();
+    }
+    
+
+
+}

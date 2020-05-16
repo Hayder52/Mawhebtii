@@ -35,6 +35,9 @@ public class login extends Application {
         try {
             root = FXMLLoader.load(getClass().getResource("login.fxml"));
         } catch (IOException ex) {
+                  
+            
+    
             System.out.println(ex.getMessage());        }
         Scene scene = new Scene(root);
     
