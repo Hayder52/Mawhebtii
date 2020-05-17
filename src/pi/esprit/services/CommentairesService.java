@@ -37,7 +37,7 @@ public class CommentairesService  {
                     + "VALUES (?,?,?,?)";
             Statement st = cnx.createStatement();
             st.executeUpdate(requete1);
-            System.out.println("Personne ajoutée!");
+            System.out.println("Commentaire ajoutée!");
         } catch (SQLException ex) {
           
             System.out.println(ex.getMessage());

@@ -38,6 +38,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -50,31 +51,30 @@ import pi.esprit.entities.InputValidation;
 import pi.esprit.entities.loggedmembre;
 import pi.esprit.entities.personnes;
 import pi.esprit.entities.reacts;
+import pi.esprit.services.Reactservices;
 import pi.esprit.utils.MyConnection;
-
-
 
 public class VidController implements Initializable {
 
     @FXML
     private MediaView mediaView;
     @FXML
-    private Button btn_play;
+    private ImageView btn_play;
     @FXML
-    private Button btn_pause;
+    private ImageView btn_pause;
     @FXML
-    private Button btn_stop;
+    private ImageView btn_stop;
     @FXML
     private Slider volume;
 
- 
-   private MediaPlayer mediaplayer;
-   private Media media;
-   private FileChooser filechooser;
-   private ExtensionFilter filter;
-    private Button btn_dislike;
+    private MediaPlayer mediaplayer;
+    private Media media;
+    private FileChooser filechooser;
+    private ExtensionFilter filter;
+    @FXML
+    private ImageView btn_dislike;
     Connection cnx;
-    ResultSet rs=null;
+    ResultSet rs = null;
     PreparedStatement pst;
     private TextField txt_desc;
     private TextField txt_user;
@@ -100,107 +100,113 @@ public class VidController implements Initializable {
     Image image;
     @FXML
     private Button btn_list;
+    @FXML
+    private ImageView btn_like;
+    @FXML
+    private ImageView btn_comment;
+    @FXML
+    private TextField txt_des;
+    @FXML
+    private TextField txt_path;
+    @FXML
+    private TextField id_vid;
+    @FXML
+    private TextField num_like;
+    @FXML
+    private Button like_nb;
+    @FXML
+    private Button dislike_nb;
+    @FXML
+    private TextField num_dislike;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         String path=new File("src/vid/avion.mp4").getAbsolutePath();
-     media=new Media(new File(path).toURI().toString());
-     mediaplayer=new MediaPlayer(media);
-     mediaView.setMediaPlayer(mediaplayer);
-     mediaplayer.setAutoPlay(true);
-     volume.setValue(mediaplayer.getVolume()*100);
-     volume.valueProperty().addListener((Observable observable) -> {
-         mediaplayer.setVolume(volume.getValue()/100);
-         });
-    }   
-    personnes pp=loggedmembre.getP();
-
-    @FXML
-    private void playvideo(ActionEvent event) {
-       mediaplayer.play();
-        
-    }
-
-    @FXML
-    private void pausevideo(ActionEvent event) {
-   
-         mediaplayer.pause();
-    }
-
-    @FXML
-    private void stopvideo(ActionEvent event) {
-             mediaplayer.seek(mediaplayer.getStopTime());
-             mediaplayer.stop();
-    }
-
-    private void dislike(ActionEvent event) {
-        btn_dislike.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                JOptionPane.showMessageDialog(null,"dislike added !!!");
-            }
+        txt_path.setVisible(false);
+        String path = new File("src/vid/avion.mp4").getAbsolutePath();
+        media = new Media(new File(path).toURI().toString());
+        mediaplayer = new MediaPlayer(media);
+        mediaView.setMediaPlayer(mediaplayer);
+        mediaplayer.setAutoPlay(true);
+        volume.setValue(mediaplayer.getVolume() * 100);
+        volume.valueProperty().addListener((Observable observable) -> {
+            mediaplayer.setVolume(volume.getValue() / 100);
         });
+        Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        rs.like_number(r);
+        num_like.setText(rs.like_number(r));
+        rs.dislike_number(r);
+        num_dislike.setText(rs.dislike_number(r));
+        like_nb.setVisible(false);
+        dislike_nb.setVisible(false);
     }
- 
-    private void like(ActionEvent event) {
-        try {
-        
-            reacts r=new reacts();
-            String requete2="Update reacts SET like=? where id_user=? and id_vid=? ";
-            PreparedStatement pst2 = cnx.prepareStatement(requete2);
-             pst2.setInt(1,r.getLike());
-            pst2.setInt(2,pp.getId_user());
-            pst2.setInt(3, r.getId_vid());
-             int rowsupdated = pst2.executeUpdate();
-             if(rowsupdated>0)                
-                 System.out.println("row updated");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());        }
+    personnes pp = loggedmembre.getP();
+
+    @FXML
+    private void playvideo(MouseEvent event) {
+        mediaplayer.play();
+
+    }
+
+    @FXML
+    private void pausevideo(MouseEvent event) {
+
+        mediaplayer.pause();
+    }
+
+    @FXML
+    private void stopvideo(MouseEvent event) {
+        mediaplayer.seek(mediaplayer.getStopTime());
+        mediaplayer.stop();
+    }
+
+    @FXML
+    private void like(MouseEvent event) {
+        Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+ if (rs.getlikeparid(r) == true) {
+            // rs.Supprimerdislike(pp.getId_user(), 2);
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("deleting like");
+            alert1.setHeaderText("Information");
+            alert1.setContentText("you liked this video before");
+            alert1.show();
+        } else {
+            if (rs.getdislikeparid(r) == true) {
+
+                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                alert1.setTitle("deleting like");
+                alert1.setHeaderText("Information");
+                alert1.setContentText("do you want delete your dislike ?");
+                Optional<ButtonType> action = alert1.showAndWait();
+                if (action.get() == ButtonType.OK) {
+                    rs.like(r);
+
+                    rs.Supprimerdislike(pp.getId_user(), 2);
+                    System.out.println("dislike deleted");
+                }
+            } else {
+                    rs.like(r);
+                    System.out.println("like added");
+
             }
-    private void comment(ActionEvent event) {
-        
-        cnx = MyConnection.getInstance().getCnx();
-         String requete = "INSERT INTO commentaires(descr,id_vid,id_user)" + " VALUES (?,?,?) ";
-           try {
-            PreparedStatement pst =cnx.prepareStatement(requete);
-            pst.setString(1,txt_desc.getText());
-            pst.setString(2,txt_user.getText());
-            pst.setString(3,txt_vid.getText());
-            
-            pst.executeUpdate();
-           JOptionPane.showMessageDialog(null,"comment added !!!");
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-    } 
 
-    private void delete(ActionEvent event) {
-        String requete="DELETE FROM commentaires WHERE id_comm=? ";     
-        Statement st;
-        try {
-            st = (Statement) cnx.createStatement(); 
-            st.executeUpdate(requete);
-      System.out.println("comm supprimé");
-
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
         }
-        
     }
 
     @FXML
     private void open(ActionEvent event) throws MalformedURLException {
-        filechooser=new FileChooser();
-        filter=new ExtensionFilter("choisir un video","*.mp4");
+        filechooser = new FileChooser();
+        filter = new ExtensionFilter("choisir un video", "*.mp4");
         filechooser.setSelectedExtensionFilter(filter);
-        File file=filechooser.showOpenDialog(null);
-        if(file!=null){
+        File file = filechooser.showOpenDialog(null);
+        if (file != null) {
             mediaplayer.stop();
-            media=new Media(file.toURI().toURL().toExternalForm());
-            mediaplayer=new MediaPlayer(media);
+            media = new Media(file.toURI().toURL().toExternalForm());
+            mediaplayer = new MediaPlayer(media);
             mediaView.setMediaPlayer(mediaplayer);
         }
-    
+
     }
 
     @FXML
@@ -215,56 +221,56 @@ public class VidController implements Initializable {
     @FXML
     private void back(ActionEvent event) {
         btn_back.getScene().getWindow().hide();
-            Parent root=null;
+        Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("menu.fxml"));
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());       
+            System.out.println(ex.getMessage());
         }
-            Stage mainstage=new Stage();
-            Scene scene=new Scene(root);
-            mainstage.setScene(scene); 
-            mainstage.show();
+        Stage mainstage = new Stage();
+        Scene scene = new Scene(root);
+        mainstage.setScene(scene);
+        mainstage.show();
     }
 
     @FXML
     private void categoriepage(ActionEvent event) {
         btn_catet.getScene().getWindow().hide();
-            Parent root=null;
+        Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("categories.fxml"));
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());       
+            System.out.println(ex.getMessage());
         }
-            Stage mainstage=new Stage();
-            Scene scene=new Scene(root);
-            mainstage.setScene(scene); 
-            mainstage.show();
+        Stage mainstage = new Stage();
+        Scene scene = new Scene(root);
+        mainstage.setScene(scene);
+        mainstage.show();
     }
 
     @FXML
     private void bestof(ActionEvent event) {
-        
+
     }
 
     @FXML
     private void competitionpage(ActionEvent event) {
         btn_compe.getScene().getWindow().hide();
-            Parent root=null;
+        Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("competition.fxml"));
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());       
+            System.out.println(ex.getMessage());
         }
-            Stage mainstage=new Stage();
-            Scene scene=new Scene(root);
-            mainstage.setScene(scene); 
-            mainstage.show();
+        Stage mainstage = new Stage();
+        Scene scene = new Scene(root);
+        mainstage.setScene(scene);
+        mainstage.show();
     }
 
     @FXML
     public void uploa(ActionEvent event) throws MalformedURLException, IOException {
-         FileChooser fileChooser = new FileChooser();
+        FileChooser fileChooser = new FileChooser();
         final Stage stage = new Stage();
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
@@ -272,45 +278,128 @@ public class VidController implements Initializable {
             image = new Image(file.getAbsoluteFile().toURI().toString(), mediaView.getFitWidth(), mediaView.getFitHeight(), true, true);
 
             txt_vid.setText(video);
+
             InputValidation u = new InputValidation();
             String video1;
             video1 = "C:\\wamp\\www\\mawhebti\\videos\\" + video;
             System.out.println(video);
-            
-             mediaplayer.stop();
-            media=new Media(file.toURI().toURL().toExternalForm());
-            mediaplayer=new MediaPlayer(media);
+
+            mediaplayer.stop();
+            media = new Media(file.toURI().toURL().toExternalForm());
+            mediaplayer = new MediaPlayer(media);
             mediaView.setMediaPlayer(mediaplayer);
             Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-        alert1.setTitle("Saving video");
-        alert1.setHeaderText("Information");
-        alert1.setContentText("do you want save this video?");
-        Optional<ButtonType> action = alert1.showAndWait();
-        if (action.get() == ButtonType.OK) {
-            u.CopyImage(video1, file.toPath().toString());
-    }
-    }
+            alert1.setTitle("Saving video");
+            alert1.setHeaderText("Information");
+            alert1.setContentText("do you want save this video?");
+            Optional<ButtonType> action = alert1.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                u.CopyImage(video1, file.toPath().toString());
+            }
+        }
 
-
-   
     }
 
     @FXML
     private void list(ActionEvent event) {
-        
-         btn_list.getScene().getWindow().hide();
-            Parent root=null;
+
+        btn_list.getScene().getWindow().hide();
+        Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("videolist.fxml"));
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());       
+            System.out.println(ex.getMessage());
         }
-            Stage mainstage=new Stage();
-            Scene scene=new Scene(root);
-            mainstage.setScene(scene); 
-            mainstage.show();
+        Stage mainstage = new Stage();
+        Scene scene = new Scene(root);
+        mainstage.setScene(scene);
+        mainstage.show();
     }
-    
 
+    @FXML
+    private boolean comment(MouseEvent event) {
+        reacts r = new reacts();
+        Connection cnx = MyConnection.getInstance().getCnx();
+        String requete = "INSERT INTO commentaires(descr,id_vid,id_user)" + " VALUES (?,?,?) ";
+        try {
+            PreparedStatement pst = cnx.prepareStatement(requete);
+
+            pst.setString(1, txt_des.getText());
+            pst.setString(2, txt_vid.getText());
+            pst.setInt(3, pp.getId_user());
+            pst.executeUpdate();
+            System.out.println("ajout commentaires reussit");
+            JOptionPane.showMessageDialog(null, "comment added!!!");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    @FXML
+    private void like_number(ActionEvent event) {
+
+        Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        rs.like_number(r);
+        num_like.setText(rs.like_number(r));
+    }
+
+    @FXML
+    private void dislike(MouseEvent event) {
+        Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        if (rs.getdislikeparid(r) == true) {
+            // rs.Supprimerdislike(pp.getId_user(), 2);
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("deleting dislike");
+            alert1.setHeaderText("Information");
+            alert1.setContentText("vous avez deja fait un dislike");
+            alert1.show();
+        } else {
+            if (rs.getlikeparid(r) == true) {
+
+                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                alert1.setTitle("deleting dislike");
+                alert1.setHeaderText("Information");
+                alert1.setContentText("do you want delete your like ?");
+                Optional<ButtonType> action = alert1.showAndWait();
+                if (action.get() == ButtonType.OK) {
+                    rs.dislike(r);
+
+                    rs.Supprimerlike(pp.getId_user(), 2);
+                    System.out.println("like deleted");
+                }
+            } else {
+                    rs.dislike(r);
+                    System.out.println("dislike added");
+
+            }
+
+        }
+    }
+
+    @FXML
+    private void dislikenumber(ActionEvent event) {
+        Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        rs.dislike_number(r);
+        num_dislike.setText(rs.dislike_number(r));
+    }
+
+    @FXML
+    private void deletelike(ActionEvent event) {
+        Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        rs.Supprimerlike(pp.getId_user(), 2);
+    }
+
+    @FXML
+    private void deletedislike(ActionEvent event) {
+        Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        rs.Supprimerdislike(pp.getId_user(), 2);
+    }
 
 }

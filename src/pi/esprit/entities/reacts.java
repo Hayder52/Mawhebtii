@@ -13,24 +13,30 @@ import java.util.Objects;
  */
 public class reacts {
     private int id_react;
-    private int like;
-    private int dislike;
     private int id_vid;
     private int id_user;
+     private String etat;
+
+    public reacts(int id_react, int id_vid, int id_user, String etat) {
+        this.id_react = id_react;
+        this.id_vid = id_vid;
+        this.id_user = id_user;
+        this.etat = etat;
+    }
+    public reacts(){
+        
+    }
+
+    public reacts(int id_vid, int id_user) {
+        this.id_vid = id_vid;
+        this.id_user = id_user;
+    }
+
+    
 
     public int getId_react() {
         return id_react;
     }
-
-    public int getLike() {
-        return like;
-    }
-
-    public int getDislike() {
-        return dislike;
-    }
-
-    
 
     public int getId_vid() {
         return id_vid;
@@ -40,11 +46,13 @@ public class reacts {
         return id_user;
     }
 
+    public String getEtat() {
+        return etat;
+    }
+
     public void setId_react(int id_react) {
         this.id_react = id_react;
     }
-
-   
 
     public void setId_vid(int id_vid) {
         this.id_vid = id_vid;
@@ -54,32 +62,13 @@ public class reacts {
         this.id_user = id_user;
     }
 
-    public void setLike(int like) {
-        this.like = like;
-    }
-
-    public void setDislike(int dislike) {
-        this.dislike = dislike;
-    }
-
-    @Override
-    public String toString() {
-        return "reacts{" + "id_react=" + id_react + ", like=" + like + ", dislike=" + dislike + ", id_vid=" + id_vid + ", id_user=" + id_user + '}';
-    }
-
-   
-    public reacts(){
-        
+    public void setEtat(String etat) {
+        this.etat = etat;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.id_react;
-        hash = 89 * hash + Objects.hashCode(this.like);
-        hash = 89 * hash + Objects.hashCode(this.dislike);
-        hash = 89 * hash + this.id_vid;
-        hash = 89 * hash + this.id_user;
+        int hash = 3;
         return hash;
     }
 
@@ -104,15 +93,16 @@ public class reacts {
         if (this.id_user != other.id_user) {
             return false;
         }
-        if (!Objects.equals(this.like, other.like)) {
-            return false;
-        }
-        if (!Objects.equals(this.dislike, other.dislike)) {
+        if (!Objects.equals(this.etat, other.etat)) {
             return false;
         }
         return true;
     }
 
-   
+    @Override
+    public String toString() {
+        return "reacts{" + "id_react=" + id_react + ", id_vid=" + id_vid + ", id_user=" + id_user + ", etat=" + etat + '}';
+    }
 
+    
 }

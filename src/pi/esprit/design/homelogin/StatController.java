@@ -56,7 +56,7 @@ public class StatController implements Initializable {
             new PieChart.Data("arts",31),
             new PieChart.Data("musique",10),
             new PieChart.Data("danse",20),
-            new PieChart.Data("sings",21)
+            new PieChart.Data("sports",21)
             );
            pc.setData(details);
             pc.setTitle("statistiques des videos");
@@ -64,7 +64,7 @@ public class StatController implements Initializable {
         pc.setLabelsVisible(true);
         for(final PieChart.Data data :pc.getData()){
             
-            data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+            data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>(){
                 @Override
                 public void handle(MouseEvent event) {
                     lb.setText(String.valueOf((data.getPieValue()/102)*100+"%"));

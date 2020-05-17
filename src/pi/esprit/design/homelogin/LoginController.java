@@ -79,18 +79,28 @@ PreparedStatement pst;
                 int id=rs.getInt("id_user");
                 String nom=rs.getString("nom");
                 String prenom=rs.getString("prenom");
+                String profil=rs.getString("profil");
                 String pwd=rs.getString("pwd");
                 String photo=rs.getString("photo");
-                personnes ps=new personnes(id,nom,prenom,photo,pwd);
+                personnes ps=new personnes(id,nom,prenom,profil,photo,pwd);
                 loggedmembre.setP(ps);
                 System.out.println(ps);
                 JOptionPane.showMessageDialog(null,"Username and password are correct");
+                if(profil.equals("admin")){
+                     btn_login.getScene().getWindow().hide();
+                Parent root=FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
+                Stage mainstage=new Stage();
+                Scene scene=new Scene(root);
+                mainstage.setScene(scene);
+                mainstage.show();
+                }else{
                 btn_login.getScene().getWindow().hide();
                 Parent root=FXMLLoader.load(getClass().getResource("menu.fxml"));
                 Stage mainstage=new Stage();
                 Scene scene=new Scene(root);
                 mainstage.setScene(scene);
                 mainstage.show();
+                }
             }
             
             

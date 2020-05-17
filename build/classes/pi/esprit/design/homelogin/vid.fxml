@@ -7,6 +7,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
@@ -14,9 +16,6 @@
 <AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="697.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.VidController">
    <children>
       <MediaView fx:id="mediaView" fitHeight="250.0" fitWidth="520.0" layoutX="163.0" layoutY="50.0" />
-      <Button fx:id="btn_play" layoutX="177.0" layoutY="369.0" mnemonicParsing="false" onAction="#playvideo" text="play" />
-      <Button fx:id="btn_pause" layoutX="252.0" layoutY="369.0" mnemonicParsing="false" onAction="#pausevideo" text="pause" />
-      <Button fx:id="btn_stop" layoutX="326.0" layoutY="369.0" mnemonicParsing="false" onAction="#stopvideo" text="stop" />
       <Slider fx:id="volume" layoutX="543.0" layoutY="319.0" />
       <Label layoutX="490.0" layoutY="317.0" text="volume" textFill="#e4dede" />
       <MenuBar layoutX="526.0" layoutY="2.0" prefHeight="25.0" prefWidth="170.0">
@@ -43,6 +42,45 @@
          </children>
       </VBox>
       <Button fx:id="btn_uplo" layoutX="429.0" layoutY="2.0" mnemonicParsing="false" onAction="#uploa" text="upload/save" />
-      <TextField fx:id="txt_vid" layoutX="177.0" layoutY="313.0" />
+      <TextField fx:id="txt_path" layoutX="177.0" layoutY="313.0" />
+      <ImageView fx:id="btn_play" fitHeight="50.0" fitWidth="74.0" layoutX="131.0" layoutY="359.0" onMouseClicked="#playvideo" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/play.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btn_pause" fitHeight="50.0" fitWidth="74.0" layoutX="189.0" layoutY="359.0" onMouseClicked="#pausevideo" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/pause.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btn_stop" fitHeight="50.0" fitWidth="74.0" layoutX="239.0" layoutY="358.0" onMouseClicked="#stopvideo" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/stop.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btn_like" fitHeight="59.0" fitWidth="62.0" layoutX="294.0" layoutY="368.0" onMouseClicked="#like" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@like.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btn_comment" fitHeight="42.0" fitWidth="98.0" layoutX="461.0" layoutY="362.0" onMouseClicked="#comment" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/commentaire.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txt_des" layoutX="537.0" layoutY="371.0" />
+      <TextField fx:id="txt_vid" layoutX="537.0" layoutY="420.0" />
+      <TextField fx:id="id_vid" layoutX="339.0" layoutY="420.0" />
+      <TextField fx:id="num_like" layoutX="356.0" layoutY="367.0" prefHeight="25.0" prefWidth="29.0" />
+      <Button fx:id="like_nb" layoutX="205.0" layoutY="466.0" mnemonicParsing="false" onAction="#like_number" text="number of like" />
+      <ImageView fx:id="btn_dislike" fitHeight="25.0" fitWidth="50.0" layoutX="398.0" layoutY="371.0" onMouseClicked="#dislike" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@dislike.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="dislike_nb" layoutX="198.0" layoutY="508.0" mnemonicParsing="false" onAction="#dislikenumber" text="number of dislike" />
+      <TextField fx:id="num_dislike" layoutX="429.0" layoutY="367.0" prefHeight="25.0" prefWidth="29.0" />
+      <Button layoutX="511.0" layoutY="466.0" mnemonicParsing="false" onAction="#deletelike" text="delete like" />
+      <Button layoutX="511.0" layoutY="508.0" mnemonicParsing="false" onAction="#deletedislike" text="delete dislike" />
    </children>
 </AnchorPane>
