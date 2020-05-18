@@ -5,9 +5,16 @@
  */
 package pi.esprit.design.homelogin;
 
+import com.mysql.jdbc.PreparedStatement;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +31,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import pi.esprit.utils.MyConnection;
 
 /**
  * FXML Controller class
@@ -40,40 +48,41 @@ public class StatController implements Initializable {
     private Label lb;
     @FXML
     private Button btn_back;
-
-    /**
-     * Initializes the controller class.
-     */
+    Connection cnx;
+    PreparedStatement pst;
+    ResultSet st;
+   ArrayList<String> nom=new ArrayList<>();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
     }    
 
     @FXML
-    private void load_pc(ActionEvent event) {
-          ObservableList<Data> details= FXCollections.observableArrayList();
-           details.addAll(new PieChart.Data("sports", 20),
-            new PieChart.Data("arts",31),
-            new PieChart.Data("musique",10),
-            new PieChart.Data("danse",20),
-            new PieChart.Data("sports",21)
-            );
-           pc.setData(details);
-            pc.setTitle("statistiques des videos");
-        pc.setLegendSide(Side.BOTTOM);
-        pc.setLabelsVisible(true);
-        for(final PieChart.Data data :pc.getData()){
-            
-            data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>(){
-                @Override
-                public void handle(MouseEvent event) {
-                    lb.setText(String.valueOf((data.getPieValue()/102)*100+"%"));
+    private void load_pc(ActionEvent event)  {
+        
+            ObservableList<Data> details= FXCollections.observableArrayList();
+               details.addAll(new PieChart.Data("sports", 20),
+                        new PieChart.Data("arts",31),
+                        new PieChart.Data("musique",10),
+                        new PieChart.Data("danse",20),
+                        new PieChart.Data("sports",21)
+                );
+                pc.setData(details);
+                pc.setTitle("statistiques des videos");
+                pc.setLegendSide(Side.BOTTOM);
+                pc.setLabelsVisible(true);
+                for(final PieChart.Data data :pc.getData()){
+                    
+                    data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>(){
+                        @Override
+                        public void handle(MouseEvent event) {
+                            lb.setText(String.valueOf((data.getPieValue()/102)*100+"%"));
+                        }
+                        
+                    });
                 }
-                
-            });
-        }
-    }
-
+            }  
+    
     @FXML
     private void back(ActionEvent event) {
          btn_back.getScene().getWindow().hide();

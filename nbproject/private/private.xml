@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/reacts.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/StatController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/vid.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/Reactservices.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/PersonneCRUD.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/utils/MyConnection.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/Gestionvideo.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/VideolistController.java</file>
+            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/VideoCRUD.java</file>
             <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/VidController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/personnes.java</file>
             <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/mawhebty/Mawhebty.java</file>
         </group>
     </open-files>

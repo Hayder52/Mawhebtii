@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="697.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.VidController">
+<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="788.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.VidController">
    <children>
       <MediaView fx:id="mediaView" fitHeight="250.0" fitWidth="520.0" layoutX="163.0" layoutY="50.0" />
-      <Slider fx:id="volume" layoutX="543.0" layoutY="319.0" />
-      <Label layoutX="490.0" layoutY="317.0" text="volume" textFill="#e4dede" />
+      <Slider fx:id="volume" layoutX="634.0" layoutY="319.0" />
+      <Label layoutX="577.0" layoutY="317.0" text="volume" textFill="#e4dede" />
       <MenuBar layoutX="526.0" layoutY="2.0" prefHeight="25.0" prefWidth="170.0">
         <menus>
           <Menu mnemonicParsing="false" text="open">
@@ -42,7 +42,7 @@
          </children>
       </VBox>
       <Button fx:id="btn_uplo" layoutX="429.0" layoutY="2.0" mnemonicParsing="false" onAction="#uploa" text="upload/save" />
-      <TextField fx:id="txt_path" layoutX="177.0" layoutY="313.0" />
+      <TextField fx:id="txt_path" layoutX="132.0" layoutY="314.0" prefHeight="25.0" prefWidth="81.0" />
       <ImageView fx:id="btn_play" fitHeight="50.0" fitWidth="74.0" layoutX="131.0" layoutY="359.0" onMouseClicked="#playvideo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../images/play.png" />
@@ -82,5 +82,7 @@
       <TextField fx:id="num_dislike" layoutX="429.0" layoutY="367.0" prefHeight="25.0" prefWidth="29.0" />
       <Button layoutX="511.0" layoutY="466.0" mnemonicParsing="false" onAction="#deletelike" text="delete like" />
       <Button layoutX="511.0" layoutY="508.0" mnemonicParsing="false" onAction="#deletedislike" text="delete dislike" />
+      <TextField fx:id="txt_nomvid" layoutX="356.0" layoutY="313.0" prefHeight="25.0" prefWidth="126.0" />
+      <Label layoutX="233.0" layoutY="317.0" text="insert your vdeo name:" textFill="#e8e2e2" />
    </children>
 </AnchorPane>

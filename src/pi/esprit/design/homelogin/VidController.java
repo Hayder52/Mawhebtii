@@ -51,7 +51,9 @@ import pi.esprit.entities.InputValidation;
 import pi.esprit.entities.loggedmembre;
 import pi.esprit.entities.personnes;
 import pi.esprit.entities.reacts;
+import pi.esprit.entities.videos;
 import pi.esprit.services.Reactservices;
+import pi.esprit.services.VideoCRUD;
 import pi.esprit.utils.MyConnection;
 
 public class VidController implements Initializable {
@@ -118,6 +120,8 @@ public class VidController implements Initializable {
     private Button dislike_nb;
     @FXML
     private TextField num_dislike;
+    @FXML
+    private TextField txt_nomvid;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -164,7 +168,7 @@ public class VidController implements Initializable {
     private void like(MouseEvent event) {
         Reactservices rs = new Reactservices();
         reacts r = new reacts(2, pp.getId_user());
- if (rs.getlikeparid(r) == true) {
+        if (rs.getlikeparid(r) == true) {
             // rs.Supprimerdislike(pp.getId_user(), 2);
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
             alert1.setTitle("deleting like");
@@ -186,8 +190,8 @@ public class VidController implements Initializable {
                     System.out.println("dislike deleted");
                 }
             } else {
-                    rs.like(r);
-                    System.out.println("like added");
+                rs.like(r);
+                System.out.println("like added");
 
             }
 
@@ -273,6 +277,7 @@ public class VidController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         final Stage stage = new Stage();
         File file = fileChooser.showOpenDialog(stage);
+        System.out.println(file);
         if (file != null) {
             video = UUID.randomUUID().toString().replaceAll("-", "") + ".mp4";
             image = new Image(file.getAbsoluteFile().toURI().toString(), mediaView.getFitWidth(), mediaView.getFitHeight(), true, true);
@@ -295,6 +300,10 @@ public class VidController implements Initializable {
             Optional<ButtonType> action = alert1.showAndWait();
             if (action.get() == ButtonType.OK) {
                 u.CopyImage(video1, file.toPath().toString());
+                VideoCRUD rc = new VideoCRUD();
+
+                videos vv = new videos(0, "avion", txt_path.getText(), "ka7la", 4, "Sport");
+                rc.ajouterVideo2(vv);
             }
         }
 
@@ -372,8 +381,8 @@ public class VidController implements Initializable {
                     System.out.println("like deleted");
                 }
             } else {
-                    rs.dislike(r);
-                    System.out.println("dislike added");
+                rs.dislike(r);
+                System.out.println("dislike added");
 
             }
 
