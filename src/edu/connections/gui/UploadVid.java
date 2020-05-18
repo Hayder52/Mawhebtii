@@ -20,14 +20,15 @@ import javafx.stage.Stage;
  *
  * @author MAHHOUTTA
  */
-public class Categorie extends Application {
+public class UploadVid extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-     Parent root= FXMLLoader.load(getClass().getResource("Categorie.fxml"));
-        Scene scene = new Scene(root, 900, 600);
+      Parent root= FXMLLoader.load(getClass().getResource("UploadVid.fxml"));
+        Scene scene = new Scene(root,900,600);
         
-        primaryStage.setTitle("Categorie Home");
+
+        primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

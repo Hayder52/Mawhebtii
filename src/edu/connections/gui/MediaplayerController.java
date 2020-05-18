@@ -22,6 +22,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaView;
 import javafx.scene.media.MediaPlayer;
@@ -36,10 +37,30 @@ import javafx.scene.control.Label;
 public class MediaplayerController implements Initializable {
 
   @FXML  private MediaView mv;
+ @FXML 
  private MediaPlayer mp;
-//  private Media me;
-  private String filepath ;
+
+ private String filepath ;
   String charset = "UTF-8";
+    @FXML
+    private Button openfilebt;
+    @FXML
+    private Button playbt;
+    @FXML
+    private Button pausebt;
+    @FXML
+    private Button stopbt;
+    @FXML
+    private Button slowerbt;
+    @FXML
+    private Button slowbt;
+    @FXML
+    private Button fastbt;
+    @FXML
+    private Button fasterbt;
+    @FXML
+    private Button exitbt;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       /*  String path =new File("src/Media/videotest.mp4").getAbsolutePath();
@@ -54,9 +75,10 @@ public class MediaplayerController implements Initializable {
    height.bind(Bindings.selectDouble(mv.sceneProperty(),"Heigt"));
 
     }  */}
+    @FXML
     public void Openfile(ActionEvent event){
     FileChooser filechooser = new FileChooser();
-    FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Select a file (*.mp4)","*mp4");
+    FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Select a file *.mp3,*.mp4,*.vlc","*mp4");
     filechooser.getExtensionFilters().add(filter);
     File file= filechooser.showOpenDialog(null);
    filepath=file.toURI().toString();
@@ -77,11 +99,11 @@ public class MediaplayerController implements Initializable {
   @FXML  
   private void uploaddFile(ActionEvent event) throws FileNotFoundException, IOException{
       
-   
+   String url="http://localhost:8080/VideoUpload/Uploads";
          InputStream inputStream = new FileInputStream("C:\\test\\ma.mp4");//upload l'image
         System.out.println("Start uploading second file");
 
-        OutputStream output = new FileOutputStream("http://localhost:8080/VideoUpload/Uploads");
+        OutputStream output = new FileOutputStream(url);
         byte[] bytesIn = new byte[4096];
         int read = 1;
         while ((read = inputStream.read(bytesIn)) != -1) {//copier l'image au serveur

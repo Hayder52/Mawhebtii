@@ -14,12 +14,18 @@
       <HBox alignment="CENTER" prefHeight="66.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="openfilebt" mnemonicParsing="false" onAction="#Openfile" text="Openfile" />
-            <Button fx:id="playbt" mnemonicParsing="false" onAction="#play" prefHeight="20.0" prefWidth="30.0" text="play">
-               <padding>
+            <Button fx:id="playbt" mnemonicParsing="false" onAction="#play" prefHeight="20.0" prefWidth="20.0" style="-fx-background-image: url(&quot;images/play.jpg&quot;);">
+               <HBox.margin>
                   <Insets right="10.0" />
-               </padding></Button>
-            <Button fx:id="pausebt" mnemonicParsing="false" onAction="#pause" text="pause" />
-            <Button fx:id="stopbt" mnemonicParsing="false" onAction="#stop" text="stop" />
+               </HBox.margin></Button>
+            <Button fx:id="pausebt" mnemonicParsing="false" onAction="#pause" prefHeight="20.0" prefWidth="20.0">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Button>
+            <Button fx:id="stopbt" mnemonicParsing="false" onAction="#stop" prefHeight="20.0" prefWidth="20.0">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Button>
             <Button fx:id="slowerbt" mnemonicParsing="false" onAction="#slower" text="&lt;&lt;&lt;" />
             <Button fx:id="slowbt" mnemonicParsing="false" onAction="#slow" text="&lt;&lt;" />
             <Button fx:id="fastbt" mnemonicParsing="false" onAction="#fast" text="&gt;&gt;" />

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="522.0" prefWidth="746.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connections.gui.UploadVidController">
+    <stylesheets>
+        <URL value="@uploadvid.css" />
+    </stylesheets>
+   <children>
+      <Text layoutX="231.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <TextField fx:id="tf_nomv" layoutX="113.0" layoutY="73.0" prefHeight="25.0" prefWidth="175.0" />
+      <Text layoutX="14.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de Video" />
+      <TextArea fx:id="txt_vid" layoutX="109.0" layoutY="129.0" prefHeight="160.0" prefWidth="182.0" />
+      <Text layoutX="14.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+      <Button fx:id="upvid" layoutX="187.0" layoutY="396.0" mnemonicParsing="false" onAction="#Openfile" text="Open File" />
+      <Button fx:id="savebt" layoutX="159.0" layoutY="447.0" mnemonicParsing="false" onAction="#add" text="Save" />
+      <Text layoutX="14.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your video to upload" />
+      <MediaView fx:id="mv" fitHeight="300.0" fitWidth="450.0" layoutX="296.0" layoutY="129.0" />
+      <HBox fx:id="hb" layoutX="387.0" layoutY="435.0" prefHeight="25.0" prefWidth="269.0">
+         <children>
+            <Button fx:id="playbt" mnemonicParsing="false" onAction="#play" text="Play" />
+            <Button fx:id="stopbt" mnemonicParsing="false" onAction="#pause" text="Pause" />
+            <Button fx:id="slowerbt" mnemonicParsing="false" onAction="#slower" text="&lt;&lt;&lt;" />
+            <Button fx:id="slowbt" mnemonicParsing="false" onAction="#slow" text="&lt;&lt;" />
+            <Button fx:id="fastbt" mnemonicParsing="false" onAction="#fast" text="&gt;&gt;" />
+            <Button fx:id="fasterbt" mnemonicParsing="false" onAction="#faster" text="&gt;&gt;&gt;" />
+            <Button fx:id="exitbt" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exit" text="Exit" />
+         </children></HBox>
+      <ComboBox fx:id="combobox" layoutX="118.0" layoutY="324.0" prefHeight="25.0" prefWidth="169.0" promptText="Select" />
+      <Text layoutX="14.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
+   </children>
+</AnchorPane>

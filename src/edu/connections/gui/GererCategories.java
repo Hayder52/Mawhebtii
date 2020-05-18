@@ -20,17 +20,21 @@ import javafx.stage.Stage;
  *
  * @author MAHHOUTTA
  */
-public class Categorie extends Application {
+public class GererCategories extends Application {
     
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-     Parent root= FXMLLoader.load(getClass().getResource("Categorie.fxml"));
-        Scene scene = new Scene(root, 900, 600);
+         @Override
+
+        public void start(Stage primaryStage) throws IOException {
+     Parent root= FXMLLoader.load(getClass().getResource("GererCategorie.fxml"));
+        Scene scene = new Scene(root, 1000, 900);
         
         primaryStage.setTitle("Categorie Home");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+       
+    
 
     /**
      * @param args the command line arguments

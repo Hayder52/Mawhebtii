@@ -13,81 +13,81 @@ import java.util.Objects;
  */
 public class videos {
  	
-private int id;
-private String nom_video;
-private int id_categorie;
-private String 	url;
-private int likes;
-private int dislikes;
+  private int id_vid;
+    private String nom_vid;
+    private String Desc_vid;
+    private String path_vid;
+    private String Cat_vid;
+    private int id_comp;
 
-
-  public videos (int id, String nom_video, int id_categorie, String url, int likes, int dislikes) {
-        this.id = id;
-        this.nom_video= nom_video;
-        this.id_categorie = id_categorie;
-        this.url = url;
-        this.likes = likes;
-        this.dislikes = dislikes;
-      
+    public videos() {
     }
 
-    public int getId() {
-        return id;
+    public videos(int id_vid, String nom_vid, String Desc_vid, String path_vid, String Cat_vid,int id_comp) {
+        this.id_vid = id_vid;
+        this.nom_vid = nom_vid;
+        this.Desc_vid = Desc_vid;
+        this.path_vid = path_vid;
+        this.Cat_vid = Cat_vid;
+          this.id_comp = id_comp;
     }
 
-    public String getNom_video() {
-        return nom_video;
+    public int getId_vid() {
+        return id_vid;
     }
 
-    public int getId_categorie() {
-        return id_categorie;
+    public String getNom_vid() {
+        return nom_vid;
     }
 
-    public String getUrl() {
-        return url;
+    public String getDesc_vid() {
+        return Desc_vid;
     }
 
-    public int getLikes() {
-        return likes;
+    public String getPath_vid() {
+        return path_vid;
     }
 
-    public int getDislikes() {
-        return dislikes;
+    public String getCat_vid() {
+        return Cat_vid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_vid(int id_vid) {
+        this.id_vid = id_vid;
     }
 
-    public void setNom_video(String nom_video) {
-        this.nom_video = nom_video;
+    public void setNom_vid(String nom_vid) {
+        this.nom_vid = nom_vid;
     }
 
-    public void setId_categorie(int id_categorie) {
-        this.id_categorie = id_categorie;
+    public void setDesc_vid(String Desc_vid) {
+        this.Desc_vid = Desc_vid;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPath_vid(String path_vid) {
+        this.path_vid = path_vid;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setCat_vid(String Cat_vid) {
+        this.Cat_vid = Cat_vid;
     }
 
-    public void setDislikes(int dislikes) {
-        this.dislikes = dislikes;
+    public void setId_comp(int id_comp) {
+        this.id_comp = id_comp;
+    }
+
+    public int getId_comp() {
+        return id_comp;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.id;
-        hash = 89 * hash + Objects.hashCode(this.nom_video);
-        hash = 89 * hash + this.id_categorie;
-        hash = 89 * hash + Objects.hashCode(this.url);
-        hash = 89 * hash + this.likes;
-        hash = 89 * hash + this.dislikes;
+        int hash = 3;
+        hash = 71 * hash + this.id_vid;
+        hash = 71 * hash + Objects.hashCode(this.nom_vid);
+        hash = 71 * hash + Objects.hashCode(this.Desc_vid);
+        hash = 71 * hash + Objects.hashCode(this.path_vid);
+        hash = 71 * hash + Objects.hashCode(this.Cat_vid);
         return hash;
     }
 
@@ -103,22 +103,19 @@ private int dislikes;
             return false;
         }
         final videos other = (videos) obj;
-        if (this.id != other.id) {
+        if (this.id_vid != other.id_vid) {
             return false;
         }
-        if (this.id_categorie != other.id_categorie) {
+        if (!Objects.equals(this.nom_vid, other.nom_vid)) {
             return false;
         }
-        if (this.likes != other.likes) {
+        if (!Objects.equals(this.Desc_vid, other.Desc_vid)) {
             return false;
         }
-        if (this.dislikes != other.dislikes) {
+        if (!Objects.equals(this.path_vid, other.path_vid)) {
             return false;
         }
-        if (!Objects.equals(this.nom_video, other.nom_video)) {
-            return false;
-        }
-        if (!Objects.equals(this.url, other.url)) {
+        if (!Objects.equals(this.Cat_vid, other.Cat_vid)) {
             return false;
         }
         return true;
@@ -126,10 +123,8 @@ private int dislikes;
 
     @Override
     public String toString() {
-        return "videos{" + "id=" + id + ", nom_video=" + nom_video + ", id_categorie=" + id_categorie + ", url=" + url + ", likes=" + likes + ", dislikes=" + dislikes + '}';
+        return "VideoCrud{" + "id_vid=" + id_vid + ", nom_vid=" + nom_vid + ", Desc_vid=" + Desc_vid + ", path_vid=" + path_vid + ", Cat_vid=" + Cat_vid + '}';
     }
 
-  
-  
-  
+   
 }

@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -29,33 +31,33 @@ public class CategorieController implements Initializable {
     /**
      * Initializes the controller class.
      */
-     @FXML
     private Button btnMusique;
 
-    @FXML
     private Button btnDanse;
 
-    @FXML
     private Button btn_Timetable;
-
     @FXML
-    private Button btnSettings;
-
+    private AnchorPane fashionbt;
     @FXML
-    private Button btnUpdate;
-
+    private Button Musicbt;
     @FXML
-    private Button btnClasses;
+    private Button dancebt;
+    @FXML
+    private Button artbt;
+    @FXML
+    private Button camerabt;
+    @FXML
+    private ImageView sportbt;
+
 
     //my bad - the freaking mouse event
-    @FXML
     private void handleButtonClicks(javafx.event.ActionEvent mouseEvent) {
         if (mouseEvent.getSource() == btnMusique) {
-            loadStage("/home/fxml/Dashboard.fxml");
+            loadStage("/home/fxml/Musique.fxml");
         } else if (mouseEvent.getSource() == btnDanse) {
-            loadStage("/home/fxml/Students.fxml");
-        } else if (mouseEvent.getSource() == btn_Timetable) {
-            loadStage("/home/fxml/Timetable.fxml");
+            loadStage("/home/fxml/Dance.fxml");
+        } else if (mouseEvent.getSource() == fashionbt) {
+            loadStage("/home/fxml/Art.fxml");
         }
     }
     @Override
@@ -67,7 +69,7 @@ public class CategorieController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource(fxml));
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.getIcons().add(new Image("/home/icons/icon.png"));
+            stage.getIcons().add(new Image("Media/icon.png"));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException e) {

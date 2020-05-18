@@ -20,14 +20,15 @@ import javafx.stage.Stage;
  *
  * @author MAHHOUTTA
  */
-public class Categorie extends Application {
+public class GererVideo extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-     Parent root= FXMLLoader.load(getClass().getResource("Categorie.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("GererVideo.fxml"));
         Scene scene = new Scene(root, 900, 600);
         
-        primaryStage.setTitle("Categorie Home");
+
+        primaryStage.setTitle("Gestion Video!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
