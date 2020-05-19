@@ -122,6 +122,8 @@ public class VidController implements Initializable {
     private TextField num_dislike;
     @FXML
     private TextField txt_nomvid;
+    @FXML
+    private TextField txtname;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -302,7 +304,7 @@ public class VidController implements Initializable {
                 u.CopyImage(video1, file.toPath().toString());
                 VideoCRUD rc = new VideoCRUD();
 
-                videos vv = new videos(0, "avion", txt_path.getText(), "ka7la", 4, "Sport");
+                videos vv = new videos(0, txt_nomvid.getText(), txt_path.getText(), "ka7la", 4, txtname.getText());
                 rc.ajouterVideo2(vv);
             }
         }

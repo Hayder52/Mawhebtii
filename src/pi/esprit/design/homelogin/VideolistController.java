@@ -33,6 +33,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
@@ -49,8 +50,13 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import pi.esprit.entities.InputValidation;
+import pi.esprit.entities.loggedmembre;
+import pi.esprit.entities.personnes;
+import pi.esprit.entities.reacts;
 import pi.esprit.entities.videos;
+import pi.esprit.services.Reactservices;
 import pi.esprit.services.VideoCRUD;
 import pi.esprit.utils.MyConnection;
 
@@ -79,6 +85,7 @@ public class VideolistController implements Initializable {
     private FileChooser.ExtensionFilter filter;
     @FXML
     private TextField txt_vid;
+    private TextField test;
     String video;
     Image image;
     @FXML
@@ -99,11 +106,43 @@ public class VideolistController implements Initializable {
     private ImageView btn_pause;
     @FXML
     private ImageView btn_stop;
+    @FXML
+    private CheckBox sportck;
+    @FXML
+    private CheckBox artsck;
+    @FXML
+    private CheckBox musicck;
+    @FXML
+    private CheckBox otherck;
+    @FXML
+    private ImageView btn_like;
+    @FXML
+    private TextField num_like;
+    @FXML
+    private ImageView btn_dislike;
+    @FXML
+    private TextField num_dislike;
+    @FXML
+    private ImageView btn_comment;
+    @FXML
+    private TextField txt_des;
+    @FXML
+    private Button like_nb;
+    @FXML
+    private Button dislike_nb;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         VideoCRUD vc = new VideoCRUD();
+         Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        rs.like_number(r);
+        num_like.setText(rs.like_number(r));
+        rs.dislike_number(r);
+        num_dislike.setText(rs.dislike_number(r));
+        like_nb.setVisible(false);
+        dislike_nb.setVisible(false);
 
         // ObservableList<videos> list = FXCollections.observableArrayList(vc.displayAll());
         // listvideo.setItems(list);
@@ -124,18 +163,13 @@ public class VideolistController implements Initializable {
                                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
                                     videos M = listvideo.getItems().get(listvideo.getSelectionModel().getSelectedIndex());
                                     String path = "C:\\wamp\\www\\mawhebti\\videos\\" + e.getPath_vid();
-                                    File file = new File(path);
-                                    System.out.println(file);
+                                     File file = new File(path);
 
-                                    try {
-                                        media = new Media(file.toURI().toURL().toExternalForm());
-                                    } catch (MalformedURLException ex) {
-                                        ex.printStackTrace();
-                                    }
+                                    media = new Media(new File(path).toURI().toString());
                                     mediaplayer = new MediaPlayer(media);
-
+                                    mediaplayer.setAutoPlay(true);
                                     mediaView.setMediaPlayer(mediaplayer);
-
+                                    
                                 }
 
                             }
@@ -158,7 +192,7 @@ public class VideolistController implements Initializable {
         listvideo.setItems(list);
 
     }
-
+ personnes pp = loggedmembre.getP();
     @FXML
 
     public void uploa(ActionEvent event) throws MalformedURLException, IOException {
@@ -265,6 +299,112 @@ public class VideolistController implements Initializable {
 
     @FXML
     private void help(ActionEvent event) {
+    }
+
+    @FXML
+    private void like(MouseEvent event) {
+        Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        if (rs.getlikeparid(r) == true) {
+            // rs.Supprimerdislike(pp.getId_user(), 2);
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("deleting like");
+            alert1.setHeaderText("Information");
+            alert1.setContentText("you liked this video before");
+            alert1.show();
+        } else {
+            if (rs.getdislikeparid(r) == true) {
+
+                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                alert1.setTitle("deleting like");
+                alert1.setHeaderText("Information");
+                alert1.setContentText("do you want delete your dislike ?");
+                Optional<ButtonType> action = alert1.showAndWait();
+                if (action.get() == ButtonType.OK) {
+                    rs.like(r);
+
+                    rs.Supprimerdislike(pp.getId_user(), 2);
+                    System.out.println("dislike deleted");
+                }
+            } else {
+                rs.like(r);
+                System.out.println("like added");
+
+            }
+
+        }
+        
+    }
+
+    @FXML
+    private void dislike(MouseEvent event) {
+         Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        if (rs.getdislikeparid(r) == true) {
+            // rs.Supprimerdislike(pp.getId_user(), 2);
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("deleting dislike");
+            alert1.setHeaderText("Information");
+            alert1.setContentText("vous avez deja fait un dislike");
+            alert1.show();
+        } else {
+            if (rs.getlikeparid(r) == true) {
+
+                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                alert1.setTitle("deleting dislike");
+                alert1.setHeaderText("Information");
+                alert1.setContentText("do you want delete your like ?");
+                Optional<ButtonType> action = alert1.showAndWait();
+                if (action.get() == ButtonType.OK) {
+                    rs.dislike(r);
+
+                    rs.Supprimerlike(pp.getId_user(), 2);
+                    System.out.println("like deleted");
+                }
+            } else {
+                rs.dislike(r);
+                System.out.println("dislike added");
+
+            }
+
+        }
+    }
+
+    @FXML
+    private boolean comment(MouseEvent event) {
+        reacts r = new reacts();
+        Connection cnx = MyConnection.getInstance().getCnx();
+        String requete = "INSERT INTO commentaires(descr,id_vid,id_user)" + " VALUES (?,?,?) ";
+        try {
+            java.sql.PreparedStatement pst = cnx.prepareStatement(requete);
+
+            pst.setString(1, txt_des.getText());
+            pst.setString(2, txt_vid.getText());
+            pst.setInt(3, pp.getId_user());
+            pst.executeUpdate();
+            System.out.println("ajout commentaires reussit");
+            JOptionPane.showMessageDialog(null, "comment added!!!");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    @FXML
+    private void like_number(ActionEvent event) {
+         Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        rs.like_number(r);
+        num_like.setText(rs.like_number(r));
+    }
+
+    @FXML
+    private void dislikenumber(ActionEvent event) {
+        Reactservices rs = new Reactservices();
+        reacts r = new reacts(2, pp.getId_user());
+        rs.dislike_number(r);
+        num_dislike.setText(rs.dislike_number(r));
     }
 
 }
