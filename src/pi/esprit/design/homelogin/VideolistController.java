@@ -130,19 +130,12 @@ public class VideolistController implements Initializable {
     private Button like_nb;
     @FXML
     private Button dislike_nb;
+    private String pathfile;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         VideoCRUD vc = new VideoCRUD();
-         Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
-        rs.like_number(r);
-        num_like.setText(rs.like_number(r));
-        rs.dislike_number(r);
-        num_dislike.setText(rs.dislike_number(r));
-        like_nb.setVisible(false);
-        dislike_nb.setVisible(false);
 
         // ObservableList<videos> list = FXCollections.observableArrayList(vc.displayAll());
         // listvideo.setItems(list);
@@ -163,13 +156,18 @@ public class VideolistController implements Initializable {
                                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
                                     videos M = listvideo.getItems().get(listvideo.getSelectionModel().getSelectedIndex());
                                     String path = "C:\\wamp\\www\\mawhebti\\videos\\" + e.getPath_vid();
-                                     File file = new File(path);
+                                    File file = new File(path);
+                                    System.out.println(file);
 
-                                    media = new Media(new File(path).toURI().toString());
+                                    try {
+                                        media = new Media(file.toURI().toURL().toExternalForm());
+                                    } catch (MalformedURLException ex) {
+                                        ex.printStackTrace();
+                                    }
                                     mediaplayer = new MediaPlayer(media);
-                                    mediaplayer.setAutoPlay(true);
+
                                     mediaView.setMediaPlayer(mediaplayer);
-                                    
+
                                 }
 
                             }
@@ -177,18 +175,30 @@ public class VideolistController implements Initializable {
                         );
                         if (e.getId_vid()
                                 != 0) {
-                            setText("Video  : " + e.getNom_vid() + "\n" + "Type " + e.getType()
+                            setText("Video  : " + e.getNom_vid() + "\n" + "Category " + e.getType()
                                     + "\n" + "Description :  \n " + e.getDesc_vid()
                             );
-
+            pathfile=e.getPath_vid();
                         }
                     }
                 }
             };
-
+               cell.setOnMouseClicked(e -> {
+                if (!cell.isEmpty()) {
+                    System.out.println("You clicked on " + cell.getItem());
+                                             
+                    media = new Media(pathfile);
+                    mediaplayer = new MediaPlayer(media);
+                    mediaView.setMediaPlayer(mediaplayer);
+                     mediaplayer.play();
+                    
+                    e.consume();
+                }
+            });
             return cell;
         }
         );
+          
         listvideo.setItems(list);
 
     }

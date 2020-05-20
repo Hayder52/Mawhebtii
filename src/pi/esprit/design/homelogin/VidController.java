@@ -138,7 +138,7 @@ public class VidController implements Initializable {
             mediaplayer.setVolume(volume.getValue() / 100);
         });
         Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
+        reacts r = new reacts(8, pp.getId_user());
         rs.like_number(r);
         num_like.setText(rs.like_number(r));
         rs.dislike_number(r);
@@ -169,7 +169,7 @@ public class VidController implements Initializable {
     @FXML
     private void like(MouseEvent event) {
         Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
+        reacts r = new reacts(8, pp.getId_user());
         if (rs.getlikeparid(r) == true) {
             // rs.Supprimerdislike(pp.getId_user(), 2);
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
@@ -188,7 +188,7 @@ public class VidController implements Initializable {
                 if (action.get() == ButtonType.OK) {
                     rs.like(r);
 
-                    rs.Supprimerdislike(pp.getId_user(), 2);
+                    rs.Supprimerdislike(pp.getId_user(), 8);
                     System.out.println("dislike deleted");
                 }
             } else {
@@ -352,7 +352,7 @@ public class VidController implements Initializable {
     private void like_number(ActionEvent event) {
 
         Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
+        reacts r = new reacts(8, pp.getId_user());
         rs.like_number(r);
         num_like.setText(rs.like_number(r));
     }
@@ -360,7 +360,7 @@ public class VidController implements Initializable {
     @FXML
     private void dislike(MouseEvent event) {
         Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
+        reacts r = new reacts(8, pp.getId_user());
         if (rs.getdislikeparid(r) == true) {
             // rs.Supprimerdislike(pp.getId_user(), 2);
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
@@ -379,7 +379,7 @@ public class VidController implements Initializable {
                 if (action.get() == ButtonType.OK) {
                     rs.dislike(r);
 
-                    rs.Supprimerlike(pp.getId_user(), 2);
+                    rs.Supprimerlike(pp.getId_user(), 8);
                     System.out.println("like deleted");
                 }
             } else {
@@ -394,7 +394,7 @@ public class VidController implements Initializable {
     @FXML
     private void dislikenumber(ActionEvent event) {
         Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
+        reacts r = new reacts(8, pp.getId_user());
         rs.dislike_number(r);
         num_dislike.setText(rs.dislike_number(r));
     }
@@ -402,15 +402,15 @@ public class VidController implements Initializable {
     @FXML
     private void deletelike(ActionEvent event) {
         Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
-        rs.Supprimerlike(pp.getId_user(), 2);
+        reacts r = new reacts(8, pp.getId_user());
+        rs.Supprimerlike(pp.getId_user(), 8);
     }
 
     @FXML
     private void deletedislike(ActionEvent event) {
         Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
-        rs.Supprimerdislike(pp.getId_user(), 2);
+        reacts r = new reacts(8, pp.getId_user());
+        rs.Supprimerdislike(pp.getId_user(), 8);
     }
 
 }
