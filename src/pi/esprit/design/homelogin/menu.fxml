@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane fx:id="top" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.MenuController">
+<BorderPane fx:id="top" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.MenuController">
    <left>
       <VBox prefHeight="400.0" prefWidth="127.0" style="-fx-background-color: #0D1824;" BorderPane.alignment="CENTER">
          <children>
@@ -28,6 +27,11 @@
                </font>
             </Button>
             <Button fx:id="btn_comp" layoutX="10.0" layoutY="138.0" mnemonicParsing="false" onAction="#page_competions" prefHeight="64.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 0 2px 0;" text="competitions" textFill="#b9b3b3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_stat" layoutX="10.0" layoutY="330.0" mnemonicParsing="false" onAction="#pagestat" prefHeight="80.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 0 2px 0;" text="Statistiques" textFill="#b9b3b3">
                <font>
                   <Font size="14.0" />
                </font>

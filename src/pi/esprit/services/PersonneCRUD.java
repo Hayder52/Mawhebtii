@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import pi.esprit.entities.PersonForTab;
 import pi.esprit.entities.personnes;
 import pi.esprit.utils.MyConnection;
 
@@ -18,7 +17,7 @@ import pi.esprit.utils.MyConnection;
  * @author bureau
  */
 public class PersonneCRUD {
-      Connection cnx;
+     Connection cnx;
 
     public PersonneCRUD() {
         cnx = MyConnection.getInstance().getCnx();
@@ -96,6 +95,32 @@ public class PersonneCRUD {
         }
     }
 
+   public List<personnes> displayAll(){
+       List<personnes> listePersonnes = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM personnes";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+             personnes p=new personnes();
+                p.setNom(rs.getString("nom"));
+                p.setPrenom(rs.getString("prenom"));
+                p.setProfil(rs.getString("profil"));
+                p.setPhoto(rs.getString("photo"));
+                p.setLogin(rs.getString("login"));
+                p.setPwd(rs.getString("pwd"));
+                 p.setAdress(rs.getString("adress"));
+                 p.setAdress(rs.getString("email"));
+               
+                
+               
+                listePersonnes.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return listePersonnes;
+   } 
    public  List<PersonForTab> selectUsers(){
        List<PersonForTab> listePersonnes = new ArrayList<>();
         try {
@@ -103,14 +128,31 @@ public class PersonneCRUD {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(requete);
             while(rs.next()){
-                listePersonnes.add(new PersonForTab(Integer.toString(rs.getInt("id")), rs.getString("nom"), 
-                        rs.getString("prenom"), rs.getString("email"), rs.getString("profile")
+                listePersonnes.add(new PersonForTab(Integer.toString(rs.getInt("id_user")), rs.getString("nom"), 
+                        rs.getString("prenom"), rs.getString("email"), rs.getString("profil")
                 , rs.getString("photo"), rs.getString("login"), rs.getString("pwd"), rs.getString("adress")));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return listePersonnes;
+   }
+   public personnes selectUser(int id){
+       personnes p = null;
+       try {
+            String requete = "SELECT * FROM personnes WHERE id_user = "+id;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+                p= new personnes(rs.getInt("id_user"), rs.getString("nom"), 
+                        rs.getString("prenom"), rs.getString("email"), rs.getString("profil")
+                , rs.getString("photo"), rs.getString("login"), rs.getString("pwd"), rs.getString("adress"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return p;
+       
    }
    
    public  void updatePerCell(String attributeType,String attribute,int id){
@@ -131,7 +173,7 @@ public class PersonneCRUD {
    
    public  void supprimerPersonne2(int id_user) {
         try {
-            String requete = "DELETE FROM personnes WHERE id=?";
+            String requete = "DELETE FROM personnes WHERE id_user=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1, id_user);
             pst.executeUpdate();
@@ -143,24 +185,35 @@ public class PersonneCRUD {
    
    public  void ajouterPersonne3(personnes p) {
         try {
-           String requete2 = "INSERT INTO personnes(nom,prenom,adress,profile,photo,login,pwd,email)"
+           String requete2 = "INSERT INTO personnes(nom,prenom,adress,profil,photo,login,pwd,email)"
                     + "VALUES (?,?,?,?,?,?,?,?)";  
             PreparedStatement pst = cnx.prepareStatement(requete2);
             
             pst.setString(1, p.getNom());
             pst.setString(2, p.getPrenom());
-            pst.setString(3, p.getEmail());
-            pst.setString(4, p.getAdress());
-            pst.setString(5, p.getProfil());
-            pst.setString(6, p.getPhoto());
-            pst.setString(7, p.getLogin());
-            pst.setString(8, p.getPwd());
+            pst.setString(3, p.getAdress());
+            pst.setString(4, p.getProfil());
+            pst.setString(5, p.getPhoto());
+            pst.setString(6, p.getLogin());
+            pst.setString(7, p.getPwd());
+            pst.setString(8, p.getEmail());
             pst.executeUpdate();
             System.out.println("Person added!");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
     }
+   
+   public void updatePassWord(int id,String newPassword){
+       try {
+           String requete = "Update personnes SET pwd="+newPassword+"WHERE id="+id;
+           Statement pst = cnx.createStatement();
+           pst.executeUpdate(requete);
+           System.out.println("Password updated");
+       } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+   }
    
    public void updatePersonne2(PersonForTab p) {
         try {

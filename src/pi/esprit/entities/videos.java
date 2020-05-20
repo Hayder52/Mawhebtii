@@ -17,6 +17,19 @@ public class videos {
     private String path_vid;
     private String desc_vid;
     private int id_comp;
+    private String type;
+
+    public videos(int id_vid, String nom_vid, String path_vid, String desc_vid, int id_comp, String type) {
+        this.id_vid = id_vid;
+        this.nom_vid = nom_vid;
+        this.path_vid = path_vid;
+        this.desc_vid = desc_vid;
+        this.id_comp = id_comp;
+        this.type = type;
+    }
+    public videos(){
+        
+    }
 
     public int getId_vid() {
         return id_vid;
@@ -38,6 +51,10 @@ public class videos {
         return id_comp;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public void setId_vid(int id_vid) {
         this.id_vid = id_vid;
     }
@@ -57,20 +74,14 @@ public class videos {
     public void setId_comp(int id_comp) {
         this.id_comp = id_comp;
     }
-public videos(){
-    
-}
-    public videos(int id_vid, String nom_vid, String path_vid, String desc_vid, int id_comp) {
-        this.id_vid = id_vid;
-        this.nom_vid = nom_vid;
-        this.path_vid = path_vid;
-        this.desc_vid = desc_vid;
-        this.id_comp = id_comp;
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
         return hash;
     }
 
@@ -101,13 +112,19 @@ public videos(){
         if (!Objects.equals(this.desc_vid, other.desc_vid)) {
             return false;
         }
+        if (!Objects.equals(this.type, other.type)) {
+            return false;
+        }
         return true;
     }
+    
 
     @Override
     public String toString() {
-        return "videos{" + "id_vid=" + id_vid + ", nom_vid=" + nom_vid + ", path_vid=" + path_vid + ", desc_vid=" + desc_vid + ", id_comp=" + id_comp + '}';
+        return "videos{" + "id_vid=" + id_vid + ", nom_vid=" + nom_vid + ", path_vid=" + path_vid + ", desc_vid=" + desc_vid + ", id_comp=" + id_comp + ", type=" + type + '}';
     }
+
+    
     
     
 }

@@ -26,6 +26,17 @@ public class personnes {
     private String login;
     private String pwd;
       private String adress;
+
+    public personnes(int id_user, String nom, String prenom,String profil, String photo, String pwd) {
+        this.id_user = id_user;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.profil=profil;
+        this.photo = photo;
+        this.pwd = pwd;
+    }
+
+   
   
 
     public int getId_user() {

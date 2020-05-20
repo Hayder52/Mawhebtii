@@ -8,8 +8,13 @@ package mawhebty;
 import java.sql.SQLException;
 import pi.esprit.entities.commentaires;
 import pi.esprit.entities.personnes;
+import pi.esprit.entities.reacts;
+import pi.esprit.entities.videos;
 import pi.esprit.services.CommentairesService;
 import pi.esprit.services.PersonneCRUD;
+import pi.esprit.services.Reactservices;
+import pi.esprit.services.VideoCRUD;
+import pi.esprit.services.statistiqueCrud;
 import pi.esprit.utils.MyConnection;
 
 /**
@@ -26,7 +31,7 @@ public class Mawhebty {
           MyConnection mc = MyConnection.getInstance();
       //MyConnection mc2 = MyConnection.getInstance();
        // System.out.println(mc.hashCode()+ " -- "+mc2.hashCode());
-        PersonneCRUD pc = new PersonneCRUD();
+       /* PersonneCRUD pc = new PersonneCRUD();
        pc.ajouterPersonne();
        personnes p = new personnes(55,"sarraj","hamza","manouba","amateur","hamza.png","hamouz","azerty","hamzasarraj@gmail.com");
        pc.ajouterPersonne2(p);
@@ -38,11 +43,21 @@ public class Mawhebty {
         CommentairesService cs=new CommentairesService();
     
         commentaires b =new commentaires (9,"hamza",2,59);
-       cs.ajouterCommentaire(b);
-      
-        
-      
-       
+       cs.ajouterCommentaire(b);*/
+      //  VideoCRUD vc = new VideoCRUD();
+      //  videos v = new videos(0, "avion", "dsds", "asad", 1, "sport");
+      //  vc.ajouterVideo2(v);
+       /*Reactservices rs=new Reactservices();
+        reacts r=new reacts(1,58);
+        //rs.like(r);
+        rs.dislike(r);
+                System.out.println(rs.getlikeparid(r));
+
+        System.out.println(rs.like_number(r));*/
+int m;
+       statistiqueCrud st=new statistiqueCrud();
+      m= st.getArts();
+        System.out.println(m);
     }
     }
     
