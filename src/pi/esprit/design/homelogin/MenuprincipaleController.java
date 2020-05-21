@@ -107,7 +107,7 @@ public class MenuprincipaleController implements Initializable {
          btn_nrws.getScene().getWindow().hide();
             Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("news.fxml"));
+            root = FXMLLoader.load(getClass().getResource("help.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }
@@ -123,7 +123,7 @@ public class MenuprincipaleController implements Initializable {
          btn_abbout.getScene().getWindow().hide();
             Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("about.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Web.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }

@@ -86,6 +86,8 @@ public class VideoController implements Initializable {
     private MenuItem btn_about;
     @FXML
     private TextField txt_desc;
+    @FXML
+    private TextField txt_path;
 
     /**
      * Initializes the controller class.
@@ -102,6 +104,7 @@ public class VideoController implements Initializable {
             mediaplayer.setVolume(volume.getValue() / 100);
         });
         txtpath.setVisible(false);
+        txt_path.setVisible(false);
     }    
     
     @FXML
