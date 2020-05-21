@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="709.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pi.esprit.design.homelogin.HelpController">
+   <children>
+      <ImageView fitHeight="636.0" fitWidth="883.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@danse.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="68.0" layoutY="53.0" text="Visit our page faceBook: ">
+         <font>
+            <Font size="51.0" />
+         </font>
+      </Label>
+      <Label layoutX="189.0" layoutY="167.0" prefHeight="17.0" prefWidth="467.0" text="https://www.facebook.com/mawhebti/" />
+   </children>
+</AnchorPane>
