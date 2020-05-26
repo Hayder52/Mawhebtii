@@ -1,4 +1,8 @@
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Message;
+import pi.esprit.services.MailService;
 import pi.esprit.utils.MyConnection;
 
 /*
@@ -13,6 +17,9 @@ import pi.esprit.utils.MyConnection;
  */
 public class TestCrud {
     public static void main(String[] args) {
-        MyConnection mc2 = MyConnection.getInstance();
+        try {
+            MailService.sendBanMail("hamzaargoubi@hotmail.com", "13/12/2022");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());        }
     }
 }

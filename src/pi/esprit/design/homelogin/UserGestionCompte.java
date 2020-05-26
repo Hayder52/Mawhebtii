@@ -5,8 +5,13 @@
  */
 package pi.esprit.design.homelogin;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pi.esprit.entities.personnes;
+import pi.esprit.services.MailService;
 import pi.esprit.services.PersonneCRUD;
 
 /**
@@ -34,6 +40,16 @@ public class UserGestionCompte {
       backBtn.setOnAction(new EventHandler<ActionEvent>(){
           @Override
           public void handle(ActionEvent event) {
+              try {
+                  Parent root=FXMLLoader.load(getClass().getResource("menu.fxml"));
+                  Scene scene=new Scene(root);
+                  Stage mainstage = new Stage();
+                  mainstage.setScene(scene);
+                  stage.close();
+                  mainstage.show();
+              } catch (IOException ex) {
+                  System.out.println(ex.getMessage());              }
+                
           }
         
     });
@@ -96,7 +112,11 @@ public class UserGestionCompte {
         
         Button changePwdBtn = new Button("change Password");
         changePwdBtn.setOnAction(e->{
-            PasswordChangeInterface.changePassword(stage);
+          try {
+              MailService.sendVerifMail(p.getEmail(), p.getId_user());
+              PasswordChangeInterface.changePassword(stage);
+          } catch (Exception ex) {
+              System.out.println(ex.getMessage());          }
         });
         pwdBox.getChildren().addAll(changePwdBtn);
          

@@ -217,8 +217,8 @@ public class PersonneCRUD {
    
    public void updatePersonne2(PersonForTab p) {
         try {
-            String requete = "UPDATE personnes SET id=?,nom=?,prenom=?,adress=?,profile=?,photo=?,login=?,pwd=?,email=? "
-                    + "WHERE id=?";
+            String requete = "UPDATE personnes SET id_user=?,nom=?,prenom=?,adress=?,profil=?,photo=?,login=?,pwd=?,email=? "
+                    + "WHERE id_user=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
            
           pst.setInt(1, Integer.parseInt(p.getId_user()));

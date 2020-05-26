@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,6 +33,7 @@ import javax.swing.ImageIcon;
 import pi.esprit.entities.InputValidation;
 import pi.esprit.entities.personnes;
 import pi.esprit.services.PersonneCRUD;
+import pi.esprit.services.TextFieldValidator;
 
 /**
  *
@@ -94,7 +96,7 @@ public class AddButton {
         HBox h7 = new HBox();
         Label lb7 = new Label("pwd");
         lb7.setPrefWidth(150);
-        TextField tf7 = new TextField();
+        PasswordField tf7 = new PasswordField();
         tf7.setPrefWidth(150);
         h7.getChildren().addAll(lb7,tf7);
         h7.setSpacing(40);
@@ -114,8 +116,12 @@ public class AddButton {
         upperh.setSpacing(100);
                 
         HBox h10 = new HBox();
+        VBox vboxAdd = new VBox();
         Button addUser = new Button ("add");
-        h10.getChildren().addAll(addUser);
+        Label confirmLabel = new Label();
+        vboxAdd.setSpacing(20);
+        vboxAdd.getChildren().addAll(addUser,confirmLabel);
+        h10.getChildren().addAll(vboxAdd);
         
         BorderPane bp = new BorderPane();
         upperh.setPadding(new Insets(15, 12, 15, 12));
@@ -161,9 +167,12 @@ public class AddButton {
         }});
         
         addUser.setOnAction(e->{
+            
+            boolean emailValidate=TextFieldValidator.emailFormat(tf3, confirmLabel, "Format must be name@emailaddress.com");
              final personnes p= new personnes(0, tf1.getText(), tf2.getText(),tf3.getText(), 
                     tf4.getText(),personne_image, tf6.getText(), tf7.getText(), tf8.getText());
             PersonneCRUD pc = new PersonneCRUD();
+            if (emailValidate){
             pc.ajouterPersonne3(p);
             
             Alert a = new Alert(Alert.AlertType.NONE);
@@ -173,7 +182,7 @@ public class AddButton {
                
             }
             a.show();
-            
+            }
             tf1.clear();
             tf2.clear();
             tf3.clear();
