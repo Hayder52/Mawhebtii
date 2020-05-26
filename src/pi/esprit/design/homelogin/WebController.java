@@ -5,13 +5,19 @@
  */
 package pi.esprit.design.homelogin;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -22,6 +28,8 @@ public class WebController implements Initializable {
 
     @FXML
     private WebView vieww;
+    @FXML
+    private Button back;
 
     /**
      * Initializes the controller class.
@@ -52,6 +60,22 @@ public class WebController implements Initializable {
          final WebEngine web=vieww.getEngine();
     String urlweb="https://www.youtube.com/";
     web.load(urlweb);
+    }
+
+    @FXML
+    private void back(ActionEvent event) {
+         back.getScene().getWindow().hide();
+            Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("Menuprincipale.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());       
+        }
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene); 
+            mainstage.show();
+        
     }
 
 }

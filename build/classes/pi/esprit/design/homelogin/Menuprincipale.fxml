@@ -6,16 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="485.0" prefWidth="666.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pi.esprit.design.homelogin.MenuprincipaleController">
+<AnchorPane id="AnchorPane" prefHeight="485.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.MenuprincipaleController">
    <children>
-      <ImageView fitHeight="535.0" fitWidth="731.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.28594970703125" AnchorPane.leftAnchor="-4.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="604.0" fitWidth="851.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-119.0" AnchorPane.leftAnchor="-4.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@danse.jpg" />
          </image>
       </ImageView>
-      <VBox layoutX="10.0" layoutY="-1.0" prefHeight="482.0" prefWidth="127.0" style="-fx-background-color: #0D1824;">
+      <VBox layoutX="10.0" layoutY="-1.0" prefHeight="552.0" prefWidth="129.0" style="-fx-background-color: #0D1824;">
          <children>
             <Button fx:id="btn_home" mnemonicParsing="false" onAction="#home" prefHeight="64.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 0 2px 0;" text="Home" textFill="#b9b3b3">
                <font>
@@ -42,6 +42,11 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="btn_Rss" layoutX="10.0" layoutY="410.0" mnemonicParsing="false" onAction="#pageRss" prefHeight="75.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 0 2px 0;" text="Facebbok/youtube" textFill="#b9b3b3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
             <Button fx:id="btn_nrws" layoutX="10.0" layoutY="202.0" mnemonicParsing="false" onAction="#pagenews" prefHeight="64.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 0 2px 0;" text="News" textFill="#b9b3b3">
                <font>
                   <Font size="14.0" />
@@ -54,5 +59,15 @@
             </Button>
          </children>
       </VBox>
+      <Text layoutX="181.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To Your Application:Mawebti">
+         <font>
+            <Font name="System Italic" size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="274.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="With Us ,You Create Your Future">
+         <font>
+            <Font name="System Italic" size="30.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

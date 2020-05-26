@@ -6,6 +6,8 @@
 package mawhebty;
 
 import java.sql.SQLException;
+import pi.esprit.entities.Feed;
+import pi.esprit.entities.FeedMessage;
 import pi.esprit.entities.commentaires;
 import pi.esprit.entities.personnes;
 import pi.esprit.entities.reacts;
@@ -14,6 +16,7 @@ import pi.esprit.services.CommentairesService;
 import pi.esprit.services.PersonneCRUD;
 import pi.esprit.services.Reactservices;
 import pi.esprit.services.RssFeed;
+import pi.esprit.services.RssFeedParser;
 import pi.esprit.services.VideoCRUD;
 import pi.esprit.services.statistiqueCrud;
 import pi.esprit.utils.MyConnection;
@@ -59,8 +62,11 @@ int m;
        statistiqueCrud st=new statistiqueCrud();
       m= st.getArts();
         System.out.println(m);
+        
+
+    }
        
     }
-    }
+    
     
 

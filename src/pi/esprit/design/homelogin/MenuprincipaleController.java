@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import pi.esprit.entities.loggedmembre;
+import pi.esprit.entities.personnes;
 
 /**
  * FXML Controller class
@@ -38,6 +40,8 @@ public class MenuprincipaleController implements Initializable {
     private Button btn_nrws;
     @FXML
     private Button btn_abbout;
+    @FXML
+    private Button btn_Rss;
 
     /**
      * Initializes the controller class.
@@ -64,6 +68,17 @@ public class MenuprincipaleController implements Initializable {
 
     @FXML
     private void account(ActionEvent event) {
+          personnes p = loggedmembre.getP();
+        Stage mainstage=new Stage();
+        if(p.getProfil().equals("user")){
+            UserGestionCompte.UserPersonalInofrmation(mainstage);
+        }
+        else if (p.getProfil().equals("admin")){
+            GestionDesCompteInterface gs = new GestionDesCompteInterface();
+                    gs.showAdminInterface(mainstage);
+        }
+ 
+        
     }
 
     @FXML
@@ -104,10 +119,10 @@ public class MenuprincipaleController implements Initializable {
 
     @FXML
     private void pagenews(ActionEvent event) {
-         btn_nrws.getScene().getWindow().hide();
+         btn_Rss.getScene().getWindow().hide();
             Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("help.fxml"));
+            root = FXMLLoader.load(getClass().getResource("CNN.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }
@@ -132,6 +147,21 @@ public class MenuprincipaleController implements Initializable {
             mainstage.setScene(scene); 
             mainstage.show();
         
+    }
+
+    @FXML
+    private void pageRss(ActionEvent event) {
+         btn_nrws.getScene().getWindow().hide();
+            Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("help.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());       
+        }
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene); 
+            mainstage.show();
     }
     
 }

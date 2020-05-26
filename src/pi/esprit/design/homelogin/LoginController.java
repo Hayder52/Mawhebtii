@@ -24,6 +24,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -58,6 +59,8 @@ PreparedStatement pst;
     private Button btnsign;
     @FXML
     private AnchorPane anchorpane;
+    @FXML
+    private CheckBox chshow;
   
   
     @Override
@@ -85,7 +88,7 @@ PreparedStatement pst;
                 personnes ps=new personnes(id,nom,prenom,profil,photo,pwd);
                 loggedmembre.setP(ps);
                 System.out.println(ps);
-                JOptionPane.showMessageDialog(null,"Username and password are correct");
+               
                 if(profil.equals("admin")){
                      btn_login.getScene().getWindow().hide();
                 Parent root=FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
@@ -131,7 +134,16 @@ PreparedStatement pst;
             mainstage.setScene(scene); 
             mainstage.show();
         
-}}
+}
+
+    @FXML
+    private void showpassword(ActionEvent event) {
+        if(chshow.isSelected()){
+              
+                   
+        }
+    }
+}
 
    
 

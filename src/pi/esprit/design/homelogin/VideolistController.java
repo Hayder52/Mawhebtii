@@ -177,18 +177,7 @@ public class VideolistController implements Initializable {
                     }
                 }
             };
-               /*cell.setOnMouseClicked(e -> {
-                if (!cell.isEmpty()) {
-                    System.out.println("You clicked on " + cell.getItem());
-                                             
-                    media = new Media(pathfile);
-                    mediaplayer = new MediaPlayer(media);
-                    mediaView.setMediaPlayer(mediaplayer);
-                     mediaplayer.play();
-                    
-                    e.consume();
-                }
-            });*/
+               
             return cell;
         }
         );
