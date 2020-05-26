@@ -52,10 +52,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import pi.esprit.entities.InputValidation;
+import pi.esprit.entities.commentaires;
 import pi.esprit.entities.loggedmembre;
 import pi.esprit.entities.personnes;
 import pi.esprit.entities.reacts;
 import pi.esprit.entities.videos;
+import pi.esprit.services.CommentairesService;
 import pi.esprit.services.Reactservices;
 import pi.esprit.services.VideoCRUD;
 import pi.esprit.utils.MyConnection;
@@ -77,7 +79,6 @@ public class VideolistController implements Initializable {
     private ListView<videos> listvideo;
     @FXML
     private Button btnbk;
-    @FXML
     private Button btnnext;
     private MediaPlayer mediaplayer;
     private Media media;
@@ -99,21 +100,11 @@ public class VideolistController implements Initializable {
     @FXML
     private MenuItem btn_close;
     @FXML
-    private Button btn_uplo;
-    @FXML
     private ImageView btn_play;
     @FXML
     private ImageView btn_pause;
     @FXML
     private ImageView btn_stop;
-    @FXML
-    private CheckBox sportck;
-    @FXML
-    private CheckBox artsck;
-    @FXML
-    private CheckBox musicck;
-    @FXML
-    private CheckBox otherck;
     @FXML
     private ImageView btn_like;
     @FXML
@@ -131,12 +122,17 @@ public class VideolistController implements Initializable {
     @FXML
     private Button dislike_nb;
     private String pathfile;
+    @FXML
+    private TextField idvid;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         VideoCRUD vc = new VideoCRUD();
-
+        like_nb.setVisible(false);
+        dislike_nb.setVisible(false);
+        idvid.setVisible(false);
+        txt_vid.setVisible(false);
         // ObservableList<videos> list = FXCollections.observableArrayList(vc.displayAll());
         // listvideo.setItems(list);
         ObservableList<videos> list = FXCollections.observableArrayList(vc.displayAll());
@@ -155,15 +151,13 @@ public class VideolistController implements Initializable {
                             public void handle(MouseEvent event) {
                                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
                                     videos M = listvideo.getItems().get(listvideo.getSelectionModel().getSelectedIndex());
-                                    String path = "C:\\wamp\\www\\mawhebti\\videos\\" + e.getPath_vid();
-                                    File file = new File(path);
+                                    idvid.setText(String.valueOf(M.getId_vid()));
+                                  
+                                    String pathh = "C:\\wamp\\www\\mawhebti\\videos\\" + M.getPath_vid();
+                                    File file = new File(pathh);
                                     System.out.println(file);
 
-                                    try {
-                                        media = new Media(file.toURI().toURL().toExternalForm());
-                                    } catch (MalformedURLException ex) {
-                                        ex.printStackTrace();
-                                    }
+                                    media = new Media("file:///C:/wamp/www/mawhebti/videos/"+M.getPath_vid());
                                     mediaplayer = new MediaPlayer(media);
 
                                     mediaView.setMediaPlayer(mediaplayer);
@@ -176,25 +170,14 @@ public class VideolistController implements Initializable {
                         if (e.getId_vid()
                                 != 0) {
                             setText("Video  : " + e.getNom_vid() + "\n" + "Category " + e.getType()
-                                    + "\n" + "Description :  \n " + e.getDesc_vid()
+                                    + "\n" + "Description :  \n " + e.getDesc_vid()+"\n" + "Id video :  \n "+e.getId_vid()
                             );
-            pathfile=e.getPath_vid();
+            pathfile="C:\\wamp\\www\\mawhebti\\videos\\"+e.getPath_vid();
                         }
                     }
                 }
             };
-               cell.setOnMouseClicked(e -> {
-                if (!cell.isEmpty()) {
-                    System.out.println("You clicked on " + cell.getItem());
-                                             
-                    media = new Media(pathfile);
-                    mediaplayer = new MediaPlayer(media);
-                    mediaView.setMediaPlayer(mediaplayer);
-                     mediaplayer.play();
-                    
-                    e.consume();
-                }
-            });
+               
             return cell;
         }
         );
@@ -202,8 +185,9 @@ public class VideolistController implements Initializable {
         listvideo.setItems(list);
 
     }
+   
  personnes pp = loggedmembre.getP();
-    @FXML
+  /*  @FXML
 
     public void uploa(ActionEvent event) throws MalformedURLException, IOException {
         FileChooser fileChooser = new FileChooser();
@@ -220,7 +204,7 @@ public class VideolistController implements Initializable {
             video1 = "C:\\wamp\\www\\mawhebti\\videos\\" + video;
             System.out.println(video);
 
-            mediaplayer.stop();
+          mediaplayer.stop();
             media = new Media(file.toURI().toURL().toExternalForm());
             mediaplayer = new MediaPlayer(media);
             mediaView.setMediaPlayer(mediaplayer);
@@ -232,11 +216,12 @@ public class VideolistController implements Initializable {
             if (action.get() == ButtonType.OK) {
                 u.CopyImage(video1, file.toPath().toString());
                 VideoCRUD rc = new VideoCRUD();
+
                 rc.ajouterVideo();
             }
         }
 
-    }
+    }*/
 
     @FXML
     private void back(ActionEvent event
@@ -244,7 +229,7 @@ public class VideolistController implements Initializable {
         btnbk.getScene().getWindow().hide();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("vid.fxml"));
+            root = FXMLLoader.load(getClass().getResource("video.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -254,21 +239,7 @@ public class VideolistController implements Initializable {
         mainstage.show();
     }
 
-    @FXML
-    private void next(ActionEvent event
-    ) {
-        btnnext.getScene().getWindow().hide();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("clips.fxml"));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        Stage mainstage = new Stage();
-        Scene scene = new Scene(root);
-        mainstage.setScene(scene);
-        mainstage.show();
-    }
+    
 
     @FXML
     private void playvideo(MouseEvent event) {
@@ -288,7 +259,7 @@ public class VideolistController implements Initializable {
         mediaplayer.stop();
     }
 
-    @FXML
+  /*  @FXML
     private void open(ActionEvent event) throws MalformedURLException {
         filechooser = new FileChooser();
         filter = new FileChooser.ExtensionFilter("choisir un video", "*.mp4");
@@ -299,12 +270,14 @@ public class VideolistController implements Initializable {
             media = new Media(file.toURI().toURL().toExternalForm());
             mediaplayer = new MediaPlayer(media);
             mediaView.setMediaPlayer(mediaplayer);
+
         }
 
-    }
+    }*/
 
     @FXML
     private void close(ActionEvent event) {
+        System.exit(0);
     }
 
     @FXML
@@ -314,7 +287,9 @@ public class VideolistController implements Initializable {
     @FXML
     private void like(MouseEvent event) {
         Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
+        videos M = listvideo.getItems().get(listvideo.getSelectionModel().getSelectedIndex());
+
+        reacts r = new reacts(M.getId_vid(), pp.getId_user());
         if (rs.getlikeparid(r) == true) {
             // rs.Supprimerdislike(pp.getId_user(), 2);
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
@@ -333,8 +308,10 @@ public class VideolistController implements Initializable {
                 if (action.get() == ButtonType.OK) {
                     rs.like(r);
 
-                    rs.Supprimerdislike(pp.getId_user(), 2);
+                    rs.Supprimerdislike(pp.getId_user(),M.getId_vid());
                     System.out.println("dislike deleted");
+                    num_dislike.setText(rs.dislike_number(r));
+                         num_like.setText(rs.like_number(r));
                 }
             } else {
                 rs.like(r);
@@ -349,7 +326,9 @@ public class VideolistController implements Initializable {
     @FXML
     private void dislike(MouseEvent event) {
          Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
+       videos M = listvideo.getItems().get(listvideo.getSelectionModel().getSelectedIndex());
+
+        reacts r = new reacts(M.getId_vid(), pp.getId_user());
         if (rs.getdislikeparid(r) == true) {
             // rs.Supprimerdislike(pp.getId_user(), 2);
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
@@ -368,8 +347,10 @@ public class VideolistController implements Initializable {
                 if (action.get() == ButtonType.OK) {
                     rs.dislike(r);
 
-                    rs.Supprimerlike(pp.getId_user(), 2);
+                    rs.Supprimerlike(pp.getId_user(),M.getId_vid());
                     System.out.println("like deleted");
+                     num_dislike.setText(rs.dislike_number(r));
+                         num_like.setText(rs.like_number(r));
                 }
             } else {
                 rs.dislike(r);
@@ -382,29 +363,43 @@ public class VideolistController implements Initializable {
 
     @FXML
     private boolean comment(MouseEvent event) {
-        reacts r = new reacts();
+        videos M = listvideo.getItems().get(listvideo.getSelectionModel().getSelectedIndex());
+
+        commentaires r = new commentaires(txt_des.getText(),M.getId_vid(),pp.getId_user());
         Connection cnx = MyConnection.getInstance().getCnx();
-        String requete = "INSERT INTO commentaires(descr,id_vid,id_user)" + " VALUES (?,?,?) ";
-        try {
-            java.sql.PreparedStatement pst = cnx.prepareStatement(requete);
+        CommentairesService Sr=new CommentairesService();
+       if(CommentairesService.number(txt_des.getText())==true){
+           Sr.ajouterCommentaire(r);
+         JOptionPane.showMessageDialog(null, "comment added!!!");
+       }else{
+          JOptionPane.showMessageDialog(null, "Ooops!!Try to be cool"); 
+       }
+        
+         
+      //  String requete = "INSERT INTO commentaires(descr,id_vid,id_user)" + " VALUES (?,?,?) ";
+      //  try {
+      //      java.sql.PreparedStatement pst = cnx.prepareStatement(requete);
 
-            pst.setString(1, txt_des.getText());
-            pst.setString(2, txt_vid.getText());
-            pst.setInt(3, pp.getId_user());
-            pst.executeUpdate();
-            System.out.println("ajout commentaires reussit");
-            JOptionPane.showMessageDialog(null, "comment added!!!");
+        //    pst.setString(1, txt_des.getText());
+        //    pst.setInt(2,M.getId_vid() );
+        //    pst.setInt(3, pp.getId_user());
+        //    pst.executeUpdate();
+       //     System.out.println("ajout commentaires reussit");
+       //     JOptionPane.showMessageDialog(null, "comment added!!!");
 
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-        return false;
+       // } catch (SQLException ex) {
+       //     System.err.println(ex.getMessage());
+      //  }
+      //  return false;
+        return true;
     }
 
     @FXML
     private void like_number(ActionEvent event) {
          Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
+      videos M = listvideo.getItems().get(listvideo.getSelectionModel().getSelectedIndex());
+
+        reacts r = new reacts(M.getId_vid(), pp.getId_user());
         rs.like_number(r);
         num_like.setText(rs.like_number(r));
     }
@@ -412,7 +407,9 @@ public class VideolistController implements Initializable {
     @FXML
     private void dislikenumber(ActionEvent event) {
         Reactservices rs = new Reactservices();
-        reacts r = new reacts(2, pp.getId_user());
+        videos M = listvideo.getItems().get(listvideo.getSelectionModel().getSelectedIndex());
+
+        reacts r = new reacts(M.getId_vid(), pp.getId_user());
         rs.dislike_number(r);
         num_dislike.setText(rs.dislike_number(r));
     }

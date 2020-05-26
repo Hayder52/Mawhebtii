@@ -20,6 +20,13 @@ public class commentaires {
     public commentaires() {
     }
 
+    public commentaires(String descr, int id_vid, int id_user) {
+        this.descr = descr;
+        this.id_vid = id_vid;
+        this.id_user = id_user;
+    }
+
+   
     public int getId_comm() {
         return id_comm;
     }

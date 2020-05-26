@@ -16,8 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import pi.esprit.entities.loggedmembre;
-import pi.esprit.entities.personnes;
 
 /**
  * FXML Controller class
@@ -27,13 +25,19 @@ import pi.esprit.entities.personnes;
 public class AdminmenuController implements Initializable {
 
     @FXML
+    private Button btn_home;
+    @FXML
     private Button btn_account;
     @FXML
-    private Button btn_video;
+    private Button btn_videos;
+    @FXML
+    private Button btn_comp;
     @FXML
     private Button btn_stat;
     @FXML
-    private Button btn_comp;
+    private Button btn_nrws;
+    @FXML
+    private Button btn_abbout;
 
     /**
      * Initializes the controller class.
@@ -44,20 +48,11 @@ public class AdminmenuController implements Initializable {
     }    
 
     @FXML
-    private void accounts(ActionEvent event) {
-         btn_account.getScene().getWindow().hide();
-         Stage stage = new Stage();
-           personnes p = loggedmembre.getP();
-           GestionDesCompteInterface gs = new GestionDesCompteInterface();
-                   gs.showAdminInterface(stage);
-    }
-
-    @FXML
-    private void videos(ActionEvent event) {
-         btn_video.getScene().getWindow().hide();
+    private void home(ActionEvent event) {
+         btn_home.getScene().getWindow().hide();
             Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("adminvideo.fxml"));
+            root = FXMLLoader.load(getClass().getResource("login.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }
@@ -68,11 +63,47 @@ public class AdminmenuController implements Initializable {
     }
 
     @FXML
-    private void statistique(ActionEvent event) {
+    private void account(ActionEvent event) {
+         btn_account.getScene().getWindow().hide();
+            Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("Adminaccount.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());       
+        }
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene); 
+            mainstage.show();
+        
+    }
+
+    @FXML
+    private void pagevideos(ActionEvent event) {
+          btn_videos.getScene().getWindow().hide();
+            Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("video.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());       
+        }
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene); 
+            mainstage.show();
+    }
+
+    @FXML
+    private void page_competions(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void pagestat(ActionEvent event) {
          btn_stat.getScene().getWindow().hide();
             Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("adminstatistique.fxml"));
+            root = FXMLLoader.load(getClass().getResource("stat.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }
@@ -80,14 +111,30 @@ public class AdminmenuController implements Initializable {
             Scene scene=new Scene(root);
             mainstage.setScene(scene); 
             mainstage.show();
+    
     }
 
     @FXML
-    private void competitions(ActionEvent event) {
-         btn_comp.getScene().getWindow().hide();
+    private void pagenews(ActionEvent event) {
+         btn_nrws.getScene().getWindow().hide();
             Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("admincompetition.fxml"));
+            root = FXMLLoader.load(getClass().getResource("help.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());       
+        }
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene); 
+            mainstage.show(); 
+    }
+
+    @FXML
+    private void pageabbout(ActionEvent event) {
+         btn_abbout.getScene().getWindow().hide();
+            Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("Web.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }
@@ -95,6 +142,7 @@ public class AdminmenuController implements Initializable {
             Scene scene=new Scene(root);
             mainstage.setScene(scene); 
             mainstage.show();
+        
     }
     
 }
