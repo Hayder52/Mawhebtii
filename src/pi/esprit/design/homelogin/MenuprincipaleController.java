@@ -68,12 +68,16 @@ public class MenuprincipaleController implements Initializable {
 
     @FXML
     private void account(ActionEvent event) {
-          personnes p = loggedmembre.getP();
-        Stage mainstage=new Stage();
-      
-            UserGestionCompte.UserPersonalInofrmation(mainstage);
-       
- 
+         Stage stage = (Stage) btn_videos.getScene().getWindow();
+         Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("MyProfile.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());        }
+        Scene scene = new Scene(root);
+        stage.setTitle("Hello Guys!");
+        stage.setScene(scene);
+        stage.show();
         
     }
 
