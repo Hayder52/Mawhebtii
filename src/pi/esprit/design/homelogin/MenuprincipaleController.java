@@ -68,18 +68,21 @@ public class MenuprincipaleController implements Initializable {
 
     @FXML
     private void account(ActionEvent event) {
-          personnes p = loggedmembre.getP();
-        Stage mainstage=new Stage();
-        if(p.getProfil().equals("user")){
-            UserGestionCompte.UserPersonalInofrmation(mainstage);
+         btn_account.getScene().getWindow().hide();
+            Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("adminaccount.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());       
         }
-        else if (p.getProfil().equals("admin")){
-            GestionDesCompteInterface gs = new GestionDesCompteInterface();
-                    gs.showAdminInterface(mainstage);
-        }
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene); 
+            mainstage.show();
+         }
  
         
-    }
+    
 
     @FXML
     private void pagevideos(ActionEvent event) {

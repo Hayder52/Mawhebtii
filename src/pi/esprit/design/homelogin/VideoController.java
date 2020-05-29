@@ -18,6 +18,8 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,9 +27,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
@@ -81,17 +85,17 @@ public class VideoController implements Initializable {
     private TextField txt_nomvid;
     @FXML
     private TextField txtpath;
-    @FXML
-    private TextField txtname;
+
     private MenuItem btn_about;
     @FXML
     private TextField txt_desc;
     @FXML
     private TextField txt_path;
+    @FXML
+    private ComboBox<String> combo;
+    ObservableList<String> list= FXCollections.observableArrayList("sport","music","arts","other");
 
-    /**
-     * Initializes the controller class.
-     */
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String path = new File("src/vid/avion.mp4").getAbsolutePath();
@@ -105,6 +109,8 @@ public class VideoController implements Initializable {
         });
         txtpath.setVisible(false);
         txt_path.setVisible(false);
+        combo.setItems(list);
+       
     }    
     
     @FXML
@@ -176,7 +182,7 @@ public class VideoController implements Initializable {
                 
                 VideoCRUD rc = new VideoCRUD();
                 
-                videos vv = new videos(0, txt_nomvid.getText(), txtpath.getText(), txt_desc.getText(), 4, txtname.getText());
+                videos vv = new videos(0, txt_nomvid.getText(), txtpath.getText(), txt_desc.getText(), 4, combo.getValue());
                 rc.ajouterVideo2(vv);
             }
         }
