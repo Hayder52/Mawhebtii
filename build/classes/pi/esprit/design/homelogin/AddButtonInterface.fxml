@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -43,7 +44,8 @@
       <Button fx:id="SaveBtn" layoutX="235.0" layoutY="402.0" mnemonicParsing="false" onAction="#save" text="save" />
       <Button fx:id="backBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="back" />
       <Label fx:id="addLb" layoutX="120.0" layoutY="18.0" text="Add a user" />
-      <Button fx:id="uploadBtn" layoutX="451.0" layoutY="178.0" mnemonicParsing="false" text="upload your avatar" />
+      <Button fx:id="uploadBtn" layoutX="451.0" layoutY="178.0" mnemonicParsing="false" onAction="#uploadAvatar" text="upload  avatar" />
       <ImageView fx:id="imgViewer" fitHeight="150.0" fitWidth="200.0" layoutX="386.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="textImage" layoutX="475.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    </children>
 </AnchorPane>

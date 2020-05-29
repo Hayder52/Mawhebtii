@@ -85,7 +85,9 @@ PreparedStatement pst;
                 String profil=rs.getString("profil");
                 String pwd=rs.getString("pwd");
                 String photo=rs.getString("photo");
-                personnes ps=new personnes(id,nom,prenom,profil,photo,pwd);
+                String email = rs.getString("email");
+                String adress = rs.getString("adress");
+                personnes ps=new personnes(id, nom, prenom, email, profil, photo, email, pwd, adress);
                 loggedmembre.setP(ps);
                 System.out.println(ps);
                

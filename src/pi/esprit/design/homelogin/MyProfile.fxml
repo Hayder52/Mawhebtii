@@ -40,7 +40,7 @@
       <Button fx:id="changePwdBtn" layoutX="300.0" layoutY="361.0" mnemonicParsing="false" onAction="#changePassword" text="change password" />
       <Button fx:id="backBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="back" />
       <Label fx:id="addLb" layoutX="120.0" layoutY="18.0" text="My profile" />
-      <Button fx:id="uploadBtn" layoutX="451.0" layoutY="178.0" mnemonicParsing="false" text="change your avatar" />
+      <Button fx:id="uploadBtn" layoutX="451.0" layoutY="178.0" mnemonicParsing="false" onAction="#changeAvatar" text="change your avatar" />
       <ImageView fx:id="imgviewer" fitHeight="150.0" fitWidth="200.0" layoutX="378.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

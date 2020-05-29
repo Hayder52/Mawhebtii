@@ -21,9 +21,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import pi.esprit.entities.VerificationCode;
 import pi.esprit.entities.loggedmembre;
 import pi.esprit.entities.personnes;
 import pi.esprit.services.PersonneCRUD;
+import pi.esprit.services.VerificationCodeCRUD;
 
 /**
  * FXML Controller class
@@ -77,10 +79,12 @@ public class PasswordChangeController implements Initializable {
     @FXML
     private void save(ActionEvent event) {
         personnes p = loggedmembre.getP();
-                
+        VerificationCodeCRUD vc = new VerificationCodeCRUD();
+        vc.selectVerifCode(p.getId_user());
         if (currentPwdPf.getText().equals(p.getPwd())&& newPwdPf.getText().equals(verifNewPwdPf.getText())){
                 PersonneCRUD pc = new PersonneCRUD();
                 pc.updatePassWord(p.getId_user(), newPwdPf.getText());
+                vc.updateValidity(p.getId_user());
                 verifCodeTf.clear();
             currentPwdPf.clear();
             newPwdPf.clear();

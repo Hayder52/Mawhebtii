@@ -25,6 +25,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import pi.esprit.entities.loggedmembre;
 import pi.esprit.entities.personnes;
+import pi.esprit.services.MailService;
 import pi.esprit.services.PersonneCRUD;
 
 /**
@@ -91,6 +92,13 @@ public class MyProfileController implements Initializable {
 
     @FXML
     private void changePassword(ActionEvent event) {
+        personnes p = loggedmembre.getP();
+        
+        MailService ms = new MailService();
+        try {
+            ms.sendVerifMail(p.getEmail(),p.getId_user());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());        }
         Stage stage = (Stage) sqlAdressLb.getScene().getWindow();
          Parent root=null;
         try {
@@ -121,6 +129,10 @@ public class MyProfileController implements Initializable {
             mainstage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());        }
+    }
+
+    @FXML
+    private void changeAvatar(ActionEvent event) {
     }
     
 }
