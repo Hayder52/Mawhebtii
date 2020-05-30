@@ -7,8 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pi.esprit.entities.personnes;
 import pi.esprit.utils.MyConnection;
 
@@ -128,9 +131,9 @@ public class PersonneCRUD {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(requete);
             while(rs.next()){
-                listePersonnes.add(new PersonForTab(Integer.toString(rs.getInt("id_user")), rs.getString("nom"), 
-                        rs.getString("prenom"), rs.getString("email"), rs.getString("profil")
-                , rs.getString("photo"), rs.getString("login"), rs.getString("pwd"), rs.getString("adress")));
+                listePersonnes.add(new PersonForTab(Integer.toString(rs.getInt("id_user")), rs.getString("nom")
+                , rs.getString("prenom"), rs.getString("email"), rs.getString("profil"), rs.getString("photo")
+                        , rs.getString("login"), rs.getString("pwd"), rs.getString("adress")));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -206,7 +209,7 @@ public class PersonneCRUD {
    
    public void updatePassWord(int id,String newPassword){
        try {
-           String requete = "Update personnes SET pwd="+newPassword+"WHERE id="+id;
+           String requete = "Update personnes SET pwd="+newPassword+"WHERE id_user="+id;
            Statement pst = cnx.createStatement();
            pst.executeUpdate(requete);
            System.out.println("Password updated");
@@ -217,18 +220,18 @@ public class PersonneCRUD {
    
    public void updatePersonne2(PersonForTab p) {
         try {
-            String requete = "UPDATE personnes SET id=?,nom=?,prenom=?,adress=?,profile=?,photo=?,login=?,pwd=?,email=? "
-                    + "WHERE id=?";
+            String requete = "UPDATE personnes SET id_user=?,nom=?,prenom=?,profil=?,photo=?,login=?,pwd=?,adress=?,email=? "
+                    + "WHERE id_user=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
            
           pst.setInt(1, Integer.parseInt(p.getId_user()));
             pst.setString(2, p.getNom());
             pst.setString(3, p.getPrenom());
-            pst.setString(4, p.getAdress());
-            pst.setString(5, p.getProfil());
-            pst.setString(6, p.getPhoto());
-            pst.setString(7, p.getLogin());
-            pst.setString(8, p.getPwd());
+            pst.setString(4, p.getProfil());
+            pst.setString(5, p.getPhoto());
+            pst.setString(6, p.getLogin());
+            pst.setString(7, p.getPwd());
+            pst.setString(8, p.getAdress());
             pst.setString(9, p.getEmail());
             pst.setInt(10, Integer.parseInt(p.getId_user()));
             pst.executeUpdate();
@@ -237,4 +240,110 @@ public class PersonneCRUD {
             System.out.println(ex.getMessage());
         }
     }
+   
+   
+   public  void insertReport(int id) {
+        try {
+           
+           String requete2 = "INSERT INTO reports(id_user,numberOfReports)"
+                    + "VALUES (?,?)";  
+            PreparedStatement pst = cnx.prepareStatement(requete2);
+            
+            pst.setInt(1, id);
+            pst.setInt(2, 1);
+            
+            pst.executeUpdate();
+            System.out.println("Ban added!");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+   public  void incrementNumberOfReports(int id) {
+       int nReports = 0;
+        try {
+            String requete = "SELECT numberOfReports FROM reports WHERE id_user = "+id;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+               nReports = rs.getInt("numberOfReports");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        nReports++;
+        try {
+           
+           String requete = "UPDATE reports SET numberOfReports=? "
+                    + "WHERE id_user=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, nReports);
+            pst.setInt(2, id);
+          
+           
+            pst.executeUpdate();
+            System.out.println("report added");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+   
+   public  void ban(PersonForTab p) {
+        java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+         try {
+            date= addDays(14, date);
+         } catch (Exception ex) {
+             System.out.println(ex.getMessage());         }
+        try {
+           
+           String requete2 = "INSERT INTO bans(id_user,endOfBanDate)"
+                    + "VALUES (?,?)";  
+            PreparedStatement pst = cnx.prepareStatement(requete2);
+            
+            pst.setString(1, p.getId_user());
+            pst.setTimestamp(2, date);
+            
+            pst.executeUpdate();
+            System.out.println("Ban added!");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+   
+   
+   
+   
+   public boolean selectBanDate(int id){
+       Timestamp dateBan = null;
+        java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+       try {
+            String requete = "SELECT endOfBanDate FROM bans WHERE id_user = "+id;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+               dateBan=rs.getTimestamp("endOfBanDate");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       VerificationCodeCRUD vc = new VerificationCodeCRUD();
+       if(vc.compareTwoTimeStamps(dateBan,date)>0)
+           return true;
+        return false;
+       
+   }
+   
+
+private Long dayToMiliseconds(int days){
+    Long result = Long.valueOf(days * 24 * 60 * 60 * 1000);
+    return result;
+}
+
+public Timestamp addDays(int days, Timestamp t1) throws Exception{
+    if(days < 0){
+        throw new Exception("Day in wrong format.");
+    }
+    Long miliseconds = dayToMiliseconds(days);
+    return new Timestamp(t1.getTime() + miliseconds);
+}
+
 }

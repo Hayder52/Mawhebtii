@@ -79,9 +79,12 @@ public class PasswordChangeController implements Initializable {
     @FXML
     private void save(ActionEvent event) {
         personnes p = loggedmembre.getP();
+        VerificationCode vCode = new VerificationCode();
         VerificationCodeCRUD vc = new VerificationCodeCRUD();
-        vc.selectVerifCode(p.getId_user());
-        if (currentPwdPf.getText().equals(p.getPwd())&& newPwdPf.getText().equals(verifNewPwdPf.getText())){
+        vCode=vc.selectVerifCode(p.getId_user());
+        System.out.println(vCode.toString());
+        if (vCode.getVerificationCode().equals(verifCodeTf.getText())&& currentPwdPf.getText().equals(p.getPwd())
+                && newPwdPf.getText().equals(verifNewPwdPf.getText())){
                 PersonneCRUD pc = new PersonneCRUD();
                 pc.updatePassWord(p.getId_user(), newPwdPf.getText());
                 vc.updateValidity(p.getId_user());

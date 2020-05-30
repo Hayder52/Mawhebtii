@@ -59,8 +59,9 @@ PreparedStatement pst;
     private Button btnsign;
     @FXML
     private AnchorPane anchorpane;
-    @FXML
     private CheckBox chshow;
+    @FXML
+    private Button btn_passfg;
   
   
     @Override
@@ -85,9 +86,7 @@ PreparedStatement pst;
                 String profil=rs.getString("profil");
                 String pwd=rs.getString("pwd");
                 String photo=rs.getString("photo");
-                String email = rs.getString("email");
-                String adress = rs.getString("adress");
-                personnes ps=new personnes(id, nom, prenom, email, profil, photo, email, pwd, adress);
+                personnes ps=new personnes(id,nom,prenom,profil,photo,pwd);
                 loggedmembre.setP(ps);
                 System.out.println(ps);
                
@@ -138,12 +137,26 @@ PreparedStatement pst;
         
 }
 
-    @FXML
     private void showpassword(ActionEvent event) {
+    
         if(chshow.isSelected()){
-              
-                   
+                       
         }
+    }
+
+    @FXML
+    private void forgetpassword(ActionEvent event) {
+        
+            btn_passfg.getScene().getWindow().hide();
+            Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("Forgotpassword.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());        }
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene); 
+            mainstage.show();
     }
 }
 

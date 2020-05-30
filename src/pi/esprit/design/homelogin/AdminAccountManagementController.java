@@ -95,6 +95,7 @@ public class AdminAccountManagementController implements Initializable {
                 }
             }
         );
+        //first name
         firstNameColumn.setCellValueFactory(
             new PropertyValueFactory<PersonForTab, String>("prenom"));
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -219,6 +220,7 @@ public class AdminAccountManagementController implements Initializable {
 		SortedList<PersonForTab> sortedData = new SortedList<>(filteredData);
 		sortedData.comparatorProperty().bind(tableview.comparatorProperty());
 		tableview.setItems(sortedData);
+                tableview.getColumns().clear();
                 tableview.getColumns().addAll(idColumn,lastNameColumn,firstNameColumn,emailColumn,profileColumn,
                         loginColumn,passwordClolumn,adressColumn);
         

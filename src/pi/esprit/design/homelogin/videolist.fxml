@@ -45,18 +45,18 @@
                   <Image url="@../../../../images/stop.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="btn_like" fitHeight="25.0" fitWidth="67.0" layoutX="336.0" layoutY="311.0" onMouseClicked="#like" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_like" fitHeight="56.0" fitWidth="50.0" layoutX="345.0" layoutY="298.0" onMouseClicked="#like" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@like.PNG" />
+                  <Image url="@../../../../images/Emoticon-Like-icon.png" />
                </image>
             </ImageView>
             <TextField fx:id="num_like" layoutX="420.0" layoutY="311.0" prefHeight="25.0" prefWidth="29.0" />
-            <ImageView fx:id="btn_dislike" fitHeight="25.0" fitWidth="50.0" layoutX="483.0" layoutY="311.0" onMouseClicked="#dislike" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_dislike" fitHeight="50.0" fitWidth="50.0" layoutX="483.0" layoutY="298.0" onMouseClicked="#dislike" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@dislike.png" />
+                  <Image url="@../../../../images/Emoticon-Disappointment-Disappoint-icon.png" />
                </image>
             </ImageView>
-            <TextField fx:id="num_dislike" layoutX="525.0" layoutY="311.0" prefHeight="25.0" prefWidth="29.0" />
+            <TextField fx:id="num_dislike" layoutX="555.0" layoutY="311.0" prefHeight="25.0" prefWidth="29.0" />
             <ImageView fx:id="btn_comment" fitHeight="42.0" fitWidth="98.0" layoutX="113.0" layoutY="389.0" onMouseClicked="#comment" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/commentaire.png" />
@@ -66,6 +66,8 @@
             <Label layoutX="395.0" layoutY="409.0" text="volume" textFill="#2f2d2d" />
             <TextField fx:id="idvid" layoutX="187.0" layoutY="431.0" />
             <TextField fx:id="txt_vid" layoutX="14.0" layoutY="431.0" />
+            <TextField fx:id="vue_num" layoutX="459.0" layoutY="444.0" />
+            <Label layoutX="387.0" layoutY="448.0" text="Views" />
          </children>
       </Pane>
       <ListView fx:id="listvideo" layoutX="14.0" layoutY="57.0" prefHeight="440.0" prefWidth="239.0" />

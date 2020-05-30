@@ -5,6 +5,7 @@
  */
 package pi.esprit.design.homelogin;
 
+import edu.connections.services.PersonneCRUD;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +27,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -101,14 +104,14 @@ int s=0;
 byte[] personne_image=null;
 String photo;
 Image image;
-    @FXML
-    private TableColumn<personnes, String> colphoto;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             showpersonnes();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());        }
+        tview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
  Connection cnx;    
  personnes pd = loggedmembre.getP();
@@ -133,16 +136,18 @@ Image image;
     private void insert(ActionEvent event) throws SQLException {
    try {
             cnx = MyConnection.getInstance().getCnx();
-            String requete="insert into personnes(nom,prenom,profil,photo,login,pwd,adress,email) values (?,?,?,?,?,?,?,?)";
+            String requete="insert into personnes(nom,prenom,profil,login,pwd,adress,email) values (?,?,?,?,?,?,?)";
             pst=cnx.prepareStatement(requete);
+          
             pst.setString(1,tfirstname.getText());
             pst.setString(2,tlastname.getText());
             pst.setString(3,tprofil.getText());
-            pst.setBytes(4,personne_image);
-            pst.setString(5,tlogin.getText());
-            pst.setString(6,tpassword.getText());
-            pst.setString(7,tadress.getText());
-            pst.setString(8,temail.getText());
+           // pst.setBytes(4,personne_image);
+            pst.setString(4,tlogin.getText());
+            pst.setString(5,tpassword.getText());
+            pst.setString(6,tadress.getText());
+            pst.setString(7,temail.getText());
+          
             pst.execute();
             showpersonnes();
             JOptionPane.showMessageDialog(null,"Person added");
@@ -157,11 +162,19 @@ Image image;
     @FXML
     private void delete(ActionEvent event) {
    cnx = MyConnection.getInstance().getCnx();
-    try {
+      ObservableList<personnes> personneslist,selectedRows;
+      personneslist=tview.getItems();
+      selectedRows=tview.getSelectionModel().getSelectedItems();
+      selectedRows.forEach( personneslist::remove);
+      }
+      
+     /*  personnes p =  tview.getItems().get(listvideo.getSelectionModel().getSelectedIndex());
+
+   try {
             String requete = "DELETE FROM personnes WHERE id_user=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
-            personnes p=new personnes();
-            pst.setInt(1, p.getId_user());
+           
+            pst.setInt(1,p.getId_user() );
             pst.executeUpdate();
             showpersonnes();
             System.out.println("Person deleted");
@@ -169,17 +182,19 @@ Image image;
             System.out.println(ex.getMessage());
         }
    
-
-    }
+*/
+    
 
     @FXML
     private void update(ActionEvent event) {
         try {
             cnx = MyConnection.getInstance().getCnx();
+           personnes p =(personnes) tview.getSelectionModel().getSelectedItems();
+
             String requete = "UPDATE personnes SET nom=?,prenom=? "
                     + "WHERE id_user=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
-            personnes p=new personnes();
+         
             pst.setInt(1, p.getId_user());
             pst.setString(2,tlastname.getText());
             
@@ -227,11 +242,11 @@ Image image;
                  p.setNom(rs.getString("nom"));
                  p.setPrenom(rs.getString("prenom"));
                  p.setProfil(rs.getString("profil"));
-                 p.setPhoto(rs.getString("photo"));
                  p.setLogin(rs.getString("login"));
                  p.setPwd(rs.getString("pwd"));
-                 p.setAdress(rs.getString("email"));
                  p.setAdress(rs.getString("adress"));
+                 p.setEmail(rs.getString("email"));
+
                  
                  
                  
@@ -248,11 +263,11 @@ Image image;
         colfirstname.setCellValueFactory(new PropertyValueFactory<personnes,String>("nom"));
         collastname.setCellValueFactory(new PropertyValueFactory<personnes,String>("prenom"));
          colprofil.setCellValueFactory(new PropertyValueFactory<personnes,String>("profil"));
-         colphoto.setCellValueFactory(new PropertyValueFactory<personnes,String>("photo"));
          collogin.setCellValueFactory(new PropertyValueFactory<personnes,String>("login"));
           colpassword.setCellValueFactory(new PropertyValueFactory<personnes,Integer>("pwd"));
-          colemail.setCellValueFactory(new PropertyValueFactory<personnes,String>("email"));
           coladress.setCellValueFactory(new PropertyValueFactory<personnes,String>("adress"));
+          colemail.setCellValueFactory(new PropertyValueFactory<personnes,String>("email"));
+
 
 
 
@@ -273,8 +288,9 @@ tview.setItems(list);
         tprofil.setText(personne.getProfil());
         tlogin.setText(personne.getLogin());
         tpassword.setText(personne.getPwd());
-        temail.setText(personne.getEmail());
         tadress.setText(personne.getAdress());
+        temail.setText(personne.getEmail());
+
     }
     
 }
