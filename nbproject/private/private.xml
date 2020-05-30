@@ -3,12 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Mawhebtii/src/pi/esprit/entities/participants.java</file>
-            <file>file:/C:/Mawhebtii/src/pi/esprit/entities/commentaires.java</file>
-            <file>file:/C:/Mawhebtii/src/pi/esprit/entities/personnes.java</file>
-            <file>file:/C:/Mawhebtii/src/pi/esprit/services/PersonneCRUD.java</file>
             <file>file:/C:/Mawhebtii/src/mawhebty/Mawhebty.java</file>
             <file>file:/C:/Mawhebtii/src/pi/esprit/entities/competitions.java</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/entities/categoris.java</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/services/GestionCompetitions.java</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/gui/competition_admin.fxml</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/entities/image/exit_1.jpg</file>
+            <file>file:/C:/Mawhebtii/test/Cometition_test_insert.java</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/gui/competition_admin.css</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/services/CommentairesService.java</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/entities/commentaires.java</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/entities/reacts.java</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/gui/competitionCRUD.java</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/gui/Competition_adminController.java</file>
+            <file>file:/C:/Mawhebtii/src/pi/esprit/gui/CreateaccountController.java</file>
             <file>file:/C:/Mawhebtii/src/pi/esprit/utils/MyConnection.java</file>
         </group>
     </open-files>

@@ -6,6 +6,9 @@
 package mawhebty;
 
 import java.sql.SQLException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import pi.esprit.entities.commentaires;
 import pi.esprit.entities.competitions;
 import pi.esprit.entities.personnes;
@@ -19,6 +22,8 @@ import pi.esprit.utils.MyConnection;
  * @author bureau
  */
 public class Mawhebty {
+
+    
 
     /**
      * @param args the command line arguments
@@ -54,7 +59,8 @@ public class Mawhebty {
         gc.supprimerCompetitions(2);
       
        
+    
     }
-    }
+     }
     
 

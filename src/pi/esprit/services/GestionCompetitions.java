@@ -32,12 +32,15 @@ public class GestionCompetitions {
     
      public void ajoutercompetitions(competitions s) {
         try {
-           String requete2 = "INSERT INTO competitions(nom_comp,id_cat)"
-                    + "VALUES (?,?)";  
+           String requete2 = "INSERT INTO competitions(nom_comp,nom_cat,date_deb,date_fin)"
+                    + "VALUES (?,?,?,?)";  
             PreparedStatement pst = cnx.prepareStatement(requete2);
           
             pst.setString(1, s.getNom_comp());
-            pst.setInt(2, s.getId_cat());
+            pst.setString(2,s.getNom_cat() );
+            pst.setDate(3, s.getDate_deb());
+            pst.setDate(4, s.getDate_fin());
+            
            
             
             
@@ -66,12 +69,12 @@ public class GestionCompetitions {
      }
      public void updateCompetitions(competitions s , int id_comp){
             try {
-                String requete = "UPDATE competitions SET nom_comp = ? , id_cat=? WHERE id_comp=?";
+                String requete = "UPDATE competitions SET nom_comp = ? , nom_cat=? WHERE id_comp=?";
                         
                 PreparedStatement pst =cnx.prepareStatement(requete);
                 pst.setInt(3, id_comp);
                 pst.setString(1, s.getNom_comp());
-                pst.setInt(2, s.getId_cat());
+                pst.setString(2, s.getNom_cat());
                 pst.executeUpdate();
                 System.out.println("competition modifier");
                         
@@ -91,7 +94,7 @@ public class GestionCompetitions {
                     competitions s = new competitions();
                     s.setId_comp(rs.getInt(1));
                     s.setNom_comp(rs.getString("nom_comp"));
-                    s.setId_cat(rs.getInt(3));
+                    s.setNom_cat(rs.getString("nom_cat"));
                     listeCompetition.add(s);
                     
                     

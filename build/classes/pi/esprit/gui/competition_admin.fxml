@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="633.0" prefWidth="844.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.gui.Competition_adminController">
+    <stylesheets>
+        <URL value="@competition_admin.css" />
+    </stylesheets>
+   <children>
+      <Pane id="tete" prefHeight="131.0" prefWidth="844.0" style="-fx-background-color: 00FFFF;" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="342.0" layoutY="46.0" text="Competition" textFill="#fffbfb">
+               <font>
+                  <Font name="Comic Sans MS" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane id="sortir" layoutX="600.0" layoutY="551.0" prefHeight="82.0" prefWidth="244.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="551.0">
+         <children>
+            <Button id="next" fx:id="btnnext" layoutX="148.0" layoutY="26.0" mnemonicParsing="false" onAction="#pagessuivante" prefHeight="31.0" prefWidth="90.0" text="Next" textFill="#0ee115">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button id="exit" fx:id="btnexit" layoutX="24.0" layoutY="26.0" mnemonicParsing="false" onAction="#sortire" prefHeight="31.0" prefWidth="98.0" text="Exit" textFill="#f50b0b">
+               <font>
+                  <Font name="Arial Bold Italic" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane id="Meals" layoutX="-2.0" layoutY="132.0" prefHeight="416.0" prefWidth="844.0">
+         <children>
+            <Pane id="Mails2" layoutX="1.0" layoutY="413.0" prefHeight="89.0" prefWidth="600.0">
+               <children>
+                  <Label fx:id="Done" alignment="CENTER" layoutX="85.0" layoutY="34.0" prefHeight="18.0" prefWidth="217.0" text="................" textAlignment="CENTER" textFill="#8d2e2c">
+                     <font>
+                        <Font name="Consolas Italic" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="23.0" layoutY="31.0" text="ID">
+               <font>
+                  <Font name="Arial Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfid" layoutX="137.0" layoutY="31.0" />
+            <Label layoutX="16.0" layoutY="84.0" text="Nom_comp">
+               <font>
+                  <Font name="Arial Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfnom_comp" layoutX="137.0" layoutY="80.0" />
+            <Label layoutX="16.0" layoutY="137.0" text="Nom_cat">
+               <font>
+                  <Font name="Arial Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="combo" layoutX="138.0" layoutY="133.0" prefHeight="31.0" prefWidth="186.0" />
+            <Label layoutX="13.0" layoutY="197.0" text="Date_deb">
+               <font>
+                  <Font name="Arial Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="date_deb" layoutX="138.0" layoutY="193.0" prefHeight="31.0" prefWidth="186.0" />
+            <Label layoutX="19.0" layoutY="251.0" text="Date_fin">
+               <font>
+                  <Font name="Arial Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="date_fin" layoutX="138.0" layoutY="247.0" prefHeight="31.0" prefWidth="186.0" />
+            <TableView fx:id="tableview" layoutX="335.0" layoutY="54.0" onMouseClicked="#tableview" prefHeight="365.0" prefWidth="509.0">
+              <columns>
+                <TableColumn fx:id="Tid" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="Tnom_comp" prefWidth="90.0" text="Nom_Comp" />
+                  <TableColumn fx:id="Tnom_cat" prefWidth="105.0" text="Nom_Cat" />
+                  <TableColumn fx:id="Tdate_deb" prefWidth="115.0" text="Date_deb" />
+                  <TableColumn fx:id="Tdate_fin" prefWidth="123.0" text="Date_fin" />
+              </columns>
+            </TableView>
+            <Label layoutX="422.0" layoutY="12.0" text="Recherche">
+               <font>
+                  <Font name="Arial Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tefrecheche" layoutX="536.0" layoutY="12.0" />
+            <Button fx:id="btnajout" layoutX="30.0" layoutY="298.0" mnemonicParsing="false" onAction="#ajoutercomp" prefHeight="31.0" prefWidth="274.0" text="Ajouter" textFill="#0feb17">
+               <font>
+                  <Font name="Arial Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnsupp" layoutX="30.0" layoutY="339.0" mnemonicParsing="false" onAction="#supprimercomp" prefHeight="31.0" prefWidth="274.0" text="Supprimer" textFill="#f80f0f" />
+            <Button fx:id="btnmodif" layoutX="30.0" layoutY="378.0" mnemonicParsing="false" onAction="#modifiercomp" prefHeight="31.0" prefWidth="274.0" text="Modifier" textFill="#1677c6" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

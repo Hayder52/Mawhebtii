@@ -14,6 +14,10 @@ import java.sql.SQLException;
  * @author bureau
  */
 public class MyConnection {
+
+    public static Connection getConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
      public String url="jdbc:mysql://localhost:3306/mawhebty";
     public String login="root";
     public String pwd="";
