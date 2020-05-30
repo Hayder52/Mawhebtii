@@ -24,7 +24,7 @@
       <Button fx:id="addUserBtn" layoutX="388.0" layoutY="423.0" mnemonicParsing="false" onAction="#addUser" text="add user" />
       <Button fx:id="deleteUserBtn" layoutX="563.0" layoutY="422.0" mnemonicParsing="false" onAction="#deleteUser" text="delete user" />
       <TextField fx:id="searchTf" layoutX="489.0" layoutY="23.0" promptText="search for users" />
-      <Button layoutX="36.0" layoutY="23.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="backBtn" layoutX="36.0" layoutY="23.0" mnemonicParsing="false"onAction="#back" text="Back" />
       <Label fx:id="listUsersLb" layoutX="250.0" layoutY="27.0" text="List of users">
          <font>
             <Font size="18.0" />
