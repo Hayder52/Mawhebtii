@@ -46,13 +46,13 @@ public class VerificationCodeCRUD {
         VerificationCode vc = new VerificationCode();
         try {
             java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
-            String requete = "SELECT verficationCode,insertionDate FROM verificationCodes WHERE id_user=?";
+            String requete = "SELECT * FROM verificationCodes WHERE id_user=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1, id);
             ResultSet rs=pst.executeQuery();
             while (rs.next()){    
             vc.setId_user(rs.getInt("id_user"));
-            vc.setVerificationCode(rs.getString("verficationCode"));
+            vc.setVerificationCode(rs.getString("verificationCode"));
             vc.setInsertionDate(rs.getTimestamp("insertionDate"));
             vc.setValidity(rs.getBoolean("validity"));
             if (compareTwoTimeStamps(date,vc.getInsertionDate())>30 && vc.isValidity()){

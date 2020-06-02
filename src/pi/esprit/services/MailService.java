@@ -69,7 +69,8 @@ public class MailService {
         //Send mail
         Transport.send(message);
         System.out.println("Message sent successfully");
-        
+        VerificationCodeCRUD vc = new VerificationCodeCRUD();
+        vc.insertCode(code, id_user);
     }
     
     
@@ -109,7 +110,7 @@ public class MailService {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("Verfication code");
-            String htmlCode = "your code is : /n"+code;
+            String htmlCode = "your code is :"+code;
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (Exception ex) {
