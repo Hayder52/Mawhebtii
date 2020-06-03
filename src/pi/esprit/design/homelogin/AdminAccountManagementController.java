@@ -70,6 +70,7 @@ public class AdminAccountManagementController implements Initializable {
 
     PersonneCRUD p = new PersonneCRUD();
     final ObservableList<PersonForTab> data = FXCollections.observableArrayList(p.selectUsers());
+    private Button btn_back;
     @FXML
     private Button backBtn;
     /**
@@ -258,15 +259,18 @@ public class AdminAccountManagementController implements Initializable {
 
     @FXML
     private void back(ActionEvent event) {
+         btn_back.getScene().getWindow().hide();
+            Parent root=null;
         try {
-            listUsersLb.getScene().getWindow().hide();
-            Parent root=FXMLLoader.load(getClass().getResource("Menuprincipale.fxml"));
+            root = FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());       
+        }
             Stage mainstage=new Stage();
             Scene scene=new Scene(root);
-            mainstage.setScene(scene);
+            mainstage.setScene(scene); 
             mainstage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());        }
+        
     }
 
     

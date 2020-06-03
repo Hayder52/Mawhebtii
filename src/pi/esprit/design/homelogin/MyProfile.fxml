@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.MyProfileController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.MyProfileController">
     <children>
-      <GridPane fx:id="gridpane" layoutX="22.0" layoutY="160.0" prefHeight="226.0" prefWidth="253.0">
+      <GridPane fx:id="gridpane" layoutX="272.0" layoutY="135.0" prefHeight="226.0" prefWidth="253.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -39,8 +40,12 @@
       </GridPane>
       <Button fx:id="changePwdBtn" layoutX="300.0" layoutY="361.0" mnemonicParsing="false" onAction="#changePassword" text="change password" />
       <Button fx:id="backBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="back" />
-      <Label fx:id="addLb" layoutX="120.0" layoutY="18.0" text="My profile" />
-      <Button fx:id="uploadBtn" layoutX="451.0" layoutY="178.0" mnemonicParsing="false" onAction="#changeAvatar" text="change your avatar" />
-      <ImageView fx:id="imgviewer" fitHeight="150.0" fitWidth="200.0" layoutX="378.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="addLb" layoutX="318.0" layoutY="93.0" text="My profile" />
+      <Button fx:id="uploadBtn" layoutX="534.0" layoutY="175.0" mnemonicParsing="false" onAction="#changeAvatar" text="change your avatar" />
+      <ImageView fx:id="imgviewer" fitHeight="150.0" fitWidth="200.0" layoutX="469.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="textImage" layoutX="582.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Button fx:id="searchBtn" layoutX="191.0" layoutY="14.0" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="118.0" text="search for friends" />
+      <VBox fx:id="friendsVBox" layoutX="5.0" layoutY="59.0" prefHeight="326.0" prefWidth="212.0" />
+      <Button fx:id="friendRequestsBtn" layoutX="357.0" layoutY="14.0" mnemonicParsing="false" onAction="#friendRequests" text="Friend requests" />
    </children>
 </AnchorPane>

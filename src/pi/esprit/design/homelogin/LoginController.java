@@ -60,7 +60,6 @@ PreparedStatement pst;
     @FXML
     private AnchorPane anchorpane;
     private CheckBox chshow;
-    @FXML
     private Button btn_passfg;
   
   
@@ -144,7 +143,6 @@ PreparedStatement pst;
         }
     }
 
-    @FXML
     private void forgetpassword(ActionEvent event) {
         
             btn_passfg.getScene().getWindow().hide();

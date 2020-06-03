@@ -28,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -85,6 +86,12 @@ public class MyProfileController implements Initializable {
     String photo;
     @FXML
     private Text textImage;
+    @FXML
+    private Button searchBtn;
+    @FXML
+    private VBox friendsVBox;
+    @FXML
+    private Button friendRequestsBtn;
     /**
      * Initializes the controller class.
      */
@@ -177,6 +184,32 @@ public class MyProfileController implements Initializable {
                 
             }
         }
+    }
+
+    @FXML
+    private void search(ActionEvent event) {
+        try {
+            sqlAdressLb.getScene().getWindow().hide();
+            Parent root=FXMLLoader.load(getClass().getResource("ListOfusers.fxml"));
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene);
+            mainstage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());        }
+    }
+
+    @FXML
+    private void friendRequests(ActionEvent event) {
+        try {
+            sqlAdressLb.getScene().getWindow().hide();
+            Parent root=FXMLLoader.load(getClass().getResource("ListOfFriendRequests.fxml"));
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene);
+            mainstage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());        }
     }
     
 }

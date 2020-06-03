@@ -242,7 +242,7 @@ public class PersonneCRUD {
     }
    
    
-   public  void insertReport(int id) {
+   public  void initializeReportTab(int id) {
         try {
            
            String requete2 = "INSERT INTO reports(id_user,numberOfReports)"
@@ -250,7 +250,7 @@ public class PersonneCRUD {
             PreparedStatement pst = cnx.prepareStatement(requete2);
             
             pst.setInt(1, id);
-            pst.setInt(2, 1);
+            pst.setInt(2, 0);
             
             pst.executeUpdate();
             System.out.println("Ban added!");
@@ -258,6 +258,22 @@ public class PersonneCRUD {
             System.err.println(ex.getMessage());
         }
     }
+   
+   public int selectNumberOfReports(int id){
+       int nReports = -1;
+        try {
+            String requete = "SELECT numberOfReports FROM reports WHERE id_user = "+id;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+               nReports = rs.getInt("numberOfReports");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       return nReports;
+   }
+   
    public  void incrementNumberOfReports(int id) {
        int nReports = 0;
         try {
@@ -287,10 +303,10 @@ public class PersonneCRUD {
         }
     }
    
-   public  void ban(PersonForTab p) {
+   public  void ban(PersonForTab p,int addedDays) {
         java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
          try {
-            date= addDays(14, date);
+            date= addDays(addedDays, date);
          } catch (Exception ex) {
              System.out.println(ex.getMessage());         }
         try {
@@ -312,7 +328,7 @@ public class PersonneCRUD {
    
    
    
-   public boolean selectBanDate(int id){
+   public boolean banVerification(int id){
        Timestamp dateBan = null;
         java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
        try {
@@ -332,6 +348,38 @@ public class PersonneCRUD {
        
    }
    
+   public void insertFriendRequest(int idReceiver,int idSender)
+   {
+       try {
+           
+           String requete2 = "INSERT INTO friendRequests(receiverId,senderId)"
+                    + "VALUES (?,?)";  
+            PreparedStatement pst = cnx.prepareStatement(requete2);
+            
+            pst.setInt(1, idReceiver);
+            pst.setInt(2, idSender);
+            
+            pst.executeUpdate();
+            System.out.println("Friend request added!");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+   }   
+   
+   public List<Integer> selectFriendRequests(int receiverId){
+       ArrayList<Integer> sendersIdList = new ArrayList<>();
+       try {
+            String requete = "SELECT senderId FROM friendRequests WHERE = "+receiverId;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+               sendersIdList.add(rs.getInt("senderId"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+     return sendersIdList;  
+   }
 
 private Long dayToMiliseconds(int days){
     Long result = Long.valueOf(days * 24 * 60 * 60 * 1000);

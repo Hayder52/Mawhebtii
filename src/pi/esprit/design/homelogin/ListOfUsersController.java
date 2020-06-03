@@ -57,6 +57,10 @@ public class ListOfUsersController implements Initializable {
     final ObservableList<PersonForTab> data = FXCollections.observableArrayList(p.selectUsers());
     @FXML
     private TableColumn<PersonForTab,String> idColumn;
+    @FXML
+    private Button sendFriendRequestBtn;
+    @FXML
+    private Button viewProfileBtn;
     /**
      * Initializes the controller class.
      */
@@ -99,6 +103,7 @@ public class ListOfUsersController implements Initializable {
     @FXML
     private void report(ActionEvent event) {
         PersonForTab p = tableview.getSelectionModel().getSelectedItem();
+        System.out.println(p.getId_user());
         PersonneCRUD pc = new PersonneCRUD();
         pc.incrementNumberOfReports(Integer.parseInt(p.getId_user()));
         
@@ -111,6 +116,25 @@ public class ListOfUsersController implements Initializable {
          Parent root=null;
         try {
             root = FXMLLoader.load(getClass().getResource("MyProfile.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());        }
+        Scene scene = new Scene(root);
+        stage.setTitle("Hello Guys!");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void sendFriendRequest(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void viewProfile(ActionEvent event) {
+        Stage stage = (Stage) searchTf.getScene().getWindow();
+         Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("OtherProfiles.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());        }
         Scene scene = new Scene(root);

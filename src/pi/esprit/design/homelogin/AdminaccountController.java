@@ -5,7 +5,7 @@
  */
 package pi.esprit.design.homelogin;
 
-import edu.connections.services.PersonneCRUD;
+import pi.esprit.services.PersonneCRUD;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
