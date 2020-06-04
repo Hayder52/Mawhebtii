@@ -21,12 +21,12 @@
             <TableColumn fx:id="tdate_fin" prefWidth="217.0" text="Date_fin" />
         </columns>
       </TableView>
-      <Button fx:id="btnNext" alignment="CENTER" contentDisplay="CENTER" layoutX="737.0" layoutY="633.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="198.0" text="NEXT" textAlignment="CENTER" textFill="#04f238" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btnNext" alignment="CENTER" contentDisplay="CENTER" layoutX="737.0" layoutY="633.0" mnemonicParsing="false" onAction="#pagesuivante" prefHeight="31.0" prefWidth="198.0" text="NEXT" textAlignment="CENTER" textFill="#04f238" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="btnRetour" contentDisplay="CENTER" layoutX="516.0" layoutY="633.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="186.0" text="Retour" textAlignment="CENTER" textFill="#e80606" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="btnRetour" contentDisplay="CENTER" layoutX="516.0" layoutY="633.0" mnemonicParsing="false" onAction="#page" prefHeight="31.0" prefWidth="186.0" text="Retour" textAlignment="CENTER" textFill="#e80606" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial" size="15.0" />
          </font>

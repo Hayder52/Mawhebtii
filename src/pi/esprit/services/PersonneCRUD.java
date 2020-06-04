@@ -108,6 +108,7 @@ public class PersonneCRUD {
                 p.setPhoto(rs.getString("photo"));
                 p.setLogin(rs.getString("login"));
                 p.setPwd(rs.getString("pwd"));
+                p.setEmail(rs.getString("email"));
                  p.setAdress(rs.getString("adress"));
                
                 

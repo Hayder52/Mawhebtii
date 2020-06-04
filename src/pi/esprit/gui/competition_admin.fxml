@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -24,20 +25,6 @@
                   <Font name="Comic Sans MS" size="29.0" />
                </font>
             </Label>
-         </children>
-      </Pane>
-      <Pane id="sortir" layoutX="600.0" layoutY="551.0" prefHeight="82.0" prefWidth="244.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="551.0">
-         <children>
-            <Button id="next" fx:id="btnnext" layoutX="148.0" layoutY="26.0" mnemonicParsing="false" onAction="#pagessuivante" prefHeight="31.0" prefWidth="90.0" text="Next" textFill="#0ee115">
-               <font>
-                  <Font name="System Bold Italic" size="15.0" />
-               </font>
-            </Button>
-            <Button id="exit" fx:id="btnexit" layoutX="24.0" layoutY="26.0" mnemonicParsing="false" onAction="#sortire" prefHeight="31.0" prefWidth="98.0" text="Exit" textFill="#f50b0b">
-               <font>
-                  <Font name="Arial Bold Italic" size="15.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
       <Pane id="Meals" layoutX="-2.0" layoutY="132.0" prefHeight="416.0" prefWidth="844.0">
@@ -105,5 +92,19 @@
             <Button fx:id="btnmodif" layoutX="30.0" layoutY="378.0" mnemonicParsing="false" onAction="#modifiercomp" prefHeight="31.0" prefWidth="274.0" text="Modifier" textFill="#1677c6" />
          </children>
       </Pane>
+      <HBox layoutX="600.0" layoutY="552.0" prefHeight="81.0" prefWidth="242.0">
+         <children>
+            <Button id="exit" fx:id="btnexit" mnemonicParsing="false" onAction="#sortire" prefHeight="31.0" prefWidth="98.0" text="Exit" textFill="#f50b0b">
+               <font>
+                  <Font name="Arial Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button id="next" fx:id="btnnext" mnemonicParsing="false" onAction="#pagessuivante" prefHeight="31.0" prefWidth="90.0" text="Next" textFill="#0ee115">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

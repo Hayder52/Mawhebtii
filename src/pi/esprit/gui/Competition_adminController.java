@@ -14,6 +14,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.List;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,9 +41,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import pi.esprit.entities.competitions;
 import pi.esprit.entities.personnes;
+import pi.esprit.services.PersonneCRUD;
 import pi.esprit.utils.MyConnection;
 
 
@@ -105,23 +117,7 @@ public class Competition_adminController implements Initializable {
  
 
  
-    @FXML
-    public void entred(Event e){
-    
-
-       ((Button)e.getSource()).setScaleX(1.1);
-       ((Button)e.getSource()).setScaleX(1.1);
-       ((Button)e.getSource()).setTextFill(Color.BLUE);
-       
-       }
-    @FXML
-    public void exited(Event e){
-    
-
-       ((Button)e.getSource()).setScaleX(1);
-       ((Button)e.getSource()).setScaleX(1);
-       ((Button)e.getSource()).setTextFill(Color.BLACK);
-       }
+  
     public ObservableList<competitions> getcompetitionslist() throws SQLException{
          ObservableList<competitions> competitionslist=FXCollections.observableArrayList();
           cnx = MyConnection.getInstance().getCnx();
@@ -131,6 +127,7 @@ public class Competition_adminController implements Initializable {
           rs=st.executeQuery(sql);
           while(rs.next()){
               competitions p=new competitions();
+               
               
               p.setId_comp(rs.getInt("id_comp"));
               p.setNom_comp(rs.getString("nom_comp"));
@@ -146,40 +143,37 @@ public class Competition_adminController implements Initializable {
         ObservableList<competitions> list=getcompetitionslist();
         Tid.setCellValueFactory(new PropertyValueFactory<competitions,Integer>("id_comp"));
         Tnom_comp.setCellValueFactory(new PropertyValueFactory<competitions,String>("nom_comp"));
-         Tnom_cat.setCellValueFactory(new PropertyValueFactory<competitions,String>("nom_cat"));
-         Tdate_deb.setCellValueFactory(new PropertyValueFactory<competitions,Date>("date_deb"));
-         Tdate_fin.setCellValueFactory(new PropertyValueFactory<competitions,Date>("date_fin"));
-         
+        Tnom_cat.setCellValueFactory(new PropertyValueFactory<competitions,String>("nom_cat"));
+        Tdate_deb.setCellValueFactory(new PropertyValueFactory<competitions,Date>("date_deb"));
+        Tdate_fin.setCellValueFactory(new PropertyValueFactory<competitions,Date>("date_fin"));
+               
+        tableview.setItems(list);
 
-
-
-
-
-
-
-tableview.setItems(list);
-
-
+       
 
     }
 
     @FXML
-    private void tableview(MouseEvent event) {
+   private void tableview(MouseEvent event) {
         competitions competition=tableview.getSelectionModel().getSelectedItem();
+         //String id = competition.getId_comp().toString();
+         //tfid.setId(getId_comp());
+       // tfid.setId(competition.getId_comp());
   
-       Tnom_comp.setText(competition.getNom_comp());
-       Tnom_cat.setText(competition.getNom_cat());
+       tfnom_comp.setText(competition.getNom_comp());
+    /*   combo.setText(competition.getNom_cat());
         String date = competition.getDate_deb().toString();
-        Tdate_deb.setText(date);
+        date_deb.setT(date);
          String date2 = competition.getDate_fin().toString();
 
-        Tdate_fin.setText(date2);
+        date_fin.setText(date2);*/
            }
 
     @FXML
     private void pagessuivante(ActionEvent event) {
            btnnext.getScene().getWindow().hide();
             Parent root=null;
+            System.out.println("ehchoumi");
         try {
             root = FXMLLoader.load(getClass().getResource("table_user.fxml"));
         } catch (IOException ex) {
@@ -205,8 +199,7 @@ tableview.setItems(list);
             mainstage.setScene(scene); 
             mainstage.show();
     }
-    
-        
+ 
         
     
     @FXML
@@ -232,20 +225,73 @@ tableview.setItems(list);
         } catch (SQLException ex) {
                  JOptionPane.showMessageDialog(null,ex);
         }
+        PersonneCRUD pc = new PersonneCRUD();
+        List<personnes> p = new ArrayList<>(pc.displayAll());
+        p.forEach(e->{
+            try {
+                sendMail(e.getEmail());
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
+           
             
-            
+    }
+    public  void sendMail(String recepient) throws Exception {
+        System.out.println("Preparing to send email");
+        Properties properties = new Properties();
+        //Enable authentication
+        properties.put("mail.smtp.auth", "true");
+        //Set TLS encryption enabled
+        properties.put("mail.smtp.starttls.enable", "true");
+        //Set SMTP host
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        //Set smtp port
+        properties.put("mail.smtp.port", "587");
+        //Your gmail address
+        String myAccountEmail = "hamza.argoubi@esprit.tn";
+        //Your gmail password
+        String password = "191SMT2377";
+        //Create a session with account credentials
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(myAccountEmail, password);
+            }
+        });
+       
+        Message message=verifMessage(session, myAccountEmail, recepient);
+        //Send mail
+        Transport.send(message);
+        System.out.println("Message sent successfully");
+       
+    }
+    private  Message verifMessage(Session session, String myAccountEmail, String recepient) {
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(myAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
+            message.setSubject("Competition aded");
+            String htmlCode = "Nouvelle competition";
+            message.setContent(htmlCode, "text/html");
+            return message;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());        }
+        return null;
     }
    
   
     @FXML
     private void supprimercomp(ActionEvent event) {
+       competitions comp = new competitions();
+        comp = tableview.getSelectionModel().getSelectedItem();
         try{
          cnx = MyConnection.getInstance().getCnx();
    
-                String requete2 = "DELETE FROM competitions WHERE nom_comp=?";
-            PreparedStatement pst = cnx.prepareStatement(requete2);
-            competitions p=new competitions();
-          pst.setString(1, p.getNom_comp());
+                String requete3 = "DELETE FROM competitions WHERE nom_comp=?";
+          pst = cnx.prepareStatement(requete3);
+            
+          pst.setString(1, comp.getNom_comp());
             pst.executeUpdate();
             showcompeitions();
             System.out.println("Competition deleted");
@@ -257,12 +303,14 @@ tableview.setItems(list);
 
     @FXML
     private void modifiercomp(ActionEvent event) {
+         competitions comp = new competitions();
+        comp = tableview.getSelectionModel().getSelectedItem();
           try {
             cnx = MyConnection.getInstance().getCnx();
-            String requete2 = "UPDATE `competitions` SET nom_comp=?,nom_cat=?,date_deb=?,date_fin=? WHERE id_comp=? ";
+            String requete4 = "UPDATE competitions SET nom_comp=?,nom_cat=?,date_deb=?,date_fin=? WHERE id_comp=? ";
                     
-            pst=cnx.prepareStatement(requete2);      
-            competitions p=new competitions();
+            pst=cnx.prepareStatement(requete4);      
+        
            
             pst.setString(1,tfnom_comp.getText());
             pst.setString(2,combo.getValue());
@@ -274,5 +322,6 @@ tableview.setItems(list);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());        }
     }
+
     }
 

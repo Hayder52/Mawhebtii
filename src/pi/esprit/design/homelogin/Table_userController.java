@@ -78,21 +78,7 @@ public class Table_userController implements Initializable {
  
 
  
-    public void entred(Event e){
     
-
-       ((Button)e.getSource()).setScaleX(1.1);
-       ((Button)e.getSource()).setScaleX(1.1);
-       ((Button)e.getSource()).setTextFill(Color.BLUE);
-       
-       }
-    public void exited(Event e){
-    
-
-       ((Button)e.getSource()).setScaleX(1);
-       ((Button)e.getSource()).setScaleX(1);
-       ((Button)e.getSource()).setTextFill(Color.BLACK);
-       }
     public ObservableList<competitions> getcompetitionslist() throws SQLException{
          ObservableList<competitions> competitionslist=FXCollections.observableArrayList();
           cnx = MyConnection.getInstance().getCnx();
@@ -134,7 +120,6 @@ tablevew.setItems(list);
 
     }
 
-        @FXML
     private void tableview(MouseEvent event) {
         competitions competition=tablevew.getSelectionModel().getSelectedItem();
   
@@ -146,12 +131,15 @@ tablevew.setItems(list);
 
         tdate_fin.setText(date2);
            }
-     @FXML
-    private void pagessuivante(ActionEvent event) {
+   
+    @FXML
+    private void pagesuivante(ActionEvent event) {
+      
            btnNext.getScene().getWindow().hide();
             Parent root=null;
+            System.out.println("ehchoumi");
         try {
-            root = FXMLLoader.load(getClass().getResource("upload_video.fxml"));
+            root = FXMLLoader.load(getClass().getResource("video.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }
@@ -161,12 +149,16 @@ tablevew.setItems(list);
             mainstage.show();
     }
 
+    
+
     @FXML
-    private void sortire(ActionEvent event) {
-         btnRetour.getScene().getWindow().hide();
+    private void page(ActionEvent event) {
+   
+           btnRetour.getScene().getWindow().hide();
             Parent root=null;
+            System.out.println("ehchoumi");
         try {
-            root = FXMLLoader.load(getClass().getResource("Menuprincipale.fxml"));
+            root = FXMLLoader.load(getClass().getResource("competition_admin.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }
@@ -175,7 +167,8 @@ tablevew.setItems(list);
             mainstage.setScene(scene); 
             mainstage.show();
     }
+
+    }
     
-    }    
     
 
