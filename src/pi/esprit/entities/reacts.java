@@ -13,26 +13,29 @@ import java.util.Objects;
  */
 public class reacts {
     private int id_react;
-    private int type_react;
     private int id_vid;
     private int id_user;
+     private String etat;
 
-    public reacts(int id_react, int type_react, int id_vid, int id_user) {
+    public reacts(int id_react, int id_vid, int id_user, String etat) {
         this.id_react = id_react;
-        this.type_react = type_react;
         this.id_vid = id_vid;
         this.id_user = id_user;
+        this.etat = etat;
     }
     public reacts(){
         
     }
 
-    public int getId_react() {
-        return id_react;
+    public reacts(int id_vid, int id_user) {
+        this.id_vid = id_vid;
+        this.id_user = id_user;
     }
 
-    public int getType_react() {
-        return type_react;
+    
+
+    public int getId_react() {
+        return id_react;
     }
 
     public int getId_vid() {
@@ -43,12 +46,12 @@ public class reacts {
         return id_user;
     }
 
-    public void setId_react(int id_react) {
-        this.id_react = id_react;
+    public String getEtat() {
+        return etat;
     }
 
-    public void setType_react(int type_react) {
-        this.type_react = type_react;
+    public void setId_react(int id_react) {
+        this.id_react = id_react;
     }
 
     public void setId_vid(int id_vid) {
@@ -59,9 +62,13 @@ public class reacts {
         this.id_user = id_user;
     }
 
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
         return hash;
     }
 
@@ -86,7 +93,7 @@ public class reacts {
         if (this.id_user != other.id_user) {
             return false;
         }
-        if (!Objects.equals(this.type_react, other.type_react)) {
+        if (!Objects.equals(this.etat, other.etat)) {
             return false;
         }
         return true;
@@ -94,8 +101,8 @@ public class reacts {
 
     @Override
     public String toString() {
-        return "reacts{" + "id_react=" + id_react + ", type_react=" + type_react + ", id_vid=" + id_vid + ", id_user=" + id_user + '}';
+        return "reacts{" + "id_react=" + id_react + ", id_vid=" + id_vid + ", id_user=" + id_user + ", etat=" + etat + '}';
     }
-    
+
     
 }

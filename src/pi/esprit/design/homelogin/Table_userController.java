@@ -54,8 +54,9 @@ public class Table_userController implements Initializable {
     private Button btnNext;
     @FXML
     private Button btnRetour;
-    @FXML
     private TableView<competitions> tablevew;
+    @FXML
+    private TableView<?> tableview;
 
     /**
      * Initializes the controller class.
@@ -156,9 +157,9 @@ tablevew.setItems(list);
    
            btnRetour.getScene().getWindow().hide();
             Parent root=null;
-            System.out.println("ehchoumi");
+           // System.out.println("ehchoumi");
         try {
-            root = FXMLLoader.load(getClass().getResource("competition_admin.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Menuprincipale.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }

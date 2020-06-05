@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+
+
+#exit{
+    -fx-background-radius:33px;
+}
+#next{
+    -fx-background-radius:33px;
+}

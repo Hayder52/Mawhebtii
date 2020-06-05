@@ -5,8 +5,10 @@
  */
 package pi.esprit.utils;
 
+import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -14,11 +16,7 @@ import java.sql.SQLException;
  * @author bureau
  */
 public class MyConnection {
-
-    public static Connection getConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-     public String url="jdbc:mysql://localhost:3306/mawhebty";
+     public String url="jdbc:mysql://localhost:3306/mawhoub";
     public String login="root";
     public String pwd="";
     Connection cnx;
@@ -43,4 +41,8 @@ public class MyConnection {
             instance = new MyConnection();
         return instance;
     }
+    
+   
+    
+    
 }
