@@ -41,7 +41,7 @@ public class login extends Application {
             
     
             System.out.println(ex.getMessage());        }
-            Scene scene = new Scene(root);
+        Scene scene = new Scene(root);
     
        
         

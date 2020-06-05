@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.StatController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.esprit.design.homelogin.StatController">
    <children>
-      <Button fx:id="btn_load" layoutX="348.0" layoutY="485.0" mnemonicParsing="false" onAction="#load_pc" text="load piechart" />
-      <Label fx:id="lb" layoutX="195.0" layoutY="489.0" prefHeight="17.0" prefWidth="79.0" text="Hello World!!">
+      <Button fx:id="btn_load" layoutX="281.0" layoutY="342.0" mnemonicParsing="false" onAction="#load_pc" text="load piechart" />
+      <Label fx:id="lb" layoutX="142.0" layoutY="346.0" prefHeight="17.0" prefWidth="79.0" text="Hello World!!">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <PieChart fx:id="pc" layoutX="9.0" layoutY="65.0" prefHeight="400.0" prefWidth="721.0" />
+      <PieChart fx:id="pc" layoutX="50.0" layoutY="44.0" prefHeight="267.0" prefWidth="500.0" />
       <Button fx:id="btn_back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="back" />
    </children>
 </AnchorPane>

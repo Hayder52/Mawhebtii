@@ -6,7 +6,6 @@
 package pi.esprit.design.homelogin;
 
 import com.mysql.jdbc.PreparedStatement;
-import static java.awt.Color.red;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -41,11 +40,6 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.Blend;
-import javafx.scene.effect.ColorInput;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
-import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -54,7 +48,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -306,39 +299,36 @@ public class VideolistController implements Initializable {
 
         reacts r = new reacts(M.getId_vid(), pp.getId_user());
         if (rs.getlikeparid(r) == true) {
-            
+            // rs.Supprimerdislike(pp.getId_user(), 2);
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
-            alert1.setTitle("information");
-           alert1.setHeaderText("Information");
+            alert1.setTitle("deleting like");
+            alert1.setHeaderText("Information");
             alert1.setContentText("you liked this video before");
-           alert1.show();
+            alert1.show();
         } else {
             if (rs.getdislikeparid(r) == true) {
 
-              //  Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-              //  alert1.setTitle("deleting like");
-              //  alert1.setHeaderText("Information");
-              //  alert1.setContentText("do you want delete your dislike ?");
-             //   Optional<ButtonType> action = alert1.showAndWait();
-              
+                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                alert1.setTitle("deleting like");
+                alert1.setHeaderText("Information");
+                alert1.setContentText("do you want delete your dislike ?");
+                Optional<ButtonType> action = alert1.showAndWait();
+                if (action.get() == ButtonType.OK) {
                     rs.like(r);
 
                     rs.Supprimerdislike(pp.getId_user(),M.getId_vid());
                     System.out.println("dislike deleted");
                     num_dislike.setText(rs.dislike_number(r));
                          num_like.setText(rs.like_number(r));
-                       
-                
-            }      else
+                }
+            } else {
                 rs.like(r);
-            btn_dislike.setEffect(new Lighting());
-            
                 System.out.println("like added");
 
-            
+            }
 
         }
-        btn_like.setEffect(new Blend());
+        
     }
 
     @FXML
@@ -348,37 +338,35 @@ public class VideolistController implements Initializable {
 
         reacts r = new reacts(M.getId_vid(), pp.getId_user());
         if (rs.getdislikeparid(r) == true) {
-            
+            // rs.Supprimerdislike(pp.getId_user(), 2);
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
             alert1.setTitle("deleting dislike");
             alert1.setHeaderText("Information");
-            alert1.setContentText("you dislike this video before");
-           alert1.show();
+            alert1.setContentText("vous avez deja fait un dislike");
+            alert1.show();
         } else {
             if (rs.getlikeparid(r) == true) {
 
-             //   Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-             //   alert1.setTitle("deleting dislike");
-             //   alert1.setHeaderText("Information");
-             //   alert1.setContentText("do you want delete your like ?");
-             //   Optional<ButtonType> action = alert1.showAndWait();
-                
+                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                alert1.setTitle("deleting dislike");
+                alert1.setHeaderText("Information");
+                alert1.setContentText("do you want delete your like ?");
+                Optional<ButtonType> action = alert1.showAndWait();
+                if (action.get() == ButtonType.OK) {
                     rs.dislike(r);
 
                     rs.Supprimerlike(pp.getId_user(),M.getId_vid());
                     System.out.println("like deleted");
                      num_dislike.setText(rs.dislike_number(r));
                          num_like.setText(rs.like_number(r));
-                
-            } else 
+                }
+            } else {
                 rs.dislike(r);
-            btn_like.setEffect(new Lighting());
                 System.out.println("dislike added");
 
-            
+            }
 
         }
-         btn_dislike.setEffect(new Blend());
     }
 
     @FXML

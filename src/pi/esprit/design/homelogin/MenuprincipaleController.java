@@ -71,7 +71,7 @@ public class MenuprincipaleController implements Initializable {
          btn_account.getScene().getWindow().hide();
             Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("MyProfile.fxml"));
+            root = FXMLLoader.load(getClass().getResource("adminaccount.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }
@@ -122,7 +122,7 @@ public class MenuprincipaleController implements Initializable {
 
     @FXML
     private void pagenews(ActionEvent event) {
-         btn_nrws.getScene().getWindow().hide();
+         btn_Rss.getScene().getWindow().hide();
             Parent root=null;
         try {
             root = FXMLLoader.load(getClass().getResource("CNN.fxml"));
@@ -141,7 +141,7 @@ public class MenuprincipaleController implements Initializable {
          btn_abbout.getScene().getWindow().hide();
             Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("help.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Web.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }
@@ -154,10 +154,10 @@ public class MenuprincipaleController implements Initializable {
 
     @FXML
     private void pageRss(ActionEvent event) {
-         btn_Rss.getScene().getWindow().hide();
+         btn_nrws.getScene().getWindow().hide();
             Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("Web.fxml"));
+            root = FXMLLoader.load(getClass().getResource("help.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }

@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -26,7 +27,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import pi.esprit.entities.loggedmembre;
 import pi.esprit.entities.personnes;
+import pi.esprit.services.BanAndReportsCRUD;
+import pi.esprit.services.FriendRequestsAndMessagesCRUD;
 import pi.esprit.services.PersonForTab;
 import pi.esprit.services.PersonneCRUD;
 
@@ -52,9 +56,11 @@ public class ListOfUsersController implements Initializable {
     @FXML
     private TextField searchTf;
     
-    
-    PersonneCRUD p = new PersonneCRUD();
-    final ObservableList<PersonForTab> data = FXCollections.observableArrayList(p.selectUsers());
+    FriendRequestsAndMessagesCRUD framc = new FriendRequestsAndMessagesCRUD();
+    BanAndReportsCRUD brc = new BanAndReportsCRUD();
+    personnes p = loggedmembre.getP();
+    PersonneCRUD pc = new PersonneCRUD();
+    final ObservableList<PersonForTab> data = FXCollections.observableArrayList(pc.selectUsers());
     @FXML
     private TableColumn<PersonForTab,String> idColumn;
     @FXML
@@ -102,10 +108,23 @@ public class ListOfUsersController implements Initializable {
 
     @FXML
     private void report(ActionEvent event) {
-        PersonForTab p = tableview.getSelectionModel().getSelectedItem();
-        System.out.println(p.getId_user());
-        PersonneCRUD pc = new PersonneCRUD();
-        pc.incrementNumberOfReports(Integer.parseInt(p.getId_user()));
+         PersonForTab pSelected = tableview.getSelectionModel().getSelectedItem();
+        
+        if(brc.checkReportStatus(Integer.parseInt(pSelected.getId_user()), p.getId_user())){
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("reporting");
+            alert1.setHeaderText("Information");
+            alert1.setContentText("you have already reported this person");
+            alert1.show();
+        }
+        else{
+        brc.incrementNumberOfReports(Integer.parseInt(pSelected.getId_user()));
+        if(brc.selectNumberOfReports(Integer.parseInt(pSelected.getId_user()))>20){
+            brc.ban(Integer.parseInt(pSelected.getId_user()),14);
+        }
+        brc.reportRelations(Integer.parseInt(pSelected.getId_user()), p.getId_user());
+        
+        }
         
 
     }
@@ -126,12 +145,25 @@ public class ListOfUsersController implements Initializable {
 
     @FXML
     private void sendFriendRequest(ActionEvent event) {
-        
+        PersonForTab pSelected = tableview.getSelectionModel().getSelectedItem();
+        if (framc.checkFriendship(p.getId_user(),Integer.parseInt(pSelected.getId_user()))){
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Sending friend request");
+            alert1.setHeaderText("Information");
+            alert1.setContentText("you are already a friend of this person");
+            alert1.show();
+        }
+        else{
+            framc.insertFriendRequest(p.getId_user(),Integer.parseInt(pSelected.getId_user()));
+    }
     }
 
     @FXML
     private void viewProfile(ActionEvent event) {
+        PersonForTab pSelected = tableview.getSelectionModel().getSelectedItem();
         Stage stage = (Stage) searchTf.getScene().getWindow();
+        OtherProfilesController op = new OtherProfilesController();
+        op.setId(Integer.parseInt(pSelected.getId_user()));
          Parent root=null;
         try {
             root = FXMLLoader.load(getClass().getResource("OtherProfiles.fxml"));

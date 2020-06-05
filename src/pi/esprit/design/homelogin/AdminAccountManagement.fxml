@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="657.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="pi.esprit.design.homelogin.AdminAccountManagementController">
-    <children>
+<AnchorPane id="AnchorPane" prefHeight="469.0" prefWidth="670.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="pi.esprit.design.homelogin.AdminAccountManagementController">
+   <children>
       <TableView fx:id="tableview" layoutX="36.0" layoutY="96.0" prefHeight="300.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="75.0" text="user id" />
@@ -23,11 +24,11 @@
       <Button fx:id="addUserBtn" layoutX="388.0" layoutY="423.0" mnemonicParsing="false" onAction="#addUser" text="add user" />
       <Button fx:id="deleteUserBtn" layoutX="563.0" layoutY="422.0" mnemonicParsing="false" onAction="#deleteUser" text="delete user" />
       <TextField fx:id="searchTf" layoutX="489.0" layoutY="23.0" promptText="search for users" />
+      <Button layoutX="36.0" layoutY="23.0" mnemonicParsing="false" text="Back" />
       <Label fx:id="listUsersLb" layoutX="250.0" layoutY="27.0" text="List of users">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="backBtn" layoutX="36.0" layoutY="36.0" mnemonicParsing="false" onAction="#back" text="back" />
    </children>
 </AnchorPane>

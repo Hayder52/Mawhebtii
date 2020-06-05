@@ -67,7 +67,7 @@ public class AdminmenuController implements Initializable {
          btn_account.getScene().getWindow().hide();
             Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("AdminAccountManagement.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Adminaccount.fxml"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());       
         }

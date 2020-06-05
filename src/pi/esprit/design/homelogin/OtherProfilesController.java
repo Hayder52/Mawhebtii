@@ -14,12 +14,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import pi.esprit.entities.loggedmembre;
 import pi.esprit.entities.personnes;
+import pi.esprit.services.FriendRequestsAndMessagesCRUD;
+import pi.esprit.services.PersonForTab;
 import pi.esprit.services.PersonneCRUD;
 
 /**
@@ -61,16 +64,18 @@ public class OtherProfilesController implements Initializable {
     private Label profileLabel;
     @FXML
     private Button sendFriendRequestBtn;
-
+    int id;
+    personnes p =loggedmembre.getP();
+    FriendRequestsAndMessagesCRUD framc = new FriendRequestsAndMessagesCRUD();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-         personnes lm = loggedmembre.getP();
+        
         PersonneCRUD pc = new PersonneCRUD();
-        personnes p = pc.selectUser(lm.getId_user());
+        personnes p = pc.selectUser(id);
         
         sqlLastNameLb.setText(p.getNom());
         sqlFirstNameLb.setText(p.getPrenom());
@@ -96,6 +101,21 @@ public class OtherProfilesController implements Initializable {
 
     @FXML
     private void sendRequest(ActionEvent event) {
+        
+        if (framc.checkFriendship(p.getId_user(),id)){
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Sending friend request");
+            alert1.setHeaderText("Information");
+            alert1.setContentText("you are already a friend of this person");
+            alert1.show();
+        }
+        else{
+            framc.insertFriendRequest(p.getId_user(),id);
+    }
+    }
+    
+    public void setId(int idSelected){
+        id=idSelected;
     }
     
 }
