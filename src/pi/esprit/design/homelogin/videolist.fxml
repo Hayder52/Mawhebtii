@@ -79,5 +79,6 @@
       <Button fx:id="btnbk" layoutX="8.0" layoutY="16.0" mnemonicParsing="false" onAction="#back" text="back" />
       <Button fx:id="like_nb" layoutX="57.0" layoutY="508.0" mnemonicParsing="false" onAction="#like_number" text="number of like" />
       <Button fx:id="dislike_nb" layoutX="50.0" layoutY="538.0" mnemonicParsing="false" onAction="#dislikenumber" text="number of dislike" />
+      <Button fx:id="btn_next" layoutX="823.0" layoutY="16.0" mnemonicParsing="false" onAction="#next" text="Next" />
    </children>
 </AnchorPane>

@@ -17,9 +17,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,7 +36,10 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import pi.esprit.utils.MyConnection;
 import javafx.scene.control.ComboBox;
+import javafx.util.Duration;
+import javax.management.Notification;
 import javax.swing.JComboBox;
+import org.controlsfx.control.Notifications;
 import pi.esprit.entities.loggedmembre;
 import pi.esprit.entities.personnes;
 
@@ -96,6 +101,12 @@ PreparedStatement pst;
                 Scene scene=new Scene(root);
                 mainstage.setScene(scene);
                 mainstage.show();
+                Notifications notificationBuilder= Notifications.create().title("Login Completed")
+                        .text("Login as Admin").graphic(null).hideAfter(Duration.seconds(5)).position(Pos.TOP_RIGHT)
+                        .onAction((ActionEvent event1) -> {
+                            System.out.println("Welcome");
+                     });
+                notificationBuilder.showConfirm();
                 }else{
                 btn_login.getScene().getWindow().hide();
                 Parent root=FXMLLoader.load(getClass().getResource("Menuprincipale.fxml"));
@@ -103,6 +114,12 @@ PreparedStatement pst;
                 Scene scene=new Scene(root);
                 mainstage.setScene(scene);
                 mainstage.show();
+                  Notifications notificationBuilder= Notifications.create().title("Login Completed")
+                        .text("Login as User").graphic(null).hideAfter(Duration.seconds(5)).position(Pos.BASELINE_RIGHT)
+                        .onAction((ActionEvent event1) -> {
+                            System.out.println("Welcome");
+                     });
+                notificationBuilder.showConfirm();
                 }
             }
             

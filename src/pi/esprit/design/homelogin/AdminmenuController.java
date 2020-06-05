@@ -96,6 +96,18 @@ public class AdminmenuController implements Initializable {
     @FXML
     private void page_competions(ActionEvent event) {
         
+         btn_comp.getScene().getWindow().hide();
+            Parent root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("competition_admin.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());       
+        }
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene); 
+            mainstage.show();
+        
     }
 
     @FXML

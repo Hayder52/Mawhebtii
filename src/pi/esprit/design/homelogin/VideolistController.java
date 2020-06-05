@@ -28,6 +28,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
@@ -57,7 +58,9 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javax.swing.JOptionPane;
+import org.controlsfx.control.Notifications;
 import pi.esprit.entities.InputValidation;
 import pi.esprit.entities.Vue;
 import pi.esprit.entities.commentaires;
@@ -133,6 +136,8 @@ public class VideolistController implements Initializable {
     private TextField idvid;
     @FXML
     private TextField vue_num;
+    @FXML
+    private Button btn_next;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -176,6 +181,12 @@ public class VideolistController implements Initializable {
                                       VueService vs=new VueService();
                                       vs.ajouterVue(v);
                                       vue_num.setText(vs.Vue_number(v));
+                                        Notifications notificationBuilder= Notifications.create().title("Upload Completed")
+                        .text("Video added ").graphic(null).hideAfter(Duration.seconds(5)).position(Pos.BASELINE_RIGHT)
+                        .onAction((ActionEvent event1) -> {
+                            System.out.println("Welcome");
+                     });
+                notificationBuilder.showConfirm();
 
                                 }
 
@@ -432,6 +443,21 @@ public class VideolistController implements Initializable {
         reacts r = new reacts(M.getId_vid(), pp.getId_user());
         rs.dislike_number(r);
         num_dislike.setText(rs.dislike_number(r));
+    }
+
+    @FXML
+    private void next(ActionEvent event) {
+         btn_next.getScene().getWindow().hide();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("User_video.fxml"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        Stage mainstage = new Stage();
+        Scene scene = new Scene(root);
+        mainstage.setScene(scene);
+        mainstage.show();
     }
 
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="781.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="pi.esprit.design.homelogin.User_videoController">
+   <children>
+      <TableView fx:id="tableview" layoutX="32.0" layoutY="124.0" prefHeight="430.0" prefWidth="718.0">
+        <columns>
+          <TableColumn fx:id="first_name" prefWidth="75.0" text="First name" />
+          <TableColumn fx:id="lastname" prefWidth="75.0" text="Last name" />
+            <TableColumn fx:id="videoid" prefWidth="75.0" text="id_video" />
+            <TableColumn fx:id="likenumber" prefWidth="75.0" text="Nb_like" />
+        </columns>
+      </TableView>
+      <Label layoutX="252.0" layoutY="38.0" prefHeight="17.0" prefWidth="357.0" text="Last's Liked videos">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

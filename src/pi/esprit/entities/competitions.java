@@ -6,7 +6,9 @@
 package pi.esprit.entities;
 
 
-import java.util.Date;
+
+
+import java.sql.Date;
 import java.util.Objects;
 
 
@@ -15,11 +17,34 @@ import java.util.Objects;
  * @author bureau
  */
 public class competitions {
+
+    public static Object getSelecyionModel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static Object getSelectionModel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private int id_comp;
     private String nom_comp;
-    private int id_cat;
+    private String nom_cat;
     private Date date_deb;
     private Date date_fin;
+
+    public competitions() {
+    }
+
+    public competitions(int id_comp, String nom_comp, String nom_cat, Date date_deb, Date date_fin) {
+        this.id_comp = id_comp;
+        this.nom_comp = nom_comp;
+        this.nom_cat = nom_cat;
+        this.date_deb = date_deb;
+        this.date_fin = date_fin;
+    }
+
+    public competitions(String string, String string0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public int getId_comp() {
         return id_comp;
@@ -29,8 +54,8 @@ public class competitions {
         return nom_comp;
     }
 
-    public int getId_cat() {
-        return id_cat;
+    public String getNom_cat() {
+        return nom_cat;
     }
 
     public Date getDate_deb() {
@@ -49,8 +74,8 @@ public class competitions {
         this.nom_comp = nom_comp;
     }
 
-    public void setId_cat(int id_cat) {
-        this.id_cat = id_cat;
+    public void setNom_cat(String nom_cat) {
+        this.nom_cat = nom_cat;
     }
 
     public void setDate_deb(Date date_deb) {
@@ -60,6 +85,10 @@ public class competitions {
     public void setDate_fin(Date date_fin) {
         this.date_fin = date_fin;
     }
+
+ 
+    
+    
 
     @Override
     public int hashCode() {
@@ -82,10 +111,10 @@ public class competitions {
         if (this.id_comp != other.id_comp) {
             return false;
         }
-        if (this.id_cat != other.id_cat) {
+        if (!Objects.equals(this.nom_comp, other.nom_comp)) {
             return false;
         }
-        if (!Objects.equals(this.nom_comp, other.nom_comp)) {
+        if (!Objects.equals(this.nom_cat, other.nom_cat)) {
             return false;
         }
         if (!Objects.equals(this.date_deb, other.date_deb)) {
@@ -97,10 +126,30 @@ public class competitions {
         return true;
     }
 
-    @Override
+   
+
+
+ 
+     @Override
     public String toString() {
-        return "competitions{" + "id_comp=" + id_comp + ", nom_comp=" + nom_comp + ", id_cat=" + id_cat + ", date_deb=" + date_deb + ", date_fin=" + date_fin + '}';
+        return "commentaires{" + "id_comp=" + id_comp + ", nom_comp=" + nom_comp + ", nom_cat=" + nom_cat + ", date_deb=" + date_deb +", date_fin=" + date_fin + '}';
+
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
 }
+
+   

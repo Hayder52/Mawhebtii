@@ -1,0 +1,28 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+#tete{
+    -fx-background-color:aquamarine;
+    -fx-background-radius:33px;
+}
+#sortir{
+    -fx-background-color:aquamarine;
+    -fx-background-radius:33px;
+}
+
+#exit{
+    -fx-background-radius:33px;
+}
+#next{
+    -fx-background-radius:33px;
+}
+#Meals{
+    -fx-background-color:#6495ED;
+}
+#Mails2{
+    -fx-background-color:#6495ED;
+}
