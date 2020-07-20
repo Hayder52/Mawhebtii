@@ -59,6 +59,11 @@ public class VerificationCode {
     public void setValidity(boolean validity) {
         this.validity = validity;
     }
+
+    @Override
+    public String toString() {
+        return "VerificationCode{" + "id_user=" + id_user + ", verificationCode=" + verificationCode + ", insertionDate=" + insertionDate + ", validity=" + validity + '}';
+    }
    
    
 }

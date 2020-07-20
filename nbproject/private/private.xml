@@ -3,33 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/VideolistController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/Feed.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/MailService.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/loggedmembre.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/MenuprincipaleController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/login.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/AdminmenuController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/mawhebty/Mawhebty.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/ForgotpasswordController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/Reactservices.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/CNN.fxml</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/Vue.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/RegisterController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/RssFeedParser.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/StatController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/PersonneCRUD.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/VideoController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/JavaMailutil.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/JavaMail.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/VueService.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/AdminaccountController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/entities/FeedMessage.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/CNNController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/services/VerificationCodeCRUD.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/utils/MyConnection.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/LoginController.java</file>
-            <file>file:/C:/Users/bureau/Desktop/Mawhebtii/src/pi/esprit/design/homelogin/Forgotpassword.fxml</file>
+            <file>file:/C:/Users/21653/Documents/mawhebti%2026-05-2020/Mawhebtii-touta/src/pi/esprit/design/homelogin/AdminmenuController.java</file>
+            <file>file:/C:/Users/21653/Documents/mawhebti%2026-05-2020/Mawhebtii-touta/src/pi/esprit/services/BanAndReportsCRUD.java</file>
+            <file>file:/C:/Users/21653/Documents/mawhebti%2026-05-2020/Mawhebtii-touta/src/pi/esprit/services/PersonForTab.java</file>
+            <file>file:/C:/Users/21653/Documents/mawhebti%2026-05-2020/Mawhebtii-touta/src/pi/esprit/design/homelogin/login.java</file>
+            <file>file:/C:/Users/21653/Documents/mawhebti%2026-05-2020/Mawhebtii-touta/src/pi/esprit/design/homelogin/ListOfUsersController.java</file>
+            <file>file:/C:/Users/21653/Documents/mawhebti%2026-05-2020/Mawhebtii-touta/src/pi/esprit/design/homelogin/MenuprincipaleController.java</file>
+            <file>file:/C:/Users/21653/Documents/mawhebti%2026-05-2020/Mawhebtii-touta/src/pi/esprit/services/PersonneCRUD.java</file>
+            <file>file:/C:/Users/21653/Documents/mawhebti%2026-05-2020/Mawhebtii-touta/src/pi/esprit/design/homelogin/MyProfileController.java</file>
+            <file>file:/C:/Users/21653/Documents/mawhebti%2026-05-2020/Mawhebtii-touta/src/pi/esprit/design/homelogin/AdminAccountManagementController.java</file>
         </group>
     </open-files>
 </project-private>

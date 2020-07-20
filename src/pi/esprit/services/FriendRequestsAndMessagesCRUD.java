@@ -74,7 +74,7 @@ public class FriendRequestsAndMessagesCRUD {
    public void addFriend(int personId,int hisFriendId){
        try {
            
-           String requete1 = "INSERT INTO Friends(personId,hisFriend)"
+           String requete1 = "INSERT INTO friends(personId,hisFriendId)"
                     + "VALUES (?,?)";  
             PreparedStatement pst = cnx.prepareStatement(requete1);
             
@@ -89,7 +89,7 @@ public class FriendRequestsAndMessagesCRUD {
        
        try {
            
-           String requete1 = "INSERT INTO friends(personId,hisFriend)"
+           String requete1 = "INSERT INTO friends(personId,hisFriendId)"
                     + "VALUES (?,?)";  
             PreparedStatement pst = cnx.prepareStatement(requete1);
             

@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import pi.esprit.entities.loggedmembre;
@@ -67,6 +68,8 @@ public class OtherProfilesController implements Initializable {
     int id;
     personnes p =loggedmembre.getP();
     FriendRequestsAndMessagesCRUD framc = new FriendRequestsAndMessagesCRUD();
+    @FXML
+    private ImageView imgView;
     /**
      * Initializes the controller class.
      */

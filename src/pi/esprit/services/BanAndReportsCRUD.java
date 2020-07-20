@@ -32,10 +32,10 @@ public class BanAndReportsCRUD {
             PreparedStatement pst = cnx.prepareStatement(requete2);
             
             pst.setInt(1, id);
-            pst.setInt(2, 0);
+            pst.setInt(2, 1);
             
             pst.executeUpdate();
-            System.out.println("Ban added!");
+            System.out.println("report added!");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
@@ -44,7 +44,7 @@ public class BanAndReportsCRUD {
     public void reportRelations (int reportedId,int reporterId){
         try {
            
-           String requete2 = "INSERT INTO reportRelations(reportedId,reporterId)"
+           String requete2 = "INSERT INTO reportrelations(reportedId,reporterId)"
                     + "VALUES (?,?)";  
             PreparedStatement pst = cnx.prepareStatement(requete2);
             
@@ -59,31 +59,38 @@ public class BanAndReportsCRUD {
     }
     
     public boolean checkReportStatus(int reportedId,int reporterId){
+        Boolean test = false;
+        int reporterIdSQL=0;
+        int reportedIdSQL=0;
          try {
-            String requete = "SELECT * FROM reportRelations WHERE reportedId = ? AND reporterId=?";
+            String requete = "SELECT * FROM reportrelations  ";
             PreparedStatement pst = cnx.prepareStatement(requete);
-            
-            pst.setInt(1, reportedId);
-            pst.setInt(2, reporterId);
             ResultSet rs = pst.executeQuery(requete);
-            if(rs.next()){
-                return true;
+            while(rs.next()){
+                reporterIdSQL=rs.getInt("reporterId");
+                reportedIdSQL=rs.getInt("reportedId");
+                System.out.println(reporterIdSQL);
+                if(reporterIdSQL==reporterId&&reportedIdSQL==reportedId){
+                    test=true;
+                }
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-       return false;
+       return test;
     }
    
    public int selectNumberOfReports(int id){
-       int nReports = -1;
+       int nReports = 0;
         try {
-            String requete = "SELECT numberOfReports FROM reports WHERE id_user = "+id;
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(requete);
+            String requete = "SELECT * FROM reports ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery(requete);
             while(rs.next()){
+                if(rs.getInt("id_user")==id)
                nReports = rs.getInt("numberOfReports");
             }
+            System.out.println(nReports);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -91,35 +98,37 @@ public class BanAndReportsCRUD {
    }
    
    public  void incrementNumberOfReports(int id) {
-       int nReports = 0;
+       int test=0;
         try {
-            String requete = "SELECT numberOfReports FROM reports WHERE id_user = "+id;
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(requete);
-            while(rs.next()){
-               nReports = rs.getInt("numberOfReports");
-            }
+            String requete = "UPDATE reports SET numberOfReports=numberOfReports+1   WHERE id_user = ? ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, id);
+             test=pst.executeUpdate();
+             
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            
         }
-        nReports++;
-        try {
-           
-           String requete = "UPDATE reports SET numberOfReports=? "
-                    + "WHERE id_user=?";
-            PreparedStatement pst = cnx.prepareStatement(requete);
-            pst.setInt(1, nReports);
-            pst.setInt(2, id);
-          
-           
-            pst.executeUpdate();
-            System.out.println("report added");
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+        if(test==0){
+           initializeReportTab(id); 
         }
+        
+        
     }
    
    public  void ban(int id_user,int addedDays) {
+       
+           try {
+            String requete = "DELETE FROM bans WHERE id_user=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, id_user);
+            pst.executeUpdate();
+            System.out.println("ban supprimé");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       
         java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
          try {
             date= addDays(addedDays, date);
@@ -153,13 +162,22 @@ public class BanAndReportsCRUD {
             ResultSet rs = st.executeQuery(requete);
             while(rs.next()){
                dateBan=rs.getTimestamp("endOfBanDate");
+               
+            }
+            if(rs.next()){
+                return true;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
        VerificationCodeCRUD vc = new VerificationCodeCRUD();
-       if(vc.compareTwoTimeStamps(dateBan,date)>0)
+       if(dateBan==null){
            return true;
+       }
+       if(vc.compareTwoTimeStamps(date,dateBan)>0){
+           return true;}
+       
+           
         return false;
        
    }

@@ -36,6 +36,12 @@ public class personnes {
         this.pwd = pwd;
     }
 
+    public personnes(int id_user, String nom, String prenom) {
+        this.id_user = id_user;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
    
   
 

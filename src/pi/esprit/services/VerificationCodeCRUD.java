@@ -55,8 +55,9 @@ public class VerificationCodeCRUD {
             vc.setVerificationCode(rs.getString("verificationCode"));
             vc.setInsertionDate(rs.getTimestamp("insertionDate"));
             vc.setValidity(rs.getBoolean("validity"));
-            if (compareTwoTimeStamps(date,vc.getInsertionDate())>30 && vc.isValidity()){
+            if ( compareTwoTimeStamps(date,vc.getInsertionDate())>30 && vc.isValidity()){
                 return vc;
+                
             }
             }
         } catch (SQLException ex) {
@@ -83,7 +84,7 @@ public class VerificationCodeCRUD {
     public  long compareTwoTimeStamps(java.sql.Timestamp currentTime, java.sql.Timestamp oldTime)
 {
     long milliseconds1 = oldTime.getTime();
-  long milliseconds2 = currentTime.getTime();
+    long milliseconds2 = currentTime.getTime();
 
   long diff = milliseconds2 - milliseconds1;
   long diffSeconds = diff / 1000;

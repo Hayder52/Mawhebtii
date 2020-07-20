@@ -103,18 +103,20 @@ public class ListOfUsersController implements Initializable {
 		sortedData.comparatorProperty().bind(tableview.comparatorProperty());
 		tableview.setItems(sortedData);
                 tableview.getColumns().clear();
-                tableview.getColumns().addAll(lastNameColumn,firstNameColumn);
+                tableview.getColumns().addAll(idColumn,lastNameColumn,firstNameColumn);
     }    
 
     @FXML
     private void report(ActionEvent event) {
          PersonForTab pSelected = tableview.getSelectionModel().getSelectedItem();
-        
-        if(brc.checkReportStatus(Integer.parseInt(pSelected.getId_user()), p.getId_user())){
+         PersonneCRUD pc = new PersonneCRUD();
+         personnes pSelect2=pc.selectUser(Integer.parseInt(pSelected.getId_user()) );
+        System.out.println(pSelect2.toString()+p.toString());
+        if(brc.checkReportStatus(pSelect2.getId_user(), p.getId_user())){
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
             alert1.setTitle("reporting");
             alert1.setHeaderText("Information");
-            alert1.setContentText("you have already reported this person");
+            alert1.setContentText("you already have reported this person");
             alert1.show();
         }
         else{

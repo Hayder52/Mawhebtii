@@ -33,15 +33,11 @@ public class login extends Application {
     @Override
     public void start(Stage primaryStage) {
        
-        Parent root=null;
+        
         try {
-            root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        } catch (IOException ex) {
-                  
-            
-    
-            System.out.println(ex.getMessage());        }
-        Scene scene = new Scene(root);
+            // root=null;
+            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            Scene scene = new Scene(root);
     
        
         
@@ -49,6 +45,12 @@ public class login extends Application {
         primaryStage.setTitle("Hello Guys!");
         primaryStage.setScene(scene);
         primaryStage.show();
+        } catch (IOException ex) {
+                  
+            
+    
+            System.out.println(ex.getMessage());        }
+        
     }
 
     /**

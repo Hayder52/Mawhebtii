@@ -110,7 +110,7 @@ public class MailService {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("Verfication code");
-            String htmlCode = "your code is :"+code;
+            String htmlCode = "your code is:  "+code;
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (Exception ex) {

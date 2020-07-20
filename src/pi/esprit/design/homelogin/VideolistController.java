@@ -52,7 +52,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import pi.esprit.entities.InputValidation;
-import pi.esprit.entities.Vue;
 import pi.esprit.entities.commentaires;
 import pi.esprit.entities.loggedmembre;
 import pi.esprit.entities.personnes;
@@ -61,7 +60,6 @@ import pi.esprit.entities.videos;
 import pi.esprit.services.CommentairesService;
 import pi.esprit.services.Reactservices;
 import pi.esprit.services.VideoCRUD;
-import pi.esprit.services.VueService;
 import pi.esprit.utils.MyConnection;
 
 /**
@@ -96,6 +94,8 @@ public class VideolistController implements Initializable {
     @FXML
     private Slider volume;
     @FXML
+    private MenuItem btn_open;
+    @FXML
     private Menu btn_help;
     @FXML
     private MenuItem btn_close;
@@ -124,8 +124,6 @@ public class VideolistController implements Initializable {
     private String pathfile;
     @FXML
     private TextField idvid;
-    @FXML
-    private TextField vue_num;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -152,9 +150,7 @@ public class VideolistController implements Initializable {
                             @Override
                             public void handle(MouseEvent event) {
                                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
-                                  
                                     videos M = listvideo.getItems().get(listvideo.getSelectionModel().getSelectedIndex());
-                                    
                                     idvid.setText(String.valueOf(M.getId_vid()));
                                   
                                     String pathh = "C:\\wamp\\www\\mawhebti\\videos\\" + M.getPath_vid();
@@ -165,10 +161,6 @@ public class VideolistController implements Initializable {
                                     mediaplayer = new MediaPlayer(media);
 
                                     mediaView.setMediaPlayer(mediaplayer);
-                                      Vue v=new Vue(M.getId_vid());
-                                      VueService vs=new VueService();
-                                      vs.ajouterVue(v);
-                                      vue_num.setText(vs.Vue_number(v));
 
                                 }
 

@@ -89,9 +89,9 @@ public class MyProfileController implements Initializable {
     @FXML
     private Button searchBtn;
     @FXML
-    private VBox friendsVBox;
-    @FXML
     private Button friendRequestsBtn;
+    @FXML
+    private Button conversationBtn;
     /**
      * Initializes the controller class.
      */
@@ -210,6 +210,10 @@ public class MyProfileController implements Initializable {
             mainstage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());        }
+    }
+
+    @FXML
+    private void conversation(ActionEvent event) {
     }
     
 }

@@ -48,6 +48,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import pi.esprit.entities.InputValidation;
+import pi.esprit.services.PersonneCRUD;
 import pi.esprit.utils.MyConnection;
 
 
@@ -119,6 +120,7 @@ Image image;
             pst.setString(7,txt_pwd.getText());
             pst.setString(8,txt_email.getText());
             pst.execute();
+             
             JOptionPane.showMessageDialog(null,"saved");
         } catch (SQLException ex) {
                  JOptionPane.showMessageDialog(null,ex);

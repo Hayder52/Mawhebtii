@@ -70,6 +70,11 @@ public class AdminAccountManagementController implements Initializable {
 
     PersonneCRUD p = new PersonneCRUD();
     final ObservableList<PersonForTab> data = FXCollections.observableArrayList(p.selectUsers());
+    @FXML
+    private Button backBtn;
+    
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -252,6 +257,19 @@ public class AdminAccountManagementController implements Initializable {
                 PersonneCRUD pc = new PersonneCRUD();
                 pc.supprimerPersonne2(Integer.parseInt(p.getId_user()));
             }
+    }
+
+    @FXML
+    private void back(ActionEvent event) {
+        try {
+            listUsersLb.getScene().getWindow().hide();
+            Parent root=FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
+            Stage mainstage=new Stage();
+            Scene scene=new Scene(root);
+            mainstage.setScene(scene);
+            mainstage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());        }
     }
 
     

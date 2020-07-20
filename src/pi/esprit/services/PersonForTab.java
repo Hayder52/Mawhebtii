@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Fakhri Argoubi
  */
 public class PersonForTab {
- private final SimpleStringProperty id_user ;
+    private final SimpleStringProperty id_user ;
     private final SimpleStringProperty nom;
     private final SimpleStringProperty prenom;
     private final SimpleStringProperty email;
@@ -21,6 +21,18 @@ public class PersonForTab {
     private final SimpleStringProperty login;
     private final SimpleStringProperty pwd;
     private final SimpleStringProperty adress;
+
+    public PersonForTab() {
+        this.id_user = null;
+        this.nom = null;
+        this.prenom = null;
+        this.email = null;
+        this.profil = null;
+        this.photo = null;
+        this.login = null;
+        this.pwd = null;
+        this.adress = null;
+    }
 
 
 

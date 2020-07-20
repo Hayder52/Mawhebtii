@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -37,6 +38,7 @@ import javafx.scene.control.ComboBox;
 import javax.swing.JComboBox;
 import pi.esprit.entities.loggedmembre;
 import pi.esprit.entities.personnes;
+import pi.esprit.services.BanAndReportsCRUD;
 
 /**
  * FXML Controller class
@@ -52,17 +54,17 @@ public class LoginController implements Initializable {
     @FXML
     private Button btn_login;
 
-  Connection cnx;
-ResultSet rs=null;
-PreparedStatement pst;
+    Connection cnx;
+    ResultSet rs=null;
+    PreparedStatement pst;
     @FXML
     private Button btnsign;
     @FXML
     private AnchorPane anchorpane;
-    private CheckBox chshow;
     @FXML
-    private Button btn_passfg;
-  
+    private CheckBox chshow;
+     
+    BanAndReportsCRUD brc = new BanAndReportsCRUD();
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,7 +73,7 @@ PreparedStatement pst;
 
     @FXML
     private boolean login(ActionEvent event) throws IOException {
-      
+     
         try {
             Connection cnx = MyConnection.getInstance().getCnx();
             String sql="SELECT * FROM personnes WHERE nom = ? and pwd = ?  ";
@@ -86,10 +88,13 @@ PreparedStatement pst;
                 String profil=rs.getString("profil");
                 String pwd=rs.getString("pwd");
                 String photo=rs.getString("photo");
-                personnes ps=new personnes(id,nom,prenom,profil,photo,pwd);
+                String email = rs.getString("email");
+                String adress = rs.getString("adress");
+                personnes ps=new personnes(id, nom, prenom, email, profil, photo, email, pwd, adress);
                 loggedmembre.setP(ps);
                 System.out.println(ps);
-               
+                if (brc.banVerification(ps.getId_user())){
+                    
                 if(profil.equals("admin")){
                      btn_login.getScene().getWindow().hide();
                 Parent root=FXMLLoader.load(getClass().getResource("adminmenu.fxml"));
@@ -104,6 +109,13 @@ PreparedStatement pst;
                 Scene scene=new Scene(root);
                 mainstage.setScene(scene);
                 mainstage.show();
+                }}
+                else {
+                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                    alert1.setTitle("ban");
+                    alert1.setHeaderText("Information");
+                    alert1.setContentText("you are banned");
+                    alert1.show();
                 }
             }
             
@@ -137,26 +149,12 @@ PreparedStatement pst;
         
 }
 
-    private void showpassword(ActionEvent event) {
-    
-        if(chshow.isSelected()){
-                       
-        }
-    }
-
     @FXML
-    private void forgetpassword(ActionEvent event) {
-        
-            btn_passfg.getScene().getWindow().hide();
-            Parent root=null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("Forgotpassword.fxml"));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());        }
-            Stage mainstage=new Stage();
-            Scene scene=new Scene(root);
-            mainstage.setScene(scene); 
-            mainstage.show();
+    private void showpassword(ActionEvent event) {
+        if(chshow.isSelected()){
+              
+                   
+        }
     }
 }
 
